@@ -1,9 +1,5 @@
 'use strict';
 
-function Point(i, j) {
-  return { row: i, col: j };  
-}
-
 class Cell {
   constructor() {
     

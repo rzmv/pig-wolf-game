@@ -1,5 +1,6 @@
 'use strict';
-const Point = require('./cells').Point;
+const utils = require('./utils');
+const Point = utils.Point;
 
 const initialHealth = 3;
 const initialMana = 10;
@@ -12,10 +13,11 @@ class Unit {
     this.speed = speed || initialSpeed;
   }
 
-  tryMove(position) {
-    // TODO: check for movement correctness
-    if (true)
-      move(position);    
+  tryMove(direction) {
+    // TODO: check for correctness
+    let next = direction.nextPoint(this.position);
+    if (utils.freeCell(next))
+      move(direction);    
   }
 
   move(position) {
@@ -30,6 +32,9 @@ class Pig extends Unit {
     this.mana = mana || initialMana;
   }
 
+  move(direction) {
+    //Animation.move.call(this, super.move, direction);
+  }
 }
 
 class Trajectory {
@@ -78,7 +83,7 @@ class Wolf extends Unit {
   }
 
   move() {
-  	this.trajectory.move();	  
+  	//Animation.move.call(this, this.trajectory.move());
   }
 }
 
