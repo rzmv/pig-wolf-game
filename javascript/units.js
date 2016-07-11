@@ -1,5 +1,5 @@
 'use strict';
-const point = require('./cells').point;
+const Point = require('./cells').Point;
 
 const initialHealth = 3;
 const initialMana = 10;
@@ -34,9 +34,9 @@ class Pig extends Unit {
 
 class Trajectory {
   
-  getTrajectoryStep (position) {
+  _getTrajectoryStep (position) {
     for (let i = 0; i < this._trajectory.length; ++i)
-      if (this._trajectory[i] == position)
+      if (JSON.stringify(this._trajectory[i]) == JSON.stringify(position))
         return i;
     
     // we're not staying on the trajectory
@@ -48,8 +48,8 @@ class Trajectory {
   
   constructor(position, trajectory) {
     this._trajectory = trajectory;
-    this._currentDirection = 1;
-    this._currentStep = this.getTrajectoryStep(position);    
+    this._currentDirection = (trajectory.length > 1) ? 1 : 0;
+    this._currentStep = this._getTrajectoryStep(position);    
   }
 
   currentPosition() {
@@ -73,21 +73,25 @@ class Wolf extends Unit {
   constructor(position, speed, trajectory) {
     super(position, speed);
     this.trajectory = new Trajectory(position, trajectory);
-    this.position = () => this.trajectory.currentPosition;
+    this.position = () => this.trajectory.currentPosition();
     // setInterval(this.move, speed);
   }
 
   move() {
-    
+  	this.trajectory.move();	  
   }
 }
 
-/*
 // DEBUG
-let defaultPig = new Pig(point(0, 0));
+/*
+let defaultPig = new Pig(Point(0, 0));
 console.log(defaultPig);
 
-console.log(new Pig(point(2, 5), 50));
+console.log(new Pig(Point(2, 5), 50));
 
-console.log(new Wolf(point(100, 100), 2, [point(100, 100), point(100, 101)])); 
+let w = new Wolf(Point(100, 100), 2, [Point(100, 100), Point(100, 101)]);
+for (let i = 0; i < 5; ++i) {
+  console.log(w.position());
+  w.move();
+}
 */

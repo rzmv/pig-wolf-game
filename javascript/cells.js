@@ -1,6 +1,6 @@
 'use strict';
 
-function point(i, j) {
+function Point(i, j) {
   return { row: i, col: j };  
 }
 
@@ -17,6 +17,6 @@ class Field {
 }
 
 module.exports = {
-  point: point,
+  Point: Point,
   Cell: Cell,
 };
