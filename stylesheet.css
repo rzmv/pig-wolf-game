@@ -1,0 +1,24 @@
+body {
+  background-color: whitesmoke;
+}
+
+.div-table {
+  top: 10%;
+  position: relative;
+  height: 80%;
+  width: 100%;
+  text-align: center;
+}
+
+.table {
+  border: 1px solid darkgreen;
+  border-collapse: collapse;
+  display: inline-block;
+  position: relative;
+}
+
+.table-cell {
+  width: 150px;
+  height: 150px;
+  border: 1px solid darkgreen;
+}
