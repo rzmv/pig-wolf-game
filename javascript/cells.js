@@ -7,12 +7,13 @@ class Cell {
 }
 
 class Field {
-  constructor() {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
 
   }
 }
 
 module.exports = {
-  Point: Point,
   Cell: Cell,
 };

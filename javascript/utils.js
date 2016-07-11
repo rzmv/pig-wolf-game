@@ -1,5 +1,7 @@
 'use strict';
 
+function $(id) { return document.getElementById(id); }
+
 function Point(i, j) {
   return { row: i, col: j };  
 }
@@ -24,7 +26,7 @@ class Direction {
 
 function inBounds(point) {
   return point.row >= 0 && point.col >= 0
-    && point.col < fieldWidth && point.col < fieldWidth;
+    && point.row < fieldHeight && point.col < fieldWidth;
 }
 
 // TODO: check class Field
@@ -35,5 +37,6 @@ function pointToCell(point)
 
 function freeCell(point) {
   if (inBounds(point))
-    return pointToCell(point).isFree();  
+    return pointToCell(point).isFree();
+  return false;  
 }

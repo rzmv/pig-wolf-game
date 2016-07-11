@@ -16,12 +16,13 @@ class Unit {
   tryMove(direction) {
     // TODO: check for correctness
     let next = direction.nextPoint(this.position);
-    if (utils.freeCell(next))
+    // if (utils.freeCell(next))
       move(direction);    
   }
 
-  move(position) {
-    this.position = position;      
+  move(direction) {
+    let next = direction.nextPoint(this.position);
+    this.position = next;
   }
 }
 
@@ -31,10 +32,15 @@ class Pig extends Unit {
     this.health = health || initialHealth;
     this.mana = mana || initialMana;
   }
-
+  
   move(direction) {
     //Animation.move.call(this, super.move, direction);
+    let next = direction.nextPoint(this.position);
+    $('mainTable').rows[position.row].cells[position.col].innerHTML = '';
+    this.position = next;
+    $('mainTable').rows[position.row].cells[position.col].innerHTML = 'PIG';              
   }
+  
 }
 
 class Trajectory {
