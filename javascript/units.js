@@ -15,12 +15,9 @@ class Unit {
   }
 
   tryMove(direction) {
-    // TODO: check for correctness
-    // let next = direction.nextPoint(this.position);
-    // if Pig can move, then redraw everything
-    // if (utils.freeCell(next))
-    
-    movePlayer(direction);    
+    let next = direction.nextPoint(this.position());
+    if (globalField.freeCell(next))
+      movePlayer(direction);    
   }
 
   move(direction) {

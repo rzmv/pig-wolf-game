@@ -18,7 +18,7 @@ body {
 }
 
 .table-cell {
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   border: 1px solid darkgreen;
 }

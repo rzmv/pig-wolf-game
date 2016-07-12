@@ -38,20 +38,3 @@ function keyToDirection(keyCode) {
   
   return new Direction(ans);
 }
-
-function inBounds(point) {
-  return point.row >= 0 && point.col >= 0
-    && point.row < fieldHeight && point.col < fieldWidth;
-}
-
-// TODO: check class Field
-function pointToCell(point)
-{
-  return Field.cells[point.row][point.col];
-}
-
-function freeCell(point) {
-  if (inBounds(point))
-    return pointToCell(point).isFree();
-  return false;  
-}

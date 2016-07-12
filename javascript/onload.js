@@ -9,8 +9,9 @@
 //const Point = require('./utils').Point;
 
 var globalPig;
-var globalWolf, globalWolf2;
+var globalWolf, globalWolf2, globalWolf3;
 var globalWolves = [];
+var globalField;
 
 function checkKey(e) {
   e = e || window.event;
@@ -20,7 +21,7 @@ function checkKey(e) {
 }
 
 window.onload = function () {
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 10; i++) {
     let newRow = document.createElement("tr");
     for (let j = 0; j < 10; j++) {
       let newCell = document.createElement("td");
@@ -30,11 +31,15 @@ window.onload = function () {
     document.getElementById("mainTable").appendChild(newRow);
   }
 
+  globalField = new Field(10, 10);
+
   globalPig = new Pig(Point(1, 1));
   globalWolf = new Wolf(Point(2, 2), [Point(2, 2), Point(2, 3), Point (2, 4), Point(1, 4)]);
   globalWolf2 = new Wolf(Point(0, 0), [Point(0, 0), Point(1, 0), Point(2, 0), Point(3, 0)]);
+  globalWolf3 = new Wolf(Point(8, 4), [Point(8, 2), Point(8, 3), Point(8, 4), Point(8, 5),
+    Point(7, 5), Point(6, 5), Point(6, 6), Point(6, 7)]);
 
-  globalWolves = [globalWolf, globalWolf2];
+  globalWolves = [globalWolf, globalWolf2, globalWolf3];
 
   document.onkeydown = checkKey;
 }
