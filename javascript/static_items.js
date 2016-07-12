@@ -54,24 +54,26 @@ class ItemFood extends StaticItem {
   }
 }
 
-class ItemButton extends StaticItem {
+class ItemDoor extends StaticItem {
   constructor() {
+    super('door', 'DOOR', false);
+  }
+}
+
+class ItemButton extends StaticItem {
+  constructor(cellDoor) {
     super('button', 'BUTTON');
+    this.cellDoor = cellDoor;
   }
 
   // !!! ~ image source changes to pressed button 
   nextState() {
     this.text = 'PRESSED';
+    this.cellDoor.visit(globalPig);
     return this;
   }
 
   toogleVisibility() {
     return this;
-  }
-}
-
-class ItemDoor extends StaticItem {
-  constructor() {
-    super('door', 'DOOR', false);
   }
 }

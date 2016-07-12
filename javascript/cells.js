@@ -1,11 +1,13 @@
 'use strict';
 
 class Cell {
-  constructor(itemName = 'empty') {
+  constructor(itemName = 'empty', itemDoor = {}) {
     switch(itemName) {
       case 'empty': this.staticItem = new ItemEmpty(); break;
       case 'wall': this.staticItem = new ItemWall(); break;
       case 'food': this.staticItem = new ItemFood(); break;
+      case 'door': this.staticItem = new ItemDoor(); break;
+      case 'button': this.staticItem = new ItemButton(itemDoor); break;
     }
   }
 
