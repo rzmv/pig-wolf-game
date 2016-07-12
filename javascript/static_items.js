@@ -45,7 +45,12 @@ class ItemWall extends StaticItem {
 
 class ItemFood extends StaticItem {
   constructor() {
-    super('food', 'CARROT');
+    super('food', 'FOOD');
+  }
+
+  nextState() {
+    incrementPoints();
+    return new ItemEmpty();
   }
 }
 

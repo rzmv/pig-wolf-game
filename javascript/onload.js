@@ -12,6 +12,12 @@ var globalPig;
 var globalWolf, globalWolf2, globalWolf3;
 var globalWolves = [];
 var globalField;
+var globalPoints = 0;
+
+function incrementPoints() {
+  ++globalPoints;
+  $('points-output').innerHTML = globalPoints;
+}
 
 function checkKey(e) {
   e = e || window.event;
@@ -36,6 +42,10 @@ window.onload = function () {
   globalField.cells[5][6] = new Cell('wall');
   globalField.cells[6][6] = new Cell('wall');
   globalField.cells[7][9] = new Cell('wall');
+
+  globalField.cells[8][3] = new Cell('food');
+  globalField.cells[3][8] = new Cell('food');
+  globalField.cells[2][3] = new Cell('food');
 
   globalPig = new Pig(Point(1, 1));
   globalWolf = new Wolf(Point(2, 2), [Point(2, 2), Point(2, 3), Point (2, 4), Point(1, 4)]);
