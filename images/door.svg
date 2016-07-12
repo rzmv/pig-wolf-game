@@ -1,0 +1,21 @@
+<?xml version="1.0"?><svg width="629" height="999" xmlns="http://www.w3.org/2000/svg">
+ <title>Orange Door</title>
+ <g>
+  <title>Layer 1</title>
+  <path d="m627,993l1,-988l-627,0l0,986l626,2z" fill="#7f3f00" id="svg_1"/>
+  <ellipse cx="320" cy="898" rx="189" ry="12" fill="#fff" id="svg_2"/>
+  <ellipse cx="543" cy="494" rx="12" ry="411" fill="#fff" id="svg_3"/>
+  <ellipse cx="320" cy="94" rx="191" ry="11" fill="#fff" id="svg_4"/>
+  <ellipse cx="97" cy="496" rx="12" ry="412" fill="#fff" id="svg_5"/>
+  <ellipse cx="155" cy="702" rx="11" ry="156" fill="#fff" id="svg_6"/>
+  <ellipse cx="316" cy="841" rx="132" ry="12" fill="#fff" id="svg_7"/>
+  <ellipse cx="478" cy="706" rx="12" ry="152" fill="#fff" id="svg_8"/>
+  <ellipse cx="318" cy="565" rx="131" ry="11" fill="#fff" id="svg_9"/>
+  <ellipse cx="155" cy="297" rx="11" ry="154" fill="#fff" id="svg_10"/>
+  <ellipse cx="316" cy="435" rx="126" ry="11" fill="#fff" id="svg_11"/>
+  <path d="m487,437l1,-279l-1,-5l-2,-4l-4,-2l-5,-1l-4,1l-4,2l-2,4l-1,4l-1,280l1,5l2,4l4,2l4,1l5,-1l4,-2l2,-4l1,-5z" fill="#fff" id="svg_12"/>
+  <ellipse cx="315" cy="157" rx="129" ry="11" fill="#fff" id="svg_13"/>
+  <circle cx="478" cy="493" r="8" fill="#fff" id="svg_14"/>
+  <circle cx="478" cy="493" r="31" fill="#fff" id="svg_15"/>
+ </g>
+</svg>
