@@ -8,6 +8,7 @@ function Point(i, j) {
 
 const directionToShift = {
   '': Point(0, 0),
+  'stay': Point(0, 0),
   'up': Point(-1, 0),
   'down': Point(1, 0),
   'left': Point(0, -1),
@@ -23,6 +24,19 @@ class Direction {
   nextPoint(point) {
     return Point(point.row + this.shift.row, point.col + this.shift.col);  
   }
+}
+
+function keyToDirection(keyCode) {
+  let ans = '';
+  switch (keyCode) {
+    case 38: ans = 'up'; break;
+    case 40: ans = 'down'; break;
+    case 37: ans = 'left'; break;
+    case 39: ans = 'right'; break;
+    case 32: ans = 'stay'; break;
+  }
+  
+  return new Direction(ans);
 }
 
 function inBounds(point) {
