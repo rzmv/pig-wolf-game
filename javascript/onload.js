@@ -32,6 +32,10 @@ window.onload = function () {
   }
 
   globalField = new Field(10, 10);
+  globalField.cells[5][5] = new Cell('wall');
+  globalField.cells[5][6] = new Cell('wall');
+  globalField.cells[6][6] = new Cell('wall');
+  globalField.cells[7][9] = new Cell('wall');
 
   globalPig = new Pig(Point(1, 1));
   globalWolf = new Wolf(Point(2, 2), [Point(2, 2), Point(2, 3), Point (2, 4), Point(1, 4)]);
@@ -41,5 +45,6 @@ window.onload = function () {
 
   globalWolves = [globalWolf, globalWolf2, globalWolf3];
 
+  initialDraw();
   document.onkeydown = checkKey;
 }

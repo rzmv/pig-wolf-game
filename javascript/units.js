@@ -29,6 +29,7 @@ class Unit {
 class Pig extends Unit {
   constructor(position) {
     super(position, 'PIG');
+    this.influenceOnCell = 'nextState';
   }
 }
 
@@ -72,6 +73,7 @@ class Wolf extends Unit {
     super(position, 'Wolf');
     this.trajectory = new Trajectory(position, trajectory);
     this.position = () => this.trajectory.currentPosition();
+    this.influenceOnCell = 'toogleVisibility';
   }
 
   move() {

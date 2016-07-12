@@ -1,12 +1,21 @@
 'use strict';
 
 class Cell {
-  constructor() {
-    this.state = 'empty';  
+  constructor(itemName = 'empty') {
+    switch(itemName) {
+      case 'empty': this.staticItem = new ItemEmpty(); break;
+      case 'wall': this.staticItem = new ItemWall(); break;
+      case 'food': this.staticItem = new ItemFood(); break;
+    }
   }
 
   isFree() {
-    return this.state == 'empty';
+    return this.staticItem.passable;
+  }
+
+  // FIXMYNAME: actually it's cell's visit and leave method
+  visit(unit) {
+    this.staticItem = this.staticItem[unit.influenceOnCell]();      
   }
 }
 
