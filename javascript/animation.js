@@ -2,24 +2,24 @@
 
 function drawCell(pos) {
   let stItem = globalField.pointToCell(pos).staticItem;
-  switch (stItem.text) {
-    case 'FOOD' :
+  switch (stItem.name) {
+    case 'food' :
       $('mainTable').rows[pos.row].cells[pos.col].innerHTML = '<img src = "images/carrot.svg" width="50">'; break;
-    case 'WALL' :
+    case 'wall' :
       $('mainTable').rows[pos.row].cells[pos.col].innerHTML = '<img src = "images/wall.svg" width="50">'; break;
-    case 'DOOR':
+    case 'door':
       $('mainTable').rows[pos.row].cells[pos.col].innerHTML = '<img src = "images/door.svg" width="50" height="50">'; break;
-    case 'BUTTON':
+    case 'button':
       $('mainTable').rows[pos.row].cells[pos.col].innerHTML = '<img src = "images/Button.svg" width="50" >'; break;
   }
 }
 
 function drawUnit(unit) {
   let pos = unit.position();
-  switch (unit.text) {
-    case 'Wolf':
+  switch (unit.name) {
+    case 'wolf':
       $('mainTable').rows[pos.row].cells[pos.col].innerHTML = '<img src = "images/wolf.svg" width="50" >'; break;
-    case 'PIG':
+    case 'pig':
       $('mainTable').rows[pos.row].cells[pos.col].innerHTML = '<img src = "images/pig.svg" width="50" >'; break;
   }
 }

@@ -5,8 +5,9 @@ const Point = utils.Point;
 */
 
 class Unit {
-  constructor(position, text) {
+  constructor(position, name, text) {
     this._position = position;
+    this.name = name;
     this.text = text;
 
     // cause we need function in Wolf's position
@@ -30,7 +31,7 @@ class Unit {
 
 class Pig extends Unit {
   constructor(position) {
-    super(position, 'PIG');
+    super(position, 'pig', 'PIG');
     this.influenceOnCell = 'nextState';
   }
 }
@@ -72,7 +73,7 @@ class Trajectory {
 
 class Wolf extends Unit {
   constructor(position, trajectory) {
-    super(position, 'Wolf');
+    super(position, 'wolf', 'Wolf');
     this.trajectory = new Trajectory(position, trajectory);
     this.position = () => this.trajectory.currentPosition();
     this.influenceOnCell = 'toogleVisibility';
