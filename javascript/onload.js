@@ -14,11 +14,6 @@ var globalWolves = [];
 var globalField;
 var globalPoints = 0;
 
-function incrementPoints() {
-  ++globalPoints;
-  $('points-output').innerHTML = globalPoints;
-}
-
 function checkKey(e) {
   e = e || window.event;
   let dir = keyToDirection(e.keyCode);

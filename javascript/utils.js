@@ -38,3 +38,19 @@ function keyToDirection(keyCode) {
   
   return new Direction(ans);
 }
+
+function incrementPoints() {
+  ++globalPoints;
+  $('points-output').innerHTML = globalPoints;
+}
+
+function pointsDistance(p1, p2) {
+  return Math.max(Math.abs(p1.row - p2.row),
+    Math.abs(p1.col - p2.col));
+}
+
+function winLoseCheck() {
+  for (let i = 0; i < globalWolves.length; ++i)
+    if (pointsDistance(globalPig.position(), globalWolves[i].position()) <= 1)
+      alert('You lose!');
+}

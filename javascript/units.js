@@ -16,8 +16,10 @@ class Unit {
 
   tryMove(direction) {
     let next = direction.nextPoint(this.position());
-    if (globalField.freeCell(next))
-      movePlayer(direction);    
+    if (globalField.freeCell(next)) {
+      movePlayer(direction);
+      winLoseCheck()
+    }    
   }
 
   move(direction) {
