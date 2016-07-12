@@ -1,7 +1,8 @@
 'use strict';
+/*
 const utils = require('./utils');
 const Point = utils.Point;
-
+*/
 const initialHealth = 3;
 const initialMana = 10;
 // FIXMYNAME: actually it is 1 / speed, i.e. time needed to go by 1 cell
@@ -16,11 +17,12 @@ class Unit {
   tryMove(direction) {
     // TODO: check for correctness
     let next = direction.nextPoint(this.position);
-    // if (utils.freeCell(next))
-      move(direction);    
+    //if (utils.freeCell(next))
+    this.move(direction);    
   }
 
   move(direction) {
+    alert('proto-move');
     let next = direction.nextPoint(this.position);
     this.position = next;
   }
@@ -36,16 +38,20 @@ class Pig extends Unit {
   move(direction) {
     //Animation.move.call(this, super.move, direction);
     let next = direction.nextPoint(this.position);
-    $('mainTable').rows[position.row].cells[position.col].innerHTML = '';
+    $('mainTable').rows[this.position.row].cells[this.position.col].innerHTML = '';
     this.position = next;
-    $('mainTable').rows[position.row].cells[position.col].innerHTML = 'PIG';              
+    $('mainTable').rows[this.position.row].cells[this.position.col].innerHTML = 'PIG';              
   }
   
 }
 
 class Trajectory {
-  
-  _getTrajectoryStep (position) {
+  constructor(position, trajectory) {
+    this._trajectory = trajectory || [];
+    this._currentDirection = (this._trajectory.length > 1 ? 1 : 0);
+    this._currentStep = this._getTrajectoryStep(position);    
+  }
+  _getTrajectoryStep(position) {
     for (let i = 0; i < this._trajectory.length; ++i)
       if (JSON.stringify(this._trajectory[i]) == JSON.stringify(position))
         return i;
@@ -57,12 +63,6 @@ class Trajectory {
     return 0;
   }
   
-  constructor(position, trajectory) {
-    this._trajectory = trajectory;
-    this._currentDirection = (trajectory.length > 1) ? 1 : 0;
-    this._currentStep = this._getTrajectoryStep(position);    
-  }
-
   currentPosition() {
     return this._trajectory[this._currentStep];
   }
@@ -85,11 +85,17 @@ class Wolf extends Unit {
     super(position, speed);
     this.trajectory = new Trajectory(position, trajectory);
     this.position = () => this.trajectory.currentPosition();
-    // setInterval(this.move, speed);
+  }
+
+  startMovement() {
+    let self = this;
+    setInterval(function() { self.move(); }, self.speed);  
   }
 
   move() {
-  	//Animation.move.call(this, this.trajectory.move());
+    $('mainTable').rows[this.position().row].cells[this.position().col].innerHTML = '';
+    this.trajectory.move();
+    $('mainTable').rows[this.position().row].cells[this.position().col].innerHTML = 'WOLF';              
   }
 }
 

@@ -7,6 +7,7 @@ function Point(i, j) {
 }
 
 const directionToShift = {
+  '': Point(0, 0),
   'up': Point(-1, 0),
   'down': Point(1, 0),
   'left': Point(0, -1),
@@ -20,7 +21,7 @@ class Direction {
   }
 
   nextPoint(point) {
-    return Point(point.row + shift.row, point.col + shift.col);  
+    return Point(point.row + this.shift.row, point.col + this.shift.col);  
   }
 }
 

@@ -1,37 +1,39 @@
 'use strict';
 
 // works without require
-const units = require('./units');
+//const units = require('./units');
+
+//const Point = require('./utils').Point;
 
 var globalPig;
+var globalWolf, globalWolf2;
 
 function keyToDirection(e) {
   e = e || window.event;
+  let ans = '';
 
-  if (e.keyCode == '38') {
+  if (e.keyCode == 38) {
       // up arrow
-      return 'up';
+      ans = 'up';
   }
-  else if (e.keyCode == '40') {
+  else if (e.keyCode == 40) {
       // down arrow
-      return 'down';
+      ans = 'down';
   }
-  else if (e.keyCode == '37') {
+  else if (e.keyCode == 37) {
      // left arrow
-     return 'left';
+     ans = 'left';
   }
-  else if (e.keyCode == '39') {
+  else if (e.keyCode == 39) {
      // right arrow
-     return 'right';
+     ans = 'right';
   }
-  return '';
+  return new Direction(ans);
 }
 
 function checkKey(e) {
   let dir = keyToDirection(e);
-  alert(dir);
-  //if (dir != '')
-  //  globalPig.tryMove(dir);
+  globalPig.tryMove(dir);
 }
 
 window.onload = function () {
@@ -45,6 +47,12 @@ window.onload = function () {
     document.getElementById("mainTable").appendChild(newRow);
   }
 
-  //globalPig = new units.Pig(Point(0, 0));
+  globalPig = new Pig(Point(1, 1));
+  globalWolf = new Wolf(Point(2, 2), 1000, [Point(2, 2), Point(2, 3), Point (2, 4), Point(1, 4)]);
+  globalWolf2 = new Wolf(Point(0, 0), 500, [Point(0, 0), Point(1, 0), Point(2, 0), Point(3, 0)]);
+
+  globalWolf.startMovement();
+  globalWolf2.startMovement();
+
   document.onkeydown = checkKey;
 }
