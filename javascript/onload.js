@@ -64,6 +64,6 @@ window.onload = function () {
   let curLevel = new Level(globalField, globalPig, globalWolves);
   alert('before saving');
   curLevel.saveToFile('temp.txt');
-
+  
   document.onkeydown = checkKey;
 }
