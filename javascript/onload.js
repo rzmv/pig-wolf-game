@@ -25,25 +25,30 @@ window.onload = function () {
 
   globalField = new Field(10, 10);
   document.getElementById('mainDiv').appendChild(globalField.table);
+  
+  globalField.changeCell(Point(5, 5), 'grass', 'wall');
+  globalField.changeCell(Point(5, 6), 'grass','wall');
+  globalField.changeCell(Point(6, 6), 'grass','wall');
+  globalField.changeCell(Point(7, 9), 'grass','wall');
 
-  /*globalField.cells[5][5] = new Cell('wall');
-  globalField.cells[5][6] = new Cell('wall');
-  globalField.cells[6][6] = new Cell('wall');
-  globalField.cells[7][9] = new Cell('wall');
+  globalField.changeCell(Point(8, 3), 'grass','food');
+  globalField.changeCell(Point(3, 8), 'grass','food');
+  globalField.changeCell(Point(2, 3), 'grass','food');
 
-  globalField.cells[8][3] = new Cell('food');
-  globalField.cells[3][8] = new Cell('food');
-  globalField.cells[2][3] = new Cell('food');
+  globalField.changeCell(Point(0, 7), 'ground','wall');  
+  globalField.changeCell(Point(1, 7), 'ground','door');
+  globalField.changeCell(Point(2, 7), 'ground','wall');
+  globalField.changeCell(Point(2, 8), 'ground','wall');
+  globalField.changeCell(Point(2, 9), 'ground','wall');
 
-  let curDoor = new Cell('door');
-  globalField.cells[0][7] = new Cell('wall');
-  globalField.cells[1][7] = curDoor;
-  globalField.cells[2][7] = new Cell('wall');
-  globalField.cells[2][8] = new Cell('wall');
-  globalField.cells[2][9] = new Cell('wall');
+  globalField.changeCell(Point(0, 8), 'wood');
+  globalField.changeCell(Point(0, 9), 'wood');
+  globalField.changeCell(Point(1, 8), 'wood');
+  globalField.changeCell(Point(1, 9), 'wood');
 
-  globalField.cells[0][9] = new Cell('food');
-  globalField.cells[9][0] = new Cell('button', curDoor);*/
+  globalField.changeCell(Point(0, 9), 'wood','food');
+  let curDoor = globalField.pointToCell(Point(1, 7));
+  globalField.changeCell(Point(9, 0), 'grass', 'button', curDoor);
 
   globalPig = new Pig(Point(1, 1));
   globalWolf = new Wolf(Point(2, 2), [Point(2, 2), Point(2, 3), Point (2, 4), Point(1, 4)]);
@@ -53,6 +58,6 @@ window.onload = function () {
 
   globalWolves = [globalWolf, globalWolf2, globalWolf3];
 
-//  initialDraw();
+  initialDraw();
   document.onkeydown = checkKey;
 }

@@ -1,15 +1,17 @@
 'use strict';
-
+/*
 function drawCell(cell) {
   let stItem = cell.staticItem;
   
   for (let i = 0; i < 4; ++i)
     cell.tableCellAddress.innerHTML += stItem.visible ? ('<img src = ' + stItem.image + ' width="50" height = "50">') : '';
 }
+*/
 
 function drawUnit(unit) {
   let pos = unit.position();
-  $('mainTable').rows[pos.row].cells[pos.col].innerHTML = '<img src = ' + unit.image + ' width="45" height = "45">';
+  let cell = globalField.pointToCell(pos);
+  cell.layers[3] = unit.image;
 }
 
 function getHTMLImgByImage(image, cssClass) {
@@ -22,7 +24,6 @@ function getHTMLImgByImage(image, cssClass) {
 function redrawCell(cell) {
   let tableCell = cell.tableCell;
   tableCell.innerHTML = getHTMLImgByImage(cell.layers[0], "layer-background");
-
   for (let i = 0; i < cell.layers[1].length; ++i) {
     tableCell.innerHTML += getHTMLImgByImage(cell.layers[1][i], "layer-trajectory");
   }
@@ -34,8 +35,9 @@ function animateMovement(unit, func, direction) {
   let pos = unit.position();
   let cell = globalField.pointToCell(pos);
   cell.leave(unit);
-
+  
   redrawCell(cell);
+  
   // update unit's coordinates
   unit[func](direction);
  
@@ -52,12 +54,11 @@ function movePlayer(direction) {
 }
 
 function initialDraw() {
-  for (let i = 0; i < globalField.height; ++i)
-    for (let j = 0; j < globalField.width; ++j)
-      drawCell(Point(i, j));
-
+  drawUnit(globalPig);
   for (let i = 0; i < globalWolves.length; ++i)
     drawUnit(globalWolves[i]);
 
-  drawUnit(globalPig);
+  for (let i = 0; i < globalField.height; ++i)
+    for (let j = 0; j < globalField.width; ++j)
+      redrawCell(globalField.pointToCell(Point(i, j)));
 }

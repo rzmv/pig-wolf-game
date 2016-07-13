@@ -50,6 +50,7 @@ class Field {
     this.cells = [];
     this.table = document.createElement("table");
     this.table.className = "table";
+    
     for (let i = 0; i < height; ++i) {
       let tableRow = document.createElement("tr");
       let row = [];
@@ -62,6 +63,11 @@ class Field {
       this.table.appendChild(tableRow);
       this.cells.push(row);
     }
+  }
+
+  changeCell(point, background = 'grass', itemName = 'empty', itemDoor = {}) {
+    let cell = this.pointToCell(point);
+    this.cells[point.row][point.col] = new Cell(cell.tableCell, background, itemName, itemDoor);
   }
 
   inBounds(point) {
