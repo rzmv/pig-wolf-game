@@ -22,3 +22,18 @@ body {
   height: 50px;
   border: 1px solid darkgreen;
 }
+
+.Points{
+  border: 1px solid darkgreen;
+  margin-left : 30%;
+  margin-right: 30%;
+}
+
+p {
+  color: green;
+  margin-left: 40%;
+  font-family: courier;
+  font-size: 150%;
+  text-transform: uppercase;
+  font-weight: 600;
+}
