@@ -60,5 +60,10 @@ window.onload = function () {
     globalWolves[i].addTrajectoryLayerToField(globalField);
 
   initialDraw();
+  
+  let curLevel = new Level(globalField, globalPig, globalWolves);
+  alert('before saving');
+  curLevel.saveToFile('temp.txt');
+
   document.onkeydown = checkKey;
 }
