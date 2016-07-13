@@ -63,13 +63,13 @@ class ItemDoor extends StaticItem {
 
 class ItemButton extends StaticItem {
   constructor(cellDoor) {
-    super('button', 'images/Button.svg');
+    super('button', 'images/lock.svg');
     this.cellDoor = cellDoor;
   }
 
   // !!! ~ image source changes to pressed button 
   nextState() {
-    this.image = 'images/Button.svg';
+    this.image = 'images/unlock.svg';
     this.cellDoor.visit(globalPig);
     return this;
   }
