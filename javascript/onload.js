@@ -62,8 +62,7 @@ window.onload = function () {
   initialDraw();
   
   let curLevel = new Level(globalField, globalPig, globalWolves);
-  alert('before saving');
-  curLevel.saveToFile('temp.txt');
+  curLevel.showJSON();
   
   document.onkeydown = checkKey;
 }

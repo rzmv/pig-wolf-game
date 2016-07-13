@@ -1,38 +1,5 @@
 'use strict';
 
-function readTextFile(file)
-{
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-                return rawFile.responseText;
-            }
-        }
-    }
-    rawFile.send(null);
-}
-
-var reader = new XMLHttpRequest() || new ActiveXObject('MSXML2.XMLHTTP');
-
-function loadFile() {
-    reader.open('get', 'test.txt', true); 
-    reader.onreadystatechange = displayContents;
-    reader.send(null);
-}
-
-function displayContents() {
-    if(reader.readyState==4) {
-        var el = document.getElementById('main');
-        el.innerHTML = reader.responseText;
-    }
-}
-
-
 class Level {
   constructor(field, pig, wolves = []) {
     this.field = field;
@@ -52,26 +19,21 @@ class Level {
     
   }
 
-  saveToFile(fileName) {
+  showJSON(fileName) {
     let level = {
       'field': this.field,
       'pig': this.pig,
       'wolves': this.wolves,
-    }
-    
-    loadFile();
-    alert(reader.responseText);
+    };
 
-    var fr = new FileReader();
-    let s;
-    fr.onload = function () {s = this.result; };
-    alert(s);
+    let textArea = document.createElement('textarea');
+    textArea.id = 'JSONTextArea';
+    textArea.appendChild(document.createTextNode(JSON.stringify(level)));
+    textArea.setAttribute('rows', 100);
+    textArea.setAttribute('cols', 100);
 
-    alert('before making');
-    //let s = readTextFile("C:/" + fileName);
-    //makeTextFile('123jsonqwerty');
-    //alert('success ' + s);
-    
+    document.body.appendChild(textArea);
+
     //output.write(JSON.stringify(level));
   }
 }
