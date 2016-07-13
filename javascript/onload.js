@@ -74,16 +74,11 @@ function winToMenu() {
 }
 
 function level() {
-  document.getElementById("win").style="display:none";
+  document.getElementById("levels").style="display:none";
   document.getElementById("background").style="display:none";
-}
-
-function winToMenu() {
-  document.getElementById("win").style="display:none";
-  document.getElementById("menu").style="display:none";
 }
 
 function loseToMenu() {
   document.getElementById("lose").style="display:none";
-  document.getElementById("menu").style="display:none";
+  document.getElementById("menu").style="display:block";
 }
