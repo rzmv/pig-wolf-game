@@ -36,7 +36,7 @@ class DB {
   getLeaderBoard(count, callback) {
     this.scoreboard.ref('scoreboard/').orderByChild('score').limitToLast(count).once('value', function(value) {
       let result = Object.values(value.val()).sort(function(l, r) {
-        return l.score < r.score;
+        return l.score < r.score; //larger
       });
       callback(result);
     });
