@@ -26,10 +26,17 @@ class Cell {
     return true;
   }
 
+  addTrajectory(trajectory) {
+    for (let i = 0; i < this.layerTrajectory.length; ++i)
+      if (this.layerTrajectory[i] == trajectory)
+        return;
+    this.layerTrajectory.push(trajectory);
+  }
+
   addToLayer(layerName, objectName) {
     switch (layerName) {
       case 'background': this.layerBackground = objectName; break;
-      case 'trajectory': this.layerTrajectory.push(objectName); break;
+      case 'trajectory': this.addTrajectory(objectName); break;
       case 'unit': this.layerUnit = objectName; break;
     } 
   }

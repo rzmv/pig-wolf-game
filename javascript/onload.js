@@ -25,16 +25,6 @@ window.onload = function () {
   globalField = new Field(10, 10);
   document.getElementById('mainDiv').appendChild(globalField.table);
   
-  globalField.cells[4][4].addToLayer('trajectory', 'down');
-  globalField.cells[5][4].addToLayer('trajectory', 'up');
-  globalField.cells[5][4].addToLayer('trajectory', 'down');
-  globalField.cells[6][4].addToLayer('trajectory', 'up');
-  globalField.cells[6][4].addToLayer('trajectory', 'down');
-  globalField.cells[7][4].addToLayer('trajectory', 'up');
-  globalField.cells[7][4].addToLayer('trajectory', 'down');
-  globalField.cells[8][4].addToLayer('trajectory', 'up');
-  globalField.cells[8][4].addToLayer('trajectory', 'down');
-
   globalField.changeCell(Point(5, 5), 'grass', [{'itemName':'wall'}]);
   globalField.changeCell(Point(5, 6), 'grass', [{'itemName':'wall'}]);
   globalField.changeCell(Point(6, 6), 'grass', [{'itemName':'wall'}]);
@@ -66,6 +56,8 @@ window.onload = function () {
     Point(7, 5), Point(6, 5), Point(6, 6), Point(6, 7)]);
 
   globalWolves = [globalWolf, globalWolf2, globalWolf3];
+  for (let i = 0; i < globalWolves.length; ++i)
+    globalWolves[i].addTrajectoryLayerToField(globalField);
 
   initialDraw();
   document.onkeydown = checkKey;
