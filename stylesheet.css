@@ -11,15 +11,18 @@ body {
 }
 
 .table {
+  table-layout: fixed;
   border: 1px solid darkgreen;
   border-collapse: collapse;
   display: inline-block;
   position: relative;
+  background-color: #5aa02c;
 }
 
 .table-cell {
-  width: 50px;
-  height: 50px;
+  text-align: center;
+  width: 50;
+  height: 50;
   border: 1px solid darkgreen;
 }
 
@@ -39,21 +42,29 @@ p {
 }
 
 .layer-background {
+  top: 0;
+  left: 0;
   position: absolute;
   z-index: 1;
 }
 
 .layer-trajectory {
+  top: 0;
+  left: 0;
   position: absolute;
   z-index: 2;
 }
 
 .layer-staticItem {
+  top: 0;
+  left: 0;
   position: absolute;
   z-index: 3;
 }
 
-.layers-unit {
+.layers-unit {  
+  top: 0;
+  left: 0;
   position: absolute;
   z-index: 4;
 }

@@ -4,7 +4,7 @@ function drawCell(cell) {
   let stItem = cell.staticItem;
   
   for (let i = 0; i < 4; ++i)
-    cell.tableCellAddress.innerHTML += stItem.visible ? ('<img src = ' + stItem.image + ' width="45" height = "45">') : '';
+    cell.tableCellAddress.innerHTML += stItem.visible ? ('<img src = ' + stItem.image + ' width="50" height = "50">') : '';
 }
 
 function drawUnit(unit) {
@@ -16,15 +16,12 @@ function getHTMLImgByImage(image, cssClass) {
   if (image === '') {
     return '';
   }
-  return '<img src = ' + image + ' class = ' + cssClass + ' width="45" height = "45">';
+  return '<img src = ' + image + ' class = ' + cssClass + ' width="54" height = "49">';
 }
 
 function redrawCell(cell) {
-  alert('here');
   let tableCell = cell.tableCell;
   tableCell.innerHTML = getHTMLImgByImage(cell.layers[0], "layer-background");
-  
-  alert(tableCell.innerHTML);
 
   for (let i = 0; i < cell.layers[1].length; ++i) {
     tableCell.innerHTML += getHTMLImgByImage(cell.layers[1][i], "layer-trajectory");
@@ -36,11 +33,7 @@ function redrawCell(cell) {
 function animateMovement(unit, func, direction) {
   let pos = unit.position();
   let cell = globalField.pointToCell(pos);
-
-  alert('animateMovement');
-
   cell.leave(unit);
-
 
   redrawCell(cell);
   // update unit's coordinates
@@ -50,7 +43,6 @@ function animateMovement(unit, func, direction) {
   cell = globalField.pointToCell(pos);
   cell.visit(unit);
   redrawCell(cell);
-  //alert(unit.name);
 }
 
 function movePlayer(direction) {
