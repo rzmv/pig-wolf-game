@@ -26,6 +26,16 @@ window.onload = function () {
   globalField = new Field(10, 10);
   document.getElementById('mainDiv').appendChild(globalField.table);
   
+  globalField.cells[4][4].layers[1].push('images/trajectory_down.svg');
+  globalField.cells[5][4].layers[1].push('images/trajectory_up.svg');
+  globalField.cells[5][4].layers[1].push('images/trajectory_down.svg');
+  globalField.cells[6][4].layers[1].push('images/trajectory_up.svg');
+  globalField.cells[6][4].layers[1].push('images/trajectory_down.svg');
+  globalField.cells[7][4].layers[1].push('images/trajectory_up.svg');
+  globalField.cells[7][4].layers[1].push('images/trajectory_down.svg');
+  globalField.cells[8][4].layers[1].push('images/trajectory_up.svg');
+  globalField.cells[8][4].layers[1].push('images/trajectory_down.svg');
+
   globalField.changeCell(Point(5, 5), 'grass', 'wall');
   globalField.changeCell(Point(5, 6), 'grass','wall');
   globalField.changeCell(Point(6, 6), 'grass','wall');
