@@ -21,8 +21,22 @@ function checkKey(e) {
     globalPig.tryMove(dir);
 }
 
-window.onload = function () {
+window.onload = function(){
+  document.getElementById("menu").style="display:block";
+  document.getElementById("background").style="display:block";
+}
+
+function level() {
+  document.getElementById("levels").style="display:none";
+  document.getElementById("background").style="display:none";
+
+  var table = document.getElementById('mainDiv');
+
+  while (table.firstChild) {
+    table.removeChild(table.firstChild);
+  }
   globalField = new Field(10, 10);
+
   document.getElementById('mainDiv').appendChild(globalField.table);
   
   globalField.changeCell(Point(5, 5), 'grass', [{'itemName':'wall'}]);
@@ -78,12 +92,13 @@ function winToMenu() {
   document.getElementById("menu").style="display:block";
 }
 
-function level() {
-  document.getElementById("levels").style="display:none";
-  document.getElementById("background").style="display:none";
-}
-
 function loseToMenu() {
   document.getElementById("lose").style="display:none";
   document.getElementById("menu").style="display:block";
 }
+
+function levelToMenu() {
+  document.getElementById("levels").style="display:none";
+  document.getElementById("menu").style="display:block";
+}
+
