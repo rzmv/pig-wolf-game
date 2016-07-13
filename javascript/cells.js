@@ -21,7 +21,6 @@ class Cell {
     return this.staticItem.passable;
   }
 
-  // FIXMYNAME: actually it's cell's visit and leave method
   visit(unit) {
     this.staticItem = this.staticItem[unit.influenceOnCell]();    
     this.layers[2] = this.staticItem.image;

@@ -18,7 +18,7 @@ function getHTMLImgByImage(image, cssClass) {
   if (image === '') {
     return '';
   }
-  return '<img src = ' + image + ' class = ' + cssClass + ' width="49.5" height = "49.5">';
+  return '<img src = ' + image + ' class = ' + cssClass + ' width="49" height = "49">';
 }
 
 function redrawCell(cell) {

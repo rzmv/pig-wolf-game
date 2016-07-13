@@ -36,7 +36,7 @@ window.onload = function () {
   globalField.changeCell(Point(2, 3), 'grass','food');
 
   globalField.changeCell(Point(0, 7), 'ground','wall');  
-  globalField.changeCell(Point(1, 7), 'ground','door');
+  globalField.changeCell(Point(1, 7), 'grass','door');
   globalField.changeCell(Point(2, 7), 'ground','wall');
   globalField.changeCell(Point(2, 8), 'ground','wall');
   globalField.changeCell(Point(2, 9), 'ground','wall');
