@@ -11,7 +11,7 @@
 var globalPig;
 var globalWolf, globalWolf2, globalWolf3;
 var globalWolves = [];
-var globalField;
+var globalField = {};
 var globalPoints = 0;
 
 function checkKey(e) {
@@ -22,44 +22,43 @@ function checkKey(e) {
 }
 
 window.onload = function () {
-
   globalField = new Field(10, 10);
   document.getElementById('mainDiv').appendChild(globalField.table);
   
-  globalField.cells[4][4].layers[1].push('images/trajectory_down.svg');
-  globalField.cells[5][4].layers[1].push('images/trajectory_up.svg');
-  globalField.cells[5][4].layers[1].push('images/trajectory_down.svg');
-  globalField.cells[6][4].layers[1].push('images/trajectory_up.svg');
-  globalField.cells[6][4].layers[1].push('images/trajectory_down.svg');
-  globalField.cells[7][4].layers[1].push('images/trajectory_up.svg');
-  globalField.cells[7][4].layers[1].push('images/trajectory_down.svg');
-  globalField.cells[8][4].layers[1].push('images/trajectory_up.svg');
-  globalField.cells[8][4].layers[1].push('images/trajectory_down.svg');
+  globalField.cells[4][4].addToLayer('trajectory', 'down');
+  globalField.cells[5][4].addToLayer('trajectory', 'up');
+  globalField.cells[5][4].addToLayer('trajectory', 'down');
+  globalField.cells[6][4].addToLayer('trajectory', 'up');
+  globalField.cells[6][4].addToLayer('trajectory', 'down');
+  globalField.cells[7][4].addToLayer('trajectory', 'up');
+  globalField.cells[7][4].addToLayer('trajectory', 'down');
+  globalField.cells[8][4].addToLayer('trajectory', 'up');
+  globalField.cells[8][4].addToLayer('trajectory', 'down');
 
-  globalField.changeCell(Point(5, 5), 'grass', 'wall');
-  globalField.changeCell(Point(5, 6), 'grass','wall');
-  globalField.changeCell(Point(6, 6), 'grass','wall');
-  globalField.changeCell(Point(7, 9), 'grass','wall');
+  globalField.changeCell(Point(5, 5), 'grass', [{'itemName':'wall'}]);
+  globalField.changeCell(Point(5, 6), 'grass', [{'itemName':'wall'}]);
+  globalField.changeCell(Point(6, 6), 'grass', [{'itemName':'wall'}]);
+  globalField.changeCell(Point(7, 9), 'grass', [{'itemName':'wall'}]);
 
-  globalField.changeCell(Point(8, 3), 'grass','food');
-  globalField.changeCell(Point(3, 8), 'grass','food');
-  globalField.changeCell(Point(2, 3), 'grass','food');
+  globalField.changeCell(Point(8, 3), 'grass', [{'itemName':'food'}]);
+  globalField.changeCell(Point(3, 8), 'grass', [{'itemName':'food'}]);
+  globalField.changeCell(Point(2, 3), 'grass', [{'itemName':'food'}]);
 
-  globalField.changeCell(Point(0, 7), 'ground','wall');  
-  globalField.changeCell(Point(1, 7), 'grass','door');
-  globalField.changeCell(Point(2, 7), 'ground','wall');
-  globalField.changeCell(Point(2, 8), 'ground','wall');
-  globalField.changeCell(Point(2, 9), 'ground','wall');
+  globalField.changeCell(Point(0, 7), 'ground', [{'itemName':'wall'}]);  
+  globalField.changeCell(Point(1, 7), 'grass', [{'itemName':'door'}, {'itemName':'food'}]);
+  globalField.changeCell(Point(2, 7), 'ground', [{'itemName':'wall'}]);
+  globalField.changeCell(Point(2, 8), 'ground', [{'itemName':'wall'}]);
+  globalField.changeCell(Point(2, 9), 'ground', [{'itemName':'wall'}]);
 
   globalField.changeCell(Point(0, 8), 'wood');
   globalField.changeCell(Point(0, 9), 'wood');
   globalField.changeCell(Point(1, 8), 'wood');
   globalField.changeCell(Point(1, 9), 'wood');
 
-  globalField.changeCell(Point(0, 9), 'wood','food');
+  globalField.changeCell(Point(0, 9), 'wood', [{'itemName':'food'}]);
   let curDoor = globalField.pointToCell(Point(1, 7));
-  globalField.changeCell(Point(9, 0), 'grass', 'button', curDoor);
-
+  globalField.changeCell(Point(9, 0), 'grass', [{'itemName':'button', 'cellDoor':curDoor}]);
+  
   globalPig = new Pig(Point(1, 1));
   globalWolf = new Wolf(Point(2, 2), [Point(2, 2), Point(2, 3), Point (2, 4), Point(1, 4)]);
   globalWolf2 = new Wolf(Point(0, 0), [Point(0, 0), Point(1, 0), Point(2, 0), Point(3, 0)]);

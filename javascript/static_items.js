@@ -70,10 +70,7 @@ class ItemButton extends StaticItem {
   // !!! ~ image source changes to pressed button 
   nextState() {
     this.image = 'images/unlock.svg';
-    //this.cellDoor.visit(globalPig);
-    //this.cellDoor.staticItem.nextState();
-    this.cellDoor.staticItem = this.cellDoor.staticItem.nextState();
-    this.cellDoor.layers[2] = this.cellDoor.staticItem.image;
+    this.cellDoor.openDoor();
     redrawCell(this.cellDoor);
     return this;
   }
