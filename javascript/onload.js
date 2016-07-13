@@ -67,3 +67,23 @@ window.onload = function () {
   
   document.onkeydown = checkKey;
 }
+
+function goToLevels() {
+  document.getElementById("menu").style="display:none";
+  document.getElementById("levels").style="display:block";
+}
+
+function winToMenu() {
+  document.getElementById("win").style="display:none";
+  document.getElementById("menu").style="display:block";
+}
+
+function level() {
+  document.getElementById("levels").style="display:none";
+  document.getElementById("background").style="display:none";
+}
+
+function loseToMenu() {
+  document.getElementById("lose").style="display:none";
+  document.getElementById("menu").style="display:block";
+}

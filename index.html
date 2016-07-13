@@ -1,21 +1,102 @@
 <!doctype html5>
 <html>
-  <head>
-    <script src="./javascript/level.js"></script>
-    <script src="./javascript/static_items.js"></script>
-    <script src="./javascript/cells.js"></script>
-    <script src="./javascript/utils.js"></script>
-    <script src="./javascript/animation.js"></script>
-    <script src="./javascript/units.js"></script>
-    <script src="./javascript/onload.js"></script>
-    <link rel=stylesheet href="stylesheet.css">
-  </head>
-  <body>
-    <div class = "Points">
-      <p>Points:<p id="points-output"> 0 </p></p> 
-    </div>
-    <div id="mainDiv" class="div-table">
-      
-    </div> 
-  </body>
+<head>
+  <script src="./javascript/level.js"></script>
+  <script src="./javascript/static_items.js"></script>
+  <script src="./javascript/cells.js"></script>
+  <script src="./javascript/utils.js"></script>
+  <script src="./javascript/animation.js"></script>
+  <script src="./javascript/units.js"></script>
+  <script src="./javascript/onload.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBAjZ13FHcaqIGVjrbTDTZb1JV5crYKtt4",
+      authDomain: "pigwolftable.firebaseapp.com",
+      databaseURL: "https://pigwolftable.firebaseio.com",
+      storageBucket: "pigwolftable.appspot.com",
+    };
+    firebase.initializeApp(config);
+
+    //auth
+    /*      firebase.auth().signInWithEmailAndPassword("pigandwolfgame@gmail.com", "123456yhnbvcxz").catch(function(error) {
+     var errorCode = error.code;
+     var errorMessage = error.message;
+     alert(errorCode);
+     alert(errorMessage);
+     });
+
+     var scoreboard = firebase.database();
+
+     //generate resultID
+     var resultID = firebase.database().ref().child('scoreboard').push().key;
+
+     //set data
+     let username = "13";
+     let score    = 2020323;
+     var userScore = {
+     username: username,
+     score   : score
+     };
+     scoreboard.ref("scoreboard/" + resultID).set(userScore);
+
+     //get sorted data
+     var getScores = scoreboard.ref('scoreboard/').orderByChild('score').limitToLast(4).once('value', function(value) {
+     var values = Object.values(value.val());
+     for (let i = values.length - 1; i >= 0; i--) {
+     alert(values[i].score);
+     }
+     });
+     */
+  </script>
+  <link rel=stylesheet href="stylesheet.css">
+</head>
+<body>
+<div class = "Points">
+  <p>Points:<p id="points-output"> 0 </p></p>
+</div>
+<div id="mainDiv" class="div-table">
+
+</div>
+<div class="b-popup" id = "background">
+  <div class="b-popup-menu" id = "menu">
+    <buttonM id = "gameB" onclick = goToLevels()>
+      Game
+    </buttonM>
+    <buttonM id = "resultsB">
+      Results
+    </buttonM>
+  </div>
+  <div class = "b-popup-selectLevel" id = 'levels'>
+    <buttonL id = "level1" onclick = level()>
+      Level1
+    </buttonL>
+    <buttonL id = "level2">
+      Level2
+    </buttonL>
+    <buttonL id = "level3" >
+      Level3
+    </buttonL>
+  </div>
+  <div class = "b-popup-results" id = 'results'>
+
+  </div>
+  <div class = "b-pop-win" id = 'win'>
+    <pw>You win!</pw>
+    <buttonW id = "NextLevel" onclick = WinToNextLevel()>
+      Next Level
+    </buttonW>
+    <buttonW id = "ReturnToMenu" onclick = winToMenu()>
+      Menu
+    </buttonW>
+  </div>
+  <div class = "b-pop-lose" id = 'lose'>
+    <pl>You lose :(</pl>
+    <buttonLose id = "returnToMenu" onclick = loseToMenu()>
+      Menu
+    </buttonLose>
+  </div>
+</div>
+</body>
 </html>
