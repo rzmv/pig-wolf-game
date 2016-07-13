@@ -1,19 +1,23 @@
 <!doctype html5>
 <html>
   <head>
-    <link rel=stylesheet href="stylesheet.css"> 
     <script src="./javascript/gen_scoreboard.js"></script>
     <script src="./javascript/db.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+    <link rel=stylesheet href="stylesheet.css">
     <link rel=stylesheet href="scoreboard_stylesheet.css">
   </head>
   <body>
     <div>
-      <p>Scoreboard:</p> 
+      <p id="scoreText">Scoreboard:</p>
     </div>
     <div class="div-table">
       <table id="scoreboard" class="scoreboard">
-        
+        <tr>
+          <th class="scorebCell">#</th>
+          <th class="scorebCell">usermame</th>
+          <th class="scorebCell">score</th>
+        </tr>
       </table>
     </div>
   </body>
