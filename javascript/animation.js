@@ -2,12 +2,12 @@
 
 function drawCell(pos) {
   let stItem = globalField.pointToCell(pos).staticItem;
-  $('mainTable').rows[pos.row].cells[pos.col].innerHTML = stItem.visible ? ('<img src = ' + stItem.image + ' width="50" height = "50">') : '';
+  $('mainTable').rows[pos.row].cells[pos.col].innerHTML = stItem.visible ? ('<img src = ' + stItem.image + ' width="45" height = "45">') : '';
 }
 
 function drawUnit(unit) {
   let pos = unit.position();
-  $('mainTable').rows[pos.row].cells[pos.col].innerHTML = '<img src = ' + unit.image + ' width="50" height = "50">';
+  $('mainTable').rows[pos.row].cells[pos.col].innerHTML = '<img src = ' + unit.image + ' width="45" height = "45">';
 }
 
 function redrawCell(pos, unit) {
