@@ -1,7 +1,7 @@
 'use strict';
 
 class Cell {
-  constructor(itemName = 'empty', itemDoor = {}) {
+  constructor(tableCellAdress, background = 'grass', itemName = 'empty', itemDoor = {}) {
     switch(itemName) {
       case 'empty': this.staticItem = new ItemEmpty(); break;
       case 'wall': this.staticItem = new ItemWall(); break;
@@ -9,6 +9,12 @@ class Cell {
       case 'door': this.staticItem = new ItemDoor(); break;
       case 'button': this.staticItem = new ItemButton(itemDoor); break;
     }
+    this.layers = [];
+    this.layers[0] = this.getBackgroundAdress(background);
+    this.layers[1] = [];
+    this.layers[2] = this.staticItem.image;
+    this.layers[3] = '';
+    this.tableCell = tableCellAdress;
   }
 
   isFree() {
@@ -17,7 +23,19 @@ class Cell {
 
   // FIXMYNAME: actually it's cell's visit and leave method
   visit(unit) {
-    this.staticItem = this.staticItem[unit.influenceOnCell]();      
+    this.staticItem = this.staticItem[unit.influenceOnCell]();    
+    this.layers[2] = this.staticItem.image;
+    this.layers[3] = unit.image;
+  }
+
+  leave(unit) {
+    this.staticItem = this.staticItem[unit.influenceOnCell]();    
+    this.layers[2] = this.staticItem.image;  
+    this.layers[3] = '';
+  }
+
+  getBackgroundAdress(background) {
+    return '.\\images\\' + background + '.svg';
   }
 }
 
@@ -30,11 +48,18 @@ class Field {
   
   _createCells(height, width) {
     this.cells = [];
+    this.table = document.createElement("table");
+    this.table.className = "table";
     for (let i = 0; i < height; ++i) {
+      let tableRow = document.createElement("tr");
       let row = [];
       for (let j = 0; j < width; ++j) {
-        row.push(new Cell());  
+        let tableCell = document.createElement("td");
+        tableCell.className = "table-cell";
+        tableRow.appendChild(tableCell);
+        row.push(new Cell(tableCell));  
       }
+      this.table.appendChild(tableRow);
       this.cells.push(row);
     }
   }

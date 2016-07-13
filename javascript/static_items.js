@@ -22,7 +22,7 @@ class StaticItem {
 
 class ItemEmpty extends StaticItem {
   constructor() {
-    super('empty', 'images/grass.svg');
+    super('empty', '');
    // this.visible = false;
   }
 

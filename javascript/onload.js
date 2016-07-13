@@ -22,18 +22,11 @@ function checkKey(e) {
 }
 
 window.onload = function () {
-  for (let i = 0; i < 10; i++) {
-    let newRow = document.createElement("tr");
-    for (let j = 0; j < 10; j++) {
-      let newCell = document.createElement("td");
-      newCell.className = "table-cell";
-      newRow.appendChild(newCell);
-    }
-    document.getElementById("mainTable").appendChild(newRow);
-  }
 
   globalField = new Field(10, 10);
-  globalField.cells[5][5] = new Cell('wall');
+  document.getElementById('mainDiv').appendChild(globalField.table);
+
+  /*globalField.cells[5][5] = new Cell('wall');
   globalField.cells[5][6] = new Cell('wall');
   globalField.cells[6][6] = new Cell('wall');
   globalField.cells[7][9] = new Cell('wall');
@@ -50,7 +43,7 @@ window.onload = function () {
   globalField.cells[2][9] = new Cell('wall');
 
   globalField.cells[0][9] = new Cell('food');
-  globalField.cells[9][0] = new Cell('button', curDoor);
+  globalField.cells[9][0] = new Cell('button', curDoor);*/
 
   globalPig = new Pig(Point(1, 1));
   globalWolf = new Wolf(Point(2, 2), [Point(2, 2), Point(2, 3), Point (2, 4), Point(1, 4)]);
@@ -60,6 +53,6 @@ window.onload = function () {
 
   globalWolves = [globalWolf, globalWolf2, globalWolf3];
 
-  initialDraw();
+//  initialDraw();
   document.onkeydown = checkKey;
 }

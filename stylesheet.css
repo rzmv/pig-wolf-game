@@ -37,3 +37,27 @@ p {
   text-transform: uppercase;
   font-weight: 600;
 }
+
+.layer-background {
+  position: absolute;
+  z-index: 1;
+}
+
+.layer-trajectory {
+  position: absolute;
+  z-index: 2;
+}
+
+.layer-staticItem {
+  position: absolute;
+  z-index: 3;
+}
+
+.layers-unit {
+  position: absolute;
+  z-index: 4;
+}
+
+td {
+  position: relative;
+}
