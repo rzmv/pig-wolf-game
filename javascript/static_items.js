@@ -37,7 +37,7 @@ class ItemEmpty extends StaticItem {
 
 class ItemWall extends StaticItem {
   constructor() {
-    super('wall', 'images/wall2.svg' , false);
+    super('wall', 'images/wall.svg' , false);
   }
 
   // !!! wolf can pass through wall
