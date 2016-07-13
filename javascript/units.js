@@ -5,10 +5,10 @@ const Point = utils.Point;
 */
 
 class Unit {
-  constructor(position, name, text) {
+  constructor(position, name, image) {
     this._position = position;
     this.name = name;
-    this.text = text;
+    this.image = image;
 
     // cause we need function in Wolf's position
     // so let's make it general
@@ -19,7 +19,7 @@ class Unit {
     let next = direction.nextPoint(this.position());
     if (globalField.freeCell(next)) {
       movePlayer(direction);
-      winLoseCheck()
+      //winLoseCheck()
     }    
   }
 
@@ -31,7 +31,7 @@ class Unit {
 
 class Pig extends Unit {
   constructor(position) {
-    super(position, 'pig', 'PIG');
+    super(position, 'pig', 'images/pig.svg');
     this.influenceOnCell = 'nextState';
   }
 }
@@ -73,7 +73,7 @@ class Trajectory {
 
 class Wolf extends Unit {
   constructor(position, trajectory) {
-    super(position, 'wolf', 'Wolf');
+    super(position, 'wolf', 'images/wolf.svg');
     this.trajectory = new Trajectory(position, trajectory);
     this.position = () => this.trajectory.currentPosition();
     this.influenceOnCell = 'toogleVisibility';

@@ -2,26 +2,12 @@
 
 function drawCell(pos) {
   let stItem = globalField.pointToCell(pos).staticItem;
-  switch (stItem.name) {
-    case 'food' :
-      $('mainTable').rows[pos.row].cells[pos.col].innerHTML = '<img src = "images/carrot.svg" width="50">'; break;
-    case 'wall' :
-      $('mainTable').rows[pos.row].cells[pos.col].innerHTML = '<img src = "images/wall.svg" width="50">'; break;
-    case 'door':
-      $('mainTable').rows[pos.row].cells[pos.col].innerHTML = '<img src = "images/door.svg" width="50" height="50">'; break;
-    case 'button':
-      $('mainTable').rows[pos.row].cells[pos.col].innerHTML = '<img src = "images/Button.svg" width="50" >'; break;
-  }
+  $('mainTable').rows[pos.row].cells[pos.col].innerHTML = stItem.visible ? ('<img src = ' + stItem.image + ' width="50" height = "50">') : '';
 }
 
 function drawUnit(unit) {
   let pos = unit.position();
-  switch (unit.name) {
-    case 'wolf':
-      $('mainTable').rows[pos.row].cells[pos.col].innerHTML = '<img src = "images/wolf.svg" width="50" >'; break;
-    case 'pig':
-      $('mainTable').rows[pos.row].cells[pos.col].innerHTML = '<img src = "images/pig.svg" width="50" >'; break;
-  }
+  $('mainTable').rows[pos.row].cells[pos.col].innerHTML = '<img src = ' + unit.image + ' width="50" height = "50">';
 }
 
 function redrawCell(pos, unit) {

@@ -1,9 +1,9 @@
 'use strict';
 
 class StaticItem {
-  constructor(name, text, passable = true) {
+  constructor(name, image, passable = true) {
     this.name = name;
-    this.text = text;
+    this.image = image;
     this.visible = true;
     this.passable = passable;
   }
@@ -23,6 +23,7 @@ class StaticItem {
 class ItemEmpty extends StaticItem {
   constructor() {
     super('empty', '');
+    this.visible = false;
   }
 
   nextState() {
@@ -36,7 +37,7 @@ class ItemEmpty extends StaticItem {
 
 class ItemWall extends StaticItem {
   constructor() {
-    super('wall', 'WALL', false);
+    super('wall', 'images/wall.svg' , false);
   }
 
   // !!! wolf can pass through wall
@@ -45,7 +46,7 @@ class ItemWall extends StaticItem {
 
 class ItemFood extends StaticItem {
   constructor() {
-    super('food', 'FOOD');
+    super('food', 'images/carrot.svg');
   }
 
   nextState() {
@@ -56,19 +57,19 @@ class ItemFood extends StaticItem {
 
 class ItemDoor extends StaticItem {
   constructor() {
-    super('door', 'DOOR', false);
+    super('door', 'images/door.svg', false);
   }
 }
 
 class ItemButton extends StaticItem {
   constructor(cellDoor) {
-    super('button', 'button');
+    super('button', 'images/Button.svg');
     this.cellDoor = cellDoor;
   }
 
   // !!! ~ image source changes to pressed button 
   nextState() {
-    this.text = 'pressed';
+    this.image = 'images/Button.svg';
     this.cellDoor.visit(globalPig);
     return this;
   }
