@@ -51,6 +51,6 @@ function pointsDistance(p1, p2) {
 
 function winLoseCheck() {
   for (let i = 0; i < globalWolves.length; ++i)
-    if (pointsDistance(globalPig.position(), globalWolves[i].position()) <= 1)
+    if (pointsDistance(globalPig.position(), globalWolves[i].position()) <= 0)
       alert('You lose!');
 }

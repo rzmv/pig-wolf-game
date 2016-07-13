@@ -19,7 +19,7 @@ class Unit {
     let next = direction.nextPoint(this.position());
     if (globalField.freeCell(next)) {
       movePlayer(direction);
-      //winLoseCheck()
+      winLoseCheck()
     }    
   }
 
