@@ -22,8 +22,8 @@ class StaticItem {
 
 class ItemEmpty extends StaticItem {
   constructor() {
-    super('empty', '');
-    this.visible = false;
+    super('empty', 'images/grass.svg');
+   // this.visible = false;
   }
 
   nextState() {
