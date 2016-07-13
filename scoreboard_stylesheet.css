@@ -1,0 +1,6 @@
+.scoreboard {
+  border: 1px solid darkgreen;
+  border-collapse: collapse;
+  display: inline-block;
+  position: relative;
+}
