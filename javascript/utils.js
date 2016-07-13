@@ -29,10 +29,10 @@ class Direction {
 function keyToDirection(keyCode) {
   let ans = '';
   switch (keyCode) {
-    case 38: ans = 'up'; break;
-    case 40: ans = 'down'; break;
-    case 37: ans = 'left'; break;
-    case 39: ans = 'right'; break;
+    case 87: ans = 'up'; break;
+    case 83: ans = 'down'; break;
+    case 65: ans = 'left'; break;
+    case 68: ans = 'right'; break;
     case 32: ans = 'stay'; break;
   }
   
