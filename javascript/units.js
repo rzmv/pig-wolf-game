@@ -69,6 +69,27 @@ class Trajectory {
     }
     this._currentStep += this._currentDirection;
   }
+
+  shiftToDirName(shift) {
+    switch (shift.row + ' ' + shift.col) {
+      case '-1 0': return 'up'; break;
+      case '1 0': return 'down'; break;
+      case '0 -1': return 'left'; break;
+      case '0 1': return 'right'; break;
+    }
+  }
+
+  addLayerToField(field) {
+    for (let i = 1; i < this._trajectory.length; ++i) {
+      let prev = this._trajectory[i - 1];
+      let cur = this._trajectory[i];
+      let prevLine = this.shiftToDirName(Point(cur.row - prev.row, cur.col - prev.col));
+      let curLine = this.shiftToDirName(Point(prev.row - cur.row, prev.col - cur.col));
+
+      field.pointToCell(prev).addToLayer('trajectory', prevLine);
+      field.pointToCell(cur).addToLayer('trajectory', curLine);  
+    } 
+  }
 }
 
 class Wolf extends Unit {
@@ -81,6 +102,10 @@ class Wolf extends Unit {
 
   move() {
     this.trajectory.move();
+  }
+
+  addTrajectoryLayerToField(field) {
+    this.trajectory.addLayerToField(field);
   }
 }
 

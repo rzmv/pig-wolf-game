@@ -1,17 +1,11 @@
 'use strict';
-/*
-function drawCell(cell) {
-  let stItem = cell.staticItem;
-  
-  for (let i = 0; i < 4; ++i)
-    cell.tableCellAddress.innerHTML += stItem.visible ? ('<img src = ' + stItem.image + ' width="50" height = "50">') : '';
-}
-*/
 
-function drawUnit(unit) {
-  let pos = unit.position();
-  let cell = globalField.pointToCell(pos);
-  cell.layers[3] = unit.image;
+function getTrajectoryAddress(trajectory) {
+  return 'images/trajectory_' + trajectory + '.svg';
+}
+
+function getBackgroundAddress(background) {
+  return 'images/' + background + '.svg';
 }
 
 function getHTMLImgByImage(image, cssClass) {
@@ -21,14 +15,14 @@ function getHTMLImgByImage(image, cssClass) {
   return '<img src = ' + image + ' class = ' + cssClass + ' width="49" height = "49">';
 }
 
+function drawUnit(unit) {
+  let cell = globalField.pointToCell(unit.position());
+  cell.addToLayer('unit', unit);
+}
+
 function redrawCell(cell) {
   let tableCell = cell.tableCell;
-  tableCell.innerHTML = getHTMLImgByImage(cell.layers[0], "layer-background");
-  for (let i = 0; i < cell.layers[1].length; ++i) {
-    tableCell.innerHTML += getHTMLImgByImage(cell.layers[1][i], "layer-trajectory");
-  }
-  tableCell.innerHTML += getHTMLImgByImage(cell.layers[2], "layer-staticItem");
-  tableCell.innerHTML += getHTMLImgByImage(cell.layers[3], "layers-unit");
+  tableCell.innerHTML = cell.getLayersHTMLString();
 }
 
 function animateMovement(unit, func, direction) {
