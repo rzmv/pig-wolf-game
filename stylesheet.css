@@ -87,7 +87,7 @@ td {
   top: 0;
   background-color: darkgreen;
   z-index: 50;
-  visibility: hidden;
+  display: block;
 }
 
 .b-popup-menu{
@@ -98,7 +98,7 @@ td {
   position: absolute;
   z-index: 51;
   background-color: white;
-  visibility: hidden;
+  display: block;
 }
 
 .b-popup-selectLevel{
@@ -109,7 +109,7 @@ td {
   position: absolute;
   z-index: 51;
   background-color: white;
-  visibility: hidden;
+  display: none;
 }
 
 .b-pop-win{
@@ -120,7 +120,7 @@ td {
   position: absolute;
   z-index: 51;
   background-color: khaki;
-  visibility: hidden;
+  display:none;
 }
 
 .b-pop-lose{
@@ -131,7 +131,7 @@ td {
   position: absolute;
   z-index: 51;
   background-color: khaki;
-  visibility: hidden;
+  display: none;
 }
 
 buttonM{
