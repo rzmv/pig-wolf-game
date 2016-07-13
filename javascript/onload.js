@@ -21,8 +21,22 @@ function checkKey(e) {
     globalPig.tryMove(dir);
 }
 
-window.onload = function () {
+window.onload = function(){
+  document.getElementById("menu").style="display:block";
+  document.getElementById("background").style="display:block";
+}
+
+function level() {
+  document.getElementById("levels").style="display:none";
+  document.getElementById("background").style="display:none";
+
+  var table = document.getElementById('mainDiv');
+
+  while (table.firstChild) {
+    table.removeChild(table.firstChild);
+  }
   globalField = new Field(10, 10);
+
   document.getElementById('mainDiv').appendChild(globalField.table);
   
   globalField.changeCell(Point(5, 5), 'grass', [{'itemName':'wall'}]);
@@ -60,5 +74,30 @@ window.onload = function () {
     globalWolves[i].addTrajectoryLayerToField(globalField);
 
   initialDraw();
+  
+  let curLevel = new Level(globalField, globalPig, globalWolves);
+  curLevel.showJSON();
+  
   document.onkeydown = checkKey;
 }
+
+function goToLevels() {
+  document.getElementById("menu").style="display:none";
+  document.getElementById("levels").style="display:block";
+}
+
+function winToMenu() {
+  document.getElementById("win").style="display:none";
+  document.getElementById("menu").style="display:block";
+}
+
+function loseToMenu() {
+  document.getElementById("lose").style="display:none";
+  document.getElementById("menu").style="display:block";
+}
+
+function levelToMenu() {
+  document.getElementById("levels").style="display:none";
+  document.getElementById("menu").style="display:block";
+}
+

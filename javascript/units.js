@@ -85,7 +85,7 @@ class Trajectory {
       let cur = this._trajectory[i];
       let prevLine = this.shiftToDirName(Point(cur.row - prev.row, cur.col - prev.col));
       let curLine = this.shiftToDirName(Point(prev.row - cur.row, prev.col - cur.col));
-
+            
       field.pointToCell(prev).addToLayer('trajectory', prevLine);
       field.pointToCell(cur).addToLayer('trajectory', curLine);  
     } 

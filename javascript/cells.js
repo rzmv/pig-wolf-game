@@ -55,13 +55,17 @@ class Cell {
   }
 
   visit(unit) {
-    this.unitInfluence(unit);
-    this.addToLayer('unit', unit);
+    if (unit !== null) {
+      this.unitInfluence(unit);
+      this.addToLayer('unit', unit);
+    }
   }
 
   leave(unit) {
-    this.unitInfluence(unit);
-    this.removeLayer('unit');
+    if (unit !== null) {
+      this.unitInfluence(unit);
+      this.removeLayer('unit');
+    }
   }
 
   openDoor() {
