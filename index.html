@@ -17,15 +17,38 @@
         storageBucket: "pigwolftable.appspot.com",
       };
       firebase.initializeApp(config);
-      firebase.auth().signInWithEmailAndPassword("pigandwolfgame@gmail.com", "123456yhnbvcxz").catch(function(error) {
+
+      //auth
+/*      firebase.auth().signInWithEmailAndPassword("pigandwolfgame@gmail.com", "123456yhnbvcxz").catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
-        /*console.log(errorCode);
-        console.log(errorMessage);*/
         alert(errorCode);
         alert(errorMessage);
       }); 
-    </script> 
+
+      var scoreboard = firebase.database();
+
+      //generate resultID
+      var resultID = firebase.database().ref().child('scoreboard').push().key;
+
+      //set data
+      let username = "13";
+      let score    = 2020323;
+      var userScore = {
+        username: username,
+        score   : score
+      };
+      scoreboard.ref("scoreboard/" + resultID).set(userScore);
+
+      //get sorted data
+      var getScores = scoreboard.ref('scoreboard/').orderByChild('score').limitToLast(4).once('value', function(value) {
+        var values = Object.values(value.val());
+        for (let i = values.length - 1; i >= 0; i--) {
+          alert(values[i].score);
+        }
+      });
+      */
+    </script>
     <link rel=stylesheet href="stylesheet.css">
   </head>
   <body>
