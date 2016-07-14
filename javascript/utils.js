@@ -61,6 +61,7 @@ function winLoseCheck() {
       }
 
     }
+      
 }
 
 function alertPoint(point) {

@@ -13,14 +13,18 @@ var globalWolf, globalWolf2, globalWolf3;
 var globalWolves = [];
 var globalField = {};
 var globalPoints = 0;
+var globalSteps = 0;
 
 var currentLevel;
 
 function checkKey(e) {
   e = e || window.event;
   let dir = keyToDirection(e.keyCode);
-  if (dir.direction != '')
+  if (dir.direction != ''){
     currentLevel.pig.tryMove(dir);
+   // ++globalSteps;
+   // $('steps-output').innerHTML = globalSteps;
+  }
 }
 
 window.onload = function(){
@@ -29,6 +33,9 @@ window.onload = function(){
 }
 
 function level() {
+  $('steps-output').innerHTML = 0;
+  $('points-output').innerHTML = 0;
+
   document.getElementById("levels").style="display:none";
   document.getElementById("background").style="display:none";
 
@@ -60,9 +67,14 @@ function level() {
   globalField.changeCell(Point(1, 8), 'wood');
   globalField.changeCell(Point(1, 9), 'wood');
 
-  globalField.changeCell(Point(0, 9), 'wood', [{'itemName':'food'}]);
+  globalField.changeCell(Point(0, 9), 'wood', [{'itemName':'food'}, {'itemName':'lamp'}]);
   globalField.changeCell(Point(9, 0), 'grass', [{'itemName':'button', 'doorPosition':Point(1, 7)}]);
   
+  globalField.changeCell(Point(3, 3), 'grass', [{'itemName':'snowflake'}]);
+  globalField.changeCell(Point(9, 9), 'grass', [{'itemName':'fire'}]);
+
+  globalField.changeCell(Point(9, 8), 'grass', [{'itemName':'darkness'}]);
+
   globalPig = new Pig(Point(1, 1));
   globalWolf = new Wolf(Point(2, 2), [Point(2, 2), Point(2, 3), Point (2, 4), Point(1, 4)]);
   globalWolf2 = new Wolf(Point(0, 0), [Point(0, 0), Point(1, 0), Point(2, 0), Point(3, 0)]);

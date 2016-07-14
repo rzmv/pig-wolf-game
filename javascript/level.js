@@ -5,6 +5,7 @@ class Level {
     this.field = field;
     this.pig = pig;
     this.wolves = wolves;
+    this.lights = true;
     this.init();
   }
 
@@ -28,6 +29,7 @@ class Level {
   loadFromJSON(JSONString) {
     let lev = JSON.parse(JSONString);
     
+    this.lights = lev.lights;
     this.pig = new Pig(lev.pig._position);
     
     this.wolves = [];
@@ -61,6 +63,7 @@ class Level {
       'field': this.field,
       'pig': this.pig,
       'wolves': this.wolves,
+      'lights': true,
     };
 
     let JSONString = JSON.stringify(lev);
@@ -73,5 +76,38 @@ class Level {
     document.body.appendChild(textArea);
     return JSONString;
     //output.write(JSON.stringify(level));
+  }
+
+  freezeWolves() {
+    for (let i = 0; i < this.wolves.length; ++i)
+      this.wolves[i].freeze();
+  }
+
+  defrostWolves() {
+    for (let i = 0; i < this.wolves.length; ++i)
+      this.wolves[i].defrost();
+  }
+
+  turnLightsOff(visibilityRange) {
+    this.pig.visibilityRange = visibilityRange;
+    this.lights = false;  
+    
+    // !!! delete this cycle, there is function in module animate that does the same
+    for (let i = 0; i < this.field.height; ++i)
+      for (let j = 0; j < this.field.width; ++j)
+        this.field.cells[i][j].addToLayer('darkness', 'darkness');
+  }
+
+  turnLightsOn() {
+    if (this.lights)
+      return;
+
+    this.lights = true;
+
+    for (let i = 0; i < this.field.height; ++i)
+      for (let j = 0; j < this.field.width; ++j) {
+        this.field.cells[i][j].removeLayer('darkness');
+        redrawCell(this.field.cells[i][j]);
+      }
   }
 }

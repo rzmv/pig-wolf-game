@@ -39,9 +39,9 @@ body {
   margin-right: 30%;
 }
 
-p {
-  color: darkred;
-  margin-left: 40%;
+p1 {
+  text-align: center; 
+  color: darkred; 
   font-family: courier;
   font-size: 150%;
   text-transform: uppercase;
@@ -74,6 +74,13 @@ p {
   left: 0;
   position: absolute;
   z-index: 4;
+}
+
+.layer-darkness {
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 10;
 }
 
 td {
@@ -222,6 +229,6 @@ pl{
 
 h1{
   font-size: 100px;
-  color : red;
+  color: white;
   text-align: center;
 }
