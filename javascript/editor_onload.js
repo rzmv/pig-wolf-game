@@ -40,6 +40,7 @@ window.onload = function(){
   editor = new Editor(currentLevel);
 
   $('buttonCompleteRedraw').onclick = () => editor.completeFieldRedraw(); 
+  $('buttonShowTextarea').setAttribute('onClick', 'showJSON()');
   document.onkeydown = checkKey;
 }
 
@@ -51,4 +52,9 @@ function generateField() {
   currentLevel.field = new Field(height, width, background);
   editor.makeFieldCellsClickable();
   showField();
+}
+
+function showJSON() {
+alert('json');
+  $('JSONTextArea').value = currentLevel.showJSON();  
 }
