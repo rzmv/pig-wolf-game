@@ -51,7 +51,8 @@ class Trajectory {
     this._trajectory = trajectory || [];
     this._currentDirection = (this._trajectory.length > 1 ? 1 : 0);
     this._currentStep = this._getTrajectoryStep(position);    
-    
+    this._position = position;
+
     // need to rememeber for wolf.freeze
     this._latestDirection = this._currentDirection;
   }
@@ -62,12 +63,19 @@ class Trajectory {
     
     // we're not staying on the trajectory
     // then we'll stay at the same place
-    this._trajectory = [position];
+    /*this._trajectory = [position];
     this._currentDirection = 0;
     return 0;
+    */
+    return -1;
   }
 
   currentPosition() {
+    // we're not yet on the trajectory
+    // (we're building this trajectory in module Editor
+    if (this._currentStep == -1)
+      return this._position;
+      
     return this._trajectory[this._currentStep];
   }
 
@@ -117,7 +125,7 @@ class Trajectory {
 }
 
 class Wolf extends Unit {
-  constructor(position, trajectory) {
+  constructor(position, trajectory = []) {
     super(position, 'wolf', 'images/wolf.svg');
     this.frozenImg = 'images/blue_wolf.svg';
     this.trajectory = new Trajectory(position, trajectory);

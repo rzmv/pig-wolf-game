@@ -2,12 +2,17 @@
 
 function checkKey(e) {
   e = e || window.event;
-  let dir = keyToDirection(e.keyCode);
+  /*let dir = keyToDirection(e.keyCode);
   if (dir.direction != ''){
     currentLevel.pig.tryMove(dir);
    // ++globalSteps;
    // $('steps-output').innerHTML = globalSteps;
   }
+ */
+
+ // its 'q' for 'quit' from editing wolf's trajectory
+ if (e.keyCode == 81)
+  editor.finishWolf();
 }
 
 var currentLevel;
@@ -31,6 +36,9 @@ window.onload = function(){
   showField();
 
   editor = new Editor(currentLevel);
+
+  $('buttonCompleteRedraw').onclick = editor.completeFieldRedraw();
+  document.onkeydown = checkKey;
 }
 
 function generateField() {
@@ -41,27 +49,4 @@ function generateField() {
   currentLevel.field = new Field(height, width, background);
   editor.makeFieldCellsClickable();
   showField();
-}
-
-function level() {
-  globalField = new Field(10, 10);
-  //document.getElementById('mainDiv').appendChild(globalField.table);
-
-  globalField.changeCell(Point(5, 5), 'grass', [{'itemName':'wall'}]);
-  
-  globalField.changeCell(Point(8, 3), 'grass', [{'itemName':'food'}]);
-
-  globalField.changeCell(Point(1, 7), 'grass', [{'itemName':'door'}, {'itemName':'food'}]);
-
-  globalField.changeCell(Point(0, 8), 'wood');
-
-  globalField.changeCell(Point(0, 9), 'wood', [{'itemName':'food'}, {'itemName':'food'}, {'itemName':'lamp'}]);
-  globalField.changeCell(Point(9, 0), 'grass', [{'itemName':'snowflake'}, {'itemName':'button', 'doorPosition':Point(1, 7)}]);
-  
-  globalField.changeCell(Point(3, 3), 'grass', [{'itemName':'snowflake'}]);
-  globalField.changeCell(Point(9, 9), 'grass', [{'itemName':'fire'}]);
-
-  globalField.changeCell(Point(9, 8), 'grass', [{'itemName':'food'}, {'itemName':'snowflake'}, {'itemName':'blackButton'}]);
-
-  document.onkeydown = checkKey;
 }

@@ -14,10 +14,16 @@ class Editor {
     this.pushPigs();
     this.createTableFromArray(this.arrayPigs, 'table-pigs', 'pig');
 
+    this.pushWolves();
+    this.createTableFromArray(this.arrayWolves, 'table-wolves', 'wolf');
+
     this.currentItemType = 'background';
     this.currentItemName = 'grass';
+    
     this.latestButton = null;
     this.latestButtonPosition = null;
+    this.latestWolf = null;
+    
     this.updateCurrentTool();
   }
 
@@ -36,7 +42,6 @@ class Editor {
 
   pushStaticItems() {
     this.arrayStaticItems = [];
-    this.arrayStaticItems.push('clear');
     this.arrayStaticItems.push('wall');
     this.arrayStaticItems.push('food');
     this.arrayStaticItems.push('door');
@@ -45,10 +50,15 @@ class Editor {
     this.arrayStaticItems.push('fire');
     this.arrayStaticItems.push('blackButton');
     this.arrayStaticItems.push('lamp');
+    this.arrayStaticItems.push('clear');
   }
   
   pushPigs() {
     this.arrayPigs = ['pig'];
+  }
+
+  pushWolves() {
+    this.arrayWolves = ['wolf', 'clear'];
   }
 
   updateCurrentTool() {
@@ -78,60 +88,134 @@ class Editor {
     $('tools-panel').appendChild(table);
   }
 
-  addSelectedItem(point) {
-    if (this.currentItemType == 'background') {
-      let curCell = this.level.field.pointToCell(point);
-      let curName = this.currentItemName;
-      curCell.addToLayer('background', curName);
-      redrawCell(curCell);
-    }
+  applyBackground(point) {
+    let curCell = this.level.field.pointToCell(point);
+    let curName = this.currentItemName;
+    curCell.addToLayer('background', curName);
+    redrawCell(curCell);
+  }
 
-    if (this.currentItemType == 'staticItem') {
-      let curCell = this.level.field.pointToCell(point);
-      let curName = this.currentItemName;
+  applyStaticItem(point) {
+    let curCell = this.level.field.pointToCell(point);
+    let curName = this.currentItemName;
+    
+    if (curName == 'clear') {
+      curCell.staticItems = [];
+    }
+    else {
+      let curItem = curCell.createStaticItemByName(curName, null);
+      curCell.staticItems.push(curItem);        
       
-      if (curName == 'clear') {
-        curCell.staticItems = [];
+      if (curName == 'button') {
+        this.latestButton = curCell;
+        this.latestButtonPosition = point;
       }
-      else {
-        let curItem = curCell.createStaticItemByName(curName, null);
-        curCell.staticItems.push(curItem);        
+
+        // !!! may be errors, be careful
+        // when we delete this not-assigned button,
+        // we stil have it in this.latestButton
+      if (curName == 'door' && this.latestButton !== null) {
+        this.latestButton.doorPosition = point;
         
-        if (curName == 'button') {
-          this.latestButton = curCell;
-          this.latestButtonPosition = point;
-        }
+        let b = this.latestButtonPosition;
+        let d = point;
+        alert('BUTTON (' + b.row + ', ' + b.col + ') BINDED WITH ' +
+          'DOOR (' + d.row + ', ' + d.col + ')');
+        
+        this.latestButton = null;
+        this.latestButtonPosition = null;
+      }
+    }
+    redrawCell(curCell);
+  }
 
-          // !!! may be errors, be careful
-          // when we delete this not-assigned button,
-          // we stil have it in this.latestButton
-        if (curName == 'door' && this.latestButton !== null) {
-          this.latestButton.doorPosition = point;
+  applyPig(point) {
+    let oldPoint = this.level.pig.position();
+    let newPoint = point;
+    let oldCell = this.level.field.pointToCell(oldPoint)
+    let newCell = this.level.field.pointToCell(newPoint);
+
+    this.level.pig._position = newPoint;
+
+    oldCell.removeLayer('unit');
+    newCell.addToLayer('unit', this.level.pig);
+    redrawCell(oldCell);
+    redrawCell(newCell);            
+  }
+
+  addSelectedItem(point) {
+    switch (this.currentItemType) {
+      case 'background': this.applyBackground(point); break;
+      case 'staticItem': this.applyStaticItem(point); break;
+      case 'pig': this.applyPig(point); break;
+      case 'wolf': this.applyWolf(point); break;
+    }
+  }
+
+  finishWolf() {
+    this.latestWolf.trajectory = new Trajectory(this.latestWolf._position,
+      this.latestWolf.trajectory._trajectory);
+
+    this.completeFieldRedraw();
+    alert('WOLF SUCCESSFULLY CREATED');  
+
+    this.latestWolf = null;
+    this.latestWolfTrajectory = []; 
+  }
+
+  applyWolf(point) {
+    let curCell = this.level.field.pointToCell(point);
+    
+    if (this.currentItemName == 'clear') {
+      this.latestWolf = null;
+
+      for (let i = 0; i < this.level.wolves.length; ++i) {
+        let curWolf = this.level.wolves[i];
+        if (JSON.stringify(curWolf.position()) == JSON.stringify(point)) {
           
-          let b = this.latestButtonPosition;
-          let d = point;
-          alert('BUTTON (' + b.row + ', ' + b.col + ') BINDED WITH ' +
-            'DOOR (' + d.row + ', ' + d.col + ')');
-          
-          this.latestButton = null;
-          this.latestButtonPosition = null;
+          // delete element from array
+          let a = this.level.wolves.slice(0, Math.max(0, i));
+          let len = this.level.wolves.length;
+          let inext = Math.min(i+1, len - 1);
+
+          let b = this.level.wolves.slice(inext, len - inext - 1);
+          this.level.wolves = a.concat(b);
         }
       }
-      redrawCell(curCell);
+
+      this.completeFieldRedraw();
+      return;
     }
 
-    if (this.currentItemType == 'pig') {
-      let oldPoint = this.level.pig.position();
-      let newPoint = point;
-      let oldCell = this.level.field.pointToCell(oldPoint)
-      let newCell = this.level.field.pointToCell(newPoint);
-
-      this.level.pig._position = newPoint;
-
-      oldCell.removeLayer('unit');
-      newCell.addToLayer('unit', this.level.pig);
-      redrawCell(oldCell);
-      redrawCell(newCell);            
+    // we're editing his trajectory
+    if (this.latestWolf !== null) {
+      this.latestWolf.trajectory._trajectory.push(point);
+      this.completeFieldRedraw();
     }
+    else {
+      let wolf = new Wolf(point, []);
+      curCell.addToLayer('unit', wolf);
+      this.level.wolves.push(wolf);
+      
+      this.latestWolf = wolf;
+    }
+
+    redrawCell(curCell);
+  }
+
+  completeFieldRedraw() {
+    for (let i = 0; i < this.level.field.height; ++i)
+      for (let j = 0; j < this.level.field.width; ++j) {
+        let curCell = this.level.field.cells[i][j];
+        curCell.layerTrajectory = [];
+        curCell.layerUnit = null;
+      }
+    
+    for (let i = 0; i < this.level.wolves.length; ++i) {
+      let curWolf = this.level.wolves[i];
+      curWolf.trajectory.addLayerToField(this.level.field);
+    }
+    
+    initialDraw();
   }
 }
