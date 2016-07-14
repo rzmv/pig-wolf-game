@@ -99,6 +99,8 @@ td {
   z-index: 51;
   background-color: white;
   display: block;
+  border: 5px saddlebrown;
+  border-style: outset;
 }
 
 .b-popup-selectLevel{
@@ -110,6 +112,9 @@ td {
   z-index: 51;
   background-color: white;
   display: none;
+  border: 5px saddlebrown;
+  border-style: outset;
+
 }
 
 .b-pop-win{
@@ -121,6 +126,9 @@ td {
   z-index: 51;
   background-color: khaki;
   display:none;
+  border: 5px goldenrod;
+  border-style: outset;
+
 }
 
 .b-pop-lose{
@@ -132,6 +140,9 @@ td {
   z-index: 51;
   background-color: khaki;
   display: none;
+  border: 5px goldenrod;
+  border-style: outset;
+
 }
 
 buttonM{
@@ -145,6 +156,8 @@ buttonM{
   text-decoration: none;
   display: table;
   font-size: 16px;
+  border: 5px darkgreen;
+  border-style: outset;
 }
 
 buttonL{
@@ -158,6 +171,8 @@ buttonL{
   text-decoration: none;
   display: inline-table;;
   font-size: 16px;
+  border: 5px chocolate;
+  border-style: outset;
 }
 
 buttonW{
@@ -171,7 +186,10 @@ buttonW{
   text-decoration: none;
   display: inline-table;;
   font-size: 16px;
+  border: 5px chocolate;
+  border-style: outset;
 }
+
 
 buttonLose{
   margin-left: 30%;
@@ -182,8 +200,10 @@ buttonLose{
   padding: 3% 10%;
   text-align: center;
   text-decoration: none;
-  display: inline-table;;
+  display: inline-table;
   font-size: 16px;
+  border: 5px chocolate;
+  border-style: outset;
 }
 
 pw{

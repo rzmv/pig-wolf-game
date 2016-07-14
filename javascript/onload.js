@@ -107,3 +107,6 @@ function levelToMenu() {
   document.getElementById("menu").style="display:block";
 }
 
+function menuToScoreboard() {
+  location.href='scoreboard.html';
+}

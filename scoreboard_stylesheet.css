@@ -1,0 +1,21 @@
+#scoreboard {
+  border: 1px solid darkgreen;
+  border-collapse: collapse;
+  display: inline-block;
+  position: relative;
+}
+
+#scoreText {
+  text-align: center;
+  margin-left: 0;
+}
+
+.scorebCell {
+  font-size: 150%;
+  border: 4px solid darkgreen;
+  border-collapse: collapse;
+}
+
+.numberCell {
+  text-align: center;
+}
