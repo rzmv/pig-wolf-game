@@ -24,6 +24,14 @@ class Cell {
     }
   }
 
+  countFood() {
+    let ans = 0;
+    for (let i = 0; i < this.staticItems.length; ++i)
+      if (this.staticItems[i].name == 'food')
+        ++ans;
+    return ans;  
+  }
+
   isFree() {
     for (let i = 0; i < this.staticItems.length; ++i)
       if (!this.staticItems[i].passable)

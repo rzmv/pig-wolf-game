@@ -26,15 +26,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="-139.28571"
-     inkscape:cy="520"
+     inkscape:cx="0"
+     inkscape:cy="0"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1680"
      inkscape:window-height="988"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -55,9 +55,9 @@
     <rect
        style="fill:#000000;stroke:#f9f9f9"
        id="rect3336"
-       width="1000"
-       height="1000"
+       width="1500"
+       height="1500"
        x="0"
-       y="3.7907763" />
+       y="0" />
   </g>
 </svg>
