@@ -8,6 +8,11 @@
 #scoreText {
   text-align: center;
   margin-left: 0;
+  color: darkred;
+  font-family: courier;
+  font-size: 150%;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .scorebCell {
