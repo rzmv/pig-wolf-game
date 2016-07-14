@@ -7,6 +7,7 @@ class Cell {
     this.layerTrajectory = [];
     this.layerUnit = null;
     this.staticItems = [];
+    this.layerDarkness = '';
 
     for (let i = 0; i < itemsArray.length; ++i) {
       switch(itemsArray[i].itemName) {
@@ -17,6 +18,8 @@ class Cell {
         case 'button': this.staticItems.push(new ItemButton(itemsArray[i].doorPosition)); break;
         case 'snowflake': this.staticItems.push(new ItemSnowflake()); break;
         case 'fire': this.staticItems.push(new ItemFire()); break;
+        case 'darkness': this.staticItems.push(new ItemDarkness()); break;
+        case 'lamp': this.staticItems.push(new ItemLamp()); break;
       }
     }
   }
@@ -40,6 +43,7 @@ class Cell {
       case 'background': this.layerBackground = objectName; break;
       case 'trajectory': this.addTrajectory(objectName); break;
       case 'unit': this.layerUnit = objectName; break;
+      case 'darkness': this.layerDarkness = objectName; break;
     } 
   }
 
@@ -48,6 +52,7 @@ class Cell {
       case 'background': this.layerBackground = ''; break;
       case 'trajectory': this.layerTrajectory = []; break;
       case 'unit': this.layerUnit = null; break;
+      case 'darkness': this.layerDarkness = ''; break;
     }
   }
 
@@ -93,6 +98,9 @@ class Cell {
 
     let unitImg = this.layerUnit !== null ? this.layerUnit.image() : '';
     ans += getHTMLImgByImage(unitImg, 'layer-unit');
+
+    let darknessImg = getDarknessAddress(this.layerDarkness);
+    ans += getHTMLImgByImage(darknessImg, 'layer-darkness');
     return ans;
   }
 }

@@ -37,6 +37,9 @@ class Pig extends Unit {
   constructor(position) {
     super(position, 'pig', 'images/pig.svg');
     this.influenceOnCell = 'nextState';
+    
+    // we can see all cells on the field
+    this.visibilityRange = 0;
   }
 }
 

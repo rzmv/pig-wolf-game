@@ -104,3 +104,26 @@ class ItemFire extends StaticItem {
     return this;
   }
 }
+
+class ItemDarkness extends StaticItem {
+  constructor() {
+    super('darkness', 'images/black.svg');
+    this.visibilityRange = 1;
+  }
+
+  nextState() {
+    currentLevel.turnLightsOff(this.visibilityRange);
+    return this;
+  }
+}
+
+class ItemLamp extends StaticItem {
+  constructor() {
+    super('lamp', 'images/lamp.svg');
+  }
+
+  nextState() {
+    currentLevel.turnLightsOn();
+    return this;
+  }
+}

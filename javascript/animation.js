@@ -8,6 +8,12 @@ function getBackgroundAddress(background) {
   return 'images/' + background + '.svg';
 }
 
+function getDarknessAddress(darkness) {
+  if (darkness === '')
+    return '';
+  return 'images/black.svg';
+}
+
 function getHTMLImgByImage(image, cssClass) {
   if (image === '') {
     return '';
@@ -43,7 +49,10 @@ function animateMovement(unit, func, direction) {
 function movePlayer(direction) {
   animateMovement(currentLevel.pig, 'move', direction);
   for (let i = 0; i < currentLevel.wolves.length; ++i)
-    animateMovement(currentLevel.wolves[i], 'move');     
+    animateMovement(currentLevel.wolves[i], 'move');
+
+  if (!currentLevel.lights)
+    redrawDarkness(); 
 }
 
 function initialDraw() {
@@ -54,4 +63,29 @@ function initialDraw() {
   for (let i = 0; i < currentLevel.field.height; ++i)
     for (let j = 0; j < currentLevel.field.width; ++j)
       redrawCell(currentLevel.field.pointToCell(Point(i, j)));
+}
+
+function redrawDarkness() {
+  // !!!TODO: rewrite it to bfs, it'll be O(r^2) not O(width * height)
+  let lev = currentLevel;
+  
+  // some error occured, pig can see thole field
+  if (lev.pig.visibilityRange == 0)
+    return;
+
+  for (let i = 0; i < lev.field.height; ++i)
+    for (let j = 0; j < lev.field.width; ++j) {
+      let dist = pointsDistance(lev.pig.position(), Point(i, j));
+      /*
+      alert('PIG ' + lev.pig.position().row + ' ' + lev.pig.position().col);
+      alertPoint(Point(i, j));
+      alert('DISTANCE = ' + dist);
+      */
+      if (dist > lev.pig.visibilityRange)
+        lev.field.cells[i][j].addToLayer('darkness', 'darkness');
+      else
+        lev.field.cells[i][j].removeLayer('darkness');
+
+      redrawCell(lev.field.cells[i][j]);
+    }
 }
