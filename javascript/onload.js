@@ -21,11 +21,13 @@ function level() {
   document.getElementById('points-output').innerHTML = 0;
   globalSteps = 0;
   globalPoints = 0;
+  $("#levelDiv").hide();
+  $("#gameDiv").show();
+  $(".centerDiv").hide();
   /*document.getElementById("levels").style="display:none";
   document.getElementById("background").style="display:none";*/
 
-  var table = document.getElementById('mainDiv');
-  
+  var table = document.getElementById('mainDiv');  
   while (table.firstChild) {
     table.removeChild(table.firstChild);
   }
@@ -36,7 +38,7 @@ function level() {
 
   currentLevel = new Level();
   currentLevel.loadFromJSON(LEVELS[index]);
-  
+  alert(currentLevel.field.table);    
   document.getElementById('mainDiv').appendChild(currentLevel.field.table);
   initialDraw();
 

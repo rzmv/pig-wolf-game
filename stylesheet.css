@@ -3,31 +3,37 @@ body {
 }
 
 .div-table {
-  top: 10%;
-  position: relative;
-  height: 80%;
-  width: 100%;
-  text-align: center;
+  margin: 20px auto 0 auto;
   padding: 0px;
-  margin: 0px;
 }
 
 .table {
-  table-layout: fixed;
   border: 1px solid darkgreen;
   border-collapse: collapse;
-  display: inline-block;
-  position: relative;
-  background-color: black;/*#5aa02c;*/
+}
+
+#gameDiv {
+	margin: 0 auto;
+}
+
+#mainDiv {
+	width: 96vmin;
+	height: 96vmin;
+	/*max-width: 1000px;
+	max-height: 1000px;*/
+	overflow: hidden;
 }
 
 .table-cell {
   text-align: center;
-  width: 50;
-  height: 50;
-  border: 0px solid darkgreen;
+  overflow: hidden;
   padding: 0px;
-  margin: 0px;
+  margin: 15px;
+}
+
+.table-cell, .table-cell img {
+  width: 8vmin;  /* 96 / 12 */
+  height: 8vmin;
 }
 
 #table td {padding: 0px; margin: 0px;}
@@ -39,7 +45,7 @@ body {
   margin-right: 30%;
 }
 
-p1 {
+.Points {
   text-align: center; 
   color: darkred; 
   font-family: courier;
@@ -172,14 +178,10 @@ input {
 }
 
 .b-pop-lose {
-  margin-left: 35%;
-  margin-top: 0;
   height: 500px;
   width: 450px;
-  position: absolute;
   z-index: 51;
   background-color: khaki;
-  display: none;
   border: 5px goldenrod;
   border-style: outset;
 }
@@ -266,6 +268,10 @@ pl {
 
 }
 
+* {
+  font-family: Areal;
+}
+
 h1 {
   font-size: 100px;
   color: white;
@@ -294,14 +300,46 @@ h1 {
   box-shadow: 0px 0px 10px #000;
 }
 
-#welGameBtn {
-  width: 16%;
-  height: 5%;
-  top:50%;
-  margin: -5em 0 0 -1em;
+.centerDiv {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-.centerDiv,
-.levelDiv {
+#welGameBtn {
+}
+
+.div-tableScore {
+  top: 10%;
+  position: relative;
+  height: 80%;
+  width: 100%;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+}
+
+pw {
+  margin-top: 10%;
+  margin-left: 0%;
+  text-align: center;
+  font-size: 50px;
+}
+
+p {
+  font-size: 70px;
+  text-align: center;
+  color : black;
+}
+
+h1 {
+  font-size: 100px;
+  color: white;
   text-align: center;
 }

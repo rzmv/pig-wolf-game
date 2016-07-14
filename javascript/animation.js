@@ -18,7 +18,7 @@ function getHTMLImgByImage(image, cssClass = '', priority = null) {
   if (image === '') {
     return '';
   }                                                   
-  return '<img src = "' + image + '" class = "' + cssClass + '" width="49" height = "49">';
+  return '<img src = "' + image + '" class = "' + cssClass + '">';
 }
 
 function drawUnit(unit) {
@@ -94,7 +94,7 @@ function redrawDarkness(prev, cur) {
   removeDarkness(cur, currentLevel.pig.visibilityRange);
 }
 
-animateTurningLightsOff(point, range)
+function animateTurningLightsOff(point, range)
 {
   //let arr = getPointsFromRange(point, 1000);
 

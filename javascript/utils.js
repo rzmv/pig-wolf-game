@@ -53,11 +53,15 @@ function winLoseCheck() {
        (pointsDistance(currentLevel.pig.prevPosition(), currentLevel.wolves[i].position()) <= 0 &&
        pointsDistance(currentLevel.pig.position(), currentLevel.wolves[i].prevPosition())  <= 0))
     {
-      document.getElementById("lose").style="display:block";
-      document.getElementById("background").style="display:block";
+/*      document.getElementById("lose").style="display:block";
+      document.getElementById("background").style="display:block";*/
+      $("#gameDiv").hide();
+      $(".centerDiv").show();
+      $("#scoreDiv").show();
 
       globalPoints = parseInt(document.getElementById("points-output").innerText);
       globalSteps  = parseInt(document.getElementById("steps-output").innerText);
+      alert(globalSteps);
       //hyperbola
       let score = Math.floor((currentLevel.maxPoints / (currentLevel.maxPoints - globalPoints + 1)) * 9.354 * globalPoints + (currentLevel.field.width * currentLevel.field.height / globalSteps) * globalPoints);
       document.getElementById("userScore").innerText = score;
