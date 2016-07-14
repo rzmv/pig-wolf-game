@@ -74,4 +74,14 @@ class Level {
     return JSONString;
     //output.write(JSON.stringify(level));
   }
+
+  freezeWolves() {
+    for (let i = 0; i < this.wolves.length; ++i)
+      this.wolves[i].freeze();
+  }
+
+  defrostWolves() {
+    for (let i = 0; i < this.wolves.length; ++i)
+      this.wolves[i].defrost();
+  }
 }

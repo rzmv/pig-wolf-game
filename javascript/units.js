@@ -8,19 +8,17 @@ class Unit {
   constructor(position, name, image) {
     this._position = position;
     this.name = name;
-    this.image = image;
+    this.normalImg = image;
 
     // cause we need function in Wolf's position
     // so let's make it general
     this.position = () => this._position;
+    this._currentImg = this.normalImg;
+    this.image = () => this._currentImg;
   }
 
   tryMove(direction) {
-    //alert('pig try move from');
-    //alertPoint(this._position);
     let next = direction.nextPoint(this.position());
-    //alertPoint(next);
-    
     if (currentLevel.field.freeCell(next)) {
       movePlayer(direction);
       ++globalSteps;
@@ -47,6 +45,9 @@ class Trajectory {
     this._trajectory = trajectory || [];
     this._currentDirection = (this._trajectory.length > 1 ? 1 : 0);
     this._currentStep = this._getTrajectoryStep(position);    
+    
+    // need to rememeber for wolf.freeze
+    this._latestDirection = this._currentDirection;
   }
   _getTrajectoryStep(position) {
     for (let i = 0; i < this._trajectory.length; ++i)
@@ -95,11 +96,24 @@ class Trajectory {
       field.pointToCell(cur).addToLayer('trajectory', curLine);  
     } 
   }
+
+  freeze() {
+    if (this._currentDirection != 0) {
+      this._latestDirection = this._currentDirection;
+      this._currentDirection = 0;
+    }
+  }
+
+  defrost() {
+    if (this._currentDirection == 0)
+      this._currentDirection = this._latestDirection;
+  }
 }
 
 class Wolf extends Unit {
   constructor(position, trajectory) {
     super(position, 'wolf', 'images/wolf.svg');
+    this.frozenImg = 'images/blue_wolf.svg';
     this.trajectory = new Trajectory(position, trajectory);
     this.position = () => this.trajectory.currentPosition();
     this.influenceOnCell = 'toogleVisibility';
@@ -111,6 +125,16 @@ class Wolf extends Unit {
 
   addTrajectoryLayerToField(field) {
     this.trajectory.addLayerToField(field);
+  }
+
+  freeze() {
+    this.trajectory.freeze();
+    this._currentImg = this.frozenImg;    
+  }
+
+  defrost() {
+    this.trajectory.defrost();
+    this._currentImg = this.normalImg;
   }
 }
 

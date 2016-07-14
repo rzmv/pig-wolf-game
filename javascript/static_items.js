@@ -16,7 +16,7 @@ class StaticItem {
   }
 
   toogleVisibility() {
-    this.visible = !this.visible;
+    //this.visible = !this.visible;
     return this;  
   }
 }
@@ -79,6 +79,28 @@ class ItemButton extends StaticItem {
   }
 
   toogleVisibility() {
+    return this;
+  }
+}
+
+class ItemSnowflake extends StaticItem {
+  constructor() {
+    super('snowflake', 'images/snowflake.svg');
+  }
+
+  nextState() {
+    currentLevel.freezeWolves();
+    return this;
+  }
+}
+
+class ItemFire extends StaticItem {
+  constructor() {
+    super('fire', 'images/fire.svg');
+  }
+
+  nextState() {
+    currentLevel.defrostWolves();
     return this;
   }
 }

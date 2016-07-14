@@ -15,6 +15,8 @@ class Cell {
         case 'food': this.staticItems.push(new ItemFood()); break;
         case 'door': this.staticItems.push(new ItemDoor()); break;
         case 'button': this.staticItems.push(new ItemButton(itemsArray[i].doorPosition)); break;
+        case 'snowflake': this.staticItems.push(new ItemSnowflake()); break;
+        case 'fire': this.staticItems.push(new ItemFire()); break;
       }
     }
   }
@@ -89,7 +91,7 @@ class Cell {
       ans += getHTMLImgByImage(this.staticItems[i].image, 'layer-staticItem');
     }
 
-    let unitImg = this.layerUnit !== null ? this.layerUnit.image : '';
+    let unitImg = this.layerUnit !== null ? this.layerUnit.image() : '';
     ans += getHTMLImgByImage(unitImg, 'layer-unit');
     return ans;
   }
