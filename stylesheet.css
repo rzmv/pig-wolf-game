@@ -87,6 +87,11 @@ td {
   position: relative;
 }
 
+input{
+  text-align: center;
+  display: inline-block;
+}
+
 .b-popup{
   position: fixed;
   width: 100%;
@@ -142,7 +147,7 @@ td {
 .b-pop-lose{
   margin-left: 35%;
   margin-top: 0;
-  height: 400px;
+  height: 500px;
   width: 450px;
   position: absolute;
   z-index: 51;
