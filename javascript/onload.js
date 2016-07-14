@@ -89,7 +89,7 @@ function level() {
   //initialDraw();
   
   currentLevel = new Level(globalField, globalPig, globalWolves);
-  let JSONLevel = currentLevel.showJSON();
+  let JSONLevel = currentLevel.saveToJSON();
   currentLevel.loadFromJSON(JSONLevel);
   
   document.getElementById('mainDiv').appendChild(currentLevel.field.table);

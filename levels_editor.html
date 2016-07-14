@@ -14,23 +14,27 @@
 
 <body>
   <div id = "control-panel" align = "left">
-    <input id = "fieldlHeight"> Height </input> <br>
+    <input id = "fieldHeight"> Height </input> <br>
     <input id = "fieldWidth"> Width </input> <br>
     <input id = "fieldBackground"> Default background </input> <br>
     <button id = "buttonGenerate" onclick = "generateField()"> Generate field </button>
   </div>
   
-  <div id = "tools-panel" align = "center">
+  <div id = "JSON-panel" style = "position: absolute; top: 5px; left:50%">
     <button id = "buttonCompleteRedraw" align = "right"> Complete redraw </button>
     <button id = "buttonShowJSON">  Show JSON </button>
     <button id = "buttonLoadFromJSON"> Load from JSON </button>
-    <h2 id = "currentTool"> adsf </h2>
+  </div>
+
+  <h2 id = "currentTool" align = "center">  </h2>
+
+  <div id = "tools-panel" align = "center">  
   </div>
 
   <div id="mainDiv" class="div-table">
-   </div>
+  </div>
 
-  <textarea id = "JSONTextArea" rows = "80" cols = "80"></textarea>
+  <textarea id = "JSONTextArea" rows = "40" cols = "80"></textarea>
 
 </body>
 </html>

@@ -5,6 +5,11 @@ class Editor {
     this.level = level;
     this.makeFieldCellsClickable();
 
+    let tp = $('tools-panel');
+    while (tp.firstChild) {
+      tp.removeChild(tp.firstChild);
+    }
+
     this.pushBackgrounds();
     this.createTableFromArray(this.arrayBackgrounds, 'table-backgrounds', 'background');
 
