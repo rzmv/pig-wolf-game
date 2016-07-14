@@ -35,7 +35,8 @@ window.onload = function(){
 function level() {
   $('steps-output').innerHTML = 0;
   $('points-output').innerHTML = 0;
-
+  globalSteps = 0;
+  globalPoints = 0;
   document.getElementById("levels").style="display:none";
   document.getElementById("background").style="display:none";
 
@@ -138,7 +139,6 @@ function sumbitResult() {
     }
     db.auth();
     db.setData(Username, points, UsersResultID);
-    alert("Yo");
   }
 
 }
