@@ -67,7 +67,7 @@ function level() {
   globalField.changeCell(Point(1, 8), 'wood');
   globalField.changeCell(Point(1, 9), 'wood');
 
-  globalField.changeCell(Point(0, 9), 'wood', [{'itemName':'food'}, {'itemName':'lamp'}]);
+  globalField.changeCell(Point(0, 9), 'wood', [{'itemName':'food'}, {'itemName':'food'}, {'itemName':'lamp'}]);
   globalField.changeCell(Point(9, 0), 'grass', [{'itemName':'button', 'doorPosition':Point(1, 7)}]);
   
   globalField.changeCell(Point(3, 3), 'grass', [{'itemName':'snowflake'}]);
@@ -93,6 +93,8 @@ function level() {
   
   document.getElementById('mainDiv').appendChild(currentLevel.field.table);
   currentLevel.showJSON();
+
+  //alert(currentLevel.maxPoints);
 
   initialDraw();
 

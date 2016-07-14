@@ -9,8 +9,17 @@ class Level {
     this.init();
   }
 
+  countFood() {
+    let ans = 0;
+    for (let i = 0; i < this.field.height; ++i)
+      for (let j = 0; j < this.field.width; ++j)
+        ans += this.field.cells[i][j].countFood();
+    return ans; 
+  }
+
   init() {
     this.points = 0;
+    this.maxPoints = this.countFood();
     // !!! add this.maxPoints = all carrots on the field
     for (let i = 0; i < this.wolves.length; ++i)
       this.wolves[i].addTrajectoryLayerToField(this.field);
