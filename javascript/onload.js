@@ -13,14 +13,18 @@ var globalWolf, globalWolf2, globalWolf3;
 var globalWolves = [];
 var globalField = {};
 var globalPoints = 0;
+var globalSteps = 0;
 
 var currentLevel;
 
 function checkKey(e) {
   e = e || window.event;
   let dir = keyToDirection(e.keyCode);
-  if (dir.direction != '')
+  if (dir.direction != ''){
     currentLevel.pig.tryMove(dir);
+   // ++globalSteps;
+   // $('steps-output').innerHTML = globalSteps;
+  }
 }
 
 window.onload = function(){
@@ -29,6 +33,9 @@ window.onload = function(){
 }
 
 function level() {
+  $('steps-output').innerHTML = 0;
+  $('points-output').innerHTML = 0;
+
   document.getElementById("levels").style="display:none";
   document.getElementById("background").style="display:none";
 
