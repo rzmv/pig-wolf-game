@@ -1,12 +1,8 @@
+var UsersResultID = "-1";
+var Username = "";
+
 class DB {
   constructor() {
-    let config = {
-      apiKey: "AIzaSyBAjZ13FHcaqIGVjrbTDTZb1JV5crYKtt4",
-      authDomain: "pigwolftable.firebaseapp.com",
-      databaseURL: "https://pigwolftable.firebaseio.com",
-      storageBucket: "pigwolftable.appspot.com",
-    };
-    firebase.initializeApp(config);
     this.scoreboard = firebase.database();
   }
 
@@ -24,19 +20,26 @@ class DB {
     return this.scoreboard.ref().child('scoreboard').push().key;
   }
 
-  setData(username, score) {
+  setData(username, score, id) {
     let userScore = {
       username: username,
       score   : score
     }; 
-    this.scoreboard.ref("scoreboard/" + this.genResultID()).set(userScore);
+    this.scoreboard.ref("scoreboard/" + id).set(userScore);
   }
 
   //return [<score, username>]
   getLeaderBoard(count, callback) {
     this.scoreboard.ref('scoreboard/').orderByChild('score').limitToLast(count).once('value', function(value) {
-      let result = Object.values(value.val()).sort(function(l, r) {
-        return l.score < r.score; //larger
+      let data = value.val(); 
+      let result = [];
+      for (let key in data) {
+        if (data.hasOwnProperty(key)) {
+          result.push(data[key]);
+        }
+      }
+      result.sort(function(l, r) {
+        return r.score - l.score; //larger
       });
       callback(result);
     });
