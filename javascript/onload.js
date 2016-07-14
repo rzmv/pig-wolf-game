@@ -139,7 +139,7 @@ function submitResult() {
     }
     db.auth();
     db.setData(Username, score, UsersResultID);
-    //alert("Yo");
+    popUpShow();
   }
 
 }

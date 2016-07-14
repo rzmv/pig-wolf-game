@@ -3,6 +3,7 @@
   <head>
     <script src="./javascript/gen_scoreboard.js"></script>
     <script src="./javascript/db.js"></script>
+    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
     <script>
       var config = {
@@ -17,6 +18,11 @@
     <link rel=stylesheet href="scoreboard_stylesheet.css">
   </head>
   <body>
+    <div class="b-popup-notification" id="popupN">
+      <div class="b-popup-content-notification">
+        Error. Please, refresh the page
+      </div>
+    </div>
     <div>
       <p id="scoreText">Scoreboard:</p>
     </div>
