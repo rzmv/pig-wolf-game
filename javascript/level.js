@@ -2,6 +2,10 @@
 
 class Level {
   constructor(field, pig, wolves = []) {
+    // void constructor
+    if (!field)
+      return;
+
     this.field = field;
     this.pig = pig;
     this.wolves = wolves;
@@ -89,13 +93,19 @@ class Level {
   }
 
   turnLightsOff(visibilityRange) {
+    if (!this.lights)
+      return;
+    
     this.pig.visibilityRange = visibilityRange;
     this.lights = false;  
+    //animateTurningLightsOff(this.pig.position(), this.pig.visibilityRange);
     
-    // !!! delete this cycle, there is function in module animate that does the same
     for (let i = 0; i < this.field.height; ++i)
-      for (let j = 0; j < this.field.width; ++j)
+      for (let j = 0; j < this.field.width; ++j) {
         this.field.cells[i][j].addToLayer('darkness', 'darkness');
+        redrawCell(this.field.cells[i][j]);
+      }
+    
   }
 
   turnLightsOn() {
@@ -103,11 +113,13 @@ class Level {
       return;
 
     this.lights = true;
-
+    //animateTurningLightsOn(this.pig.position(), this.pig.visibilityRange);
+    
     for (let i = 0; i < this.field.height; ++i)
       for (let j = 0; j < this.field.width; ++j) {
         this.field.cells[i][j].removeLayer('darkness');
         redrawCell(this.field.cells[i][j]);
       }
+    
   }
 }

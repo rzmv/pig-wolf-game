@@ -30,14 +30,12 @@ function showField() {
   initialDraw();
 }
 
-window.onload = function(){
-  let f = new Field(5, 5);
-  let p = new Pig(Point(0, 0));
-   
-  currentLevel = new Level(f, p, []);    
-  showField();
-
-  editor = new Editor(currentLevel);
+window.onload = function() {
+  $('fieldHeight').value = 5;
+  $('fieldWidth').value = 5;
+  $('fieldBackground').value = 'grass';
+  
+  generateField(); 
 
   $('buttonCompleteRedraw').onclick = () => editor.completeFieldRedraw(); 
   $('buttonShowJSON').setAttribute('onClick', 'showJSON()');
@@ -46,12 +44,15 @@ window.onload = function(){
 }
 
 function generateField() {
-  let height = $('fieldlHeight').value;
+  let height = $('fieldHeight').value;
   let width = $('fieldWidth').value;
   let background = $('fieldBackground').value;
   
-  currentLevel.field = new Field(height, width, background);
-  editor.makeFieldCellsClickable();
+  let f = new Field(height, width, background);
+  let p = new Pig(Point(0, 0));
+
+  currentLevel = new Level(f, p, []); 
+  editor = new Editor(currentLevel);
   showField();
 }
 
