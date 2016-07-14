@@ -57,7 +57,7 @@ class Level {
     this.init();
   }
 
-  showJSON() {
+  saveToJSON() {
     let lev = {
       'field': this.field,
       'pig': this.pig,

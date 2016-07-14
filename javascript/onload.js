@@ -93,7 +93,7 @@ function level() {
   currentLevel.loadFromJSON(JSONLevel);
   
   document.getElementById('mainDiv').appendChild(currentLevel.field.table);
-  currentLevel.showJSON();
+  //currentLevel.showJSON();
 
   //alert(currentLevel.maxPoints);
 

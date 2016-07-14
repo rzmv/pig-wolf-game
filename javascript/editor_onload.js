@@ -40,7 +40,8 @@ window.onload = function(){
   editor = new Editor(currentLevel);
 
   $('buttonCompleteRedraw').onclick = () => editor.completeFieldRedraw(); 
-  $('buttonShowTextarea').setAttribute('onClick', 'showJSON()');
+  $('buttonShowJSON').setAttribute('onClick', 'showJSON()');
+  $('buttonLoadFromJSON').setAttribute('onClick', 'loadFromJSON()');
   document.onkeydown = checkKey;
 }
 
@@ -55,6 +56,12 @@ function generateField() {
 }
 
 function showJSON() {
-alert('json');
-  $('JSONTextArea').value = currentLevel.showJSON();  
+  $('JSONTextArea').value = currentLevel.saveToJSON();  
+  alert('SAVED TO JSON, LOOK AT THE TEXTAREA BELOW');
+}
+
+function loadFromJSON() {
+  currentLevel.loadFromJSON($('JSONTextArea').value);
+  showField();
+  alert('LOADED FROM JSON');
 }
