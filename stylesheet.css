@@ -115,6 +115,11 @@ td {
   position: relative;
 }
 
+input{
+  text-align: center;
+  display: inline-block;
+}
+
 .b-popup{
   position: fixed;
   width: 100%;
@@ -154,6 +159,7 @@ td {
 
 .b-pop-win{
   margin-left: 35%;
+  text-align: center;
   margin-top: 0;
   height: 220px;
   width: 450px;
@@ -169,7 +175,7 @@ td {
 .b-pop-lose{
   margin-left: 35%;
   margin-top: 0;
-  height: 400px;
+  height: 500px;
   width: 450px;
   position: absolute;
   z-index: 51;
@@ -184,7 +190,6 @@ buttonM{
   margin-left: 35%;
   margin-top: 10%;
   background-color: #4CAF50;
-  border: none;
   color: white;
   padding: 5% 10%;
   text-align: center;
@@ -199,7 +204,6 @@ buttonL{
   margin-left: 13%;
   margin-top: 10%;
   background-color: orangered;
-  border: none;
   color: white;
   padding: 5% 5%;
   text-align: center;
@@ -211,15 +215,14 @@ buttonL{
 }
 
 buttonW{
-  margin-left: 10%;
-  margin-top: -10%;
+  margin-left: 13%;
+  margin-top: 10%;
   background-color: orangered;
-  border: none;
   color: white;
   padding: 3% 10%;
   text-align: center;
   text-decoration: none;
-  display: inline-table;;
+  display: inline-table;
   font-size: 16px;
   border: 5px chocolate;
   border-style: outset;
@@ -230,7 +233,6 @@ buttonLose{
   margin-left: 30%;
   margin-top: 10%;
   background-color: orangered;
-  border: none;
   color: white;
   padding: 3% 10%;
   text-align: center;
@@ -251,6 +253,7 @@ pw{
 pl{
   margin-left: 15%;
   font-size: 75px;
+  text-align: center;
   color : black;
 
 }
