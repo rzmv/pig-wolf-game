@@ -31,7 +31,7 @@ function level() {
   }
 
   // index will be passed as a parameter to this function
-  let index = 0;
+  let index = 4;
   index = Math.min(index, LEVELS.length - 1);
 
   currentLevel = new Level();

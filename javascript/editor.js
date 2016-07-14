@@ -149,6 +149,13 @@ class Editor {
   }
 
   addSelectedItem(point) {
+    if (this.latestWolf !== null && this.currentItemType != 'wolf') {
+      this.latestWolf = null;
+      this.latestTrajectory = [];
+      this.level.wolves.pop();
+      this.completeFieldRedraw();
+    }
+
     switch (this.currentItemType) {
       case 'background': this.applyBackground(point); break;
       case 'staticItem': this.applyStaticItem(point); break;

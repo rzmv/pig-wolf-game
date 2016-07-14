@@ -73,7 +73,7 @@ class Trajectory {
   currentPosition() {
     // we're not yet on the trajectory
     // (we're building this trajectory in module Editor
-    if (this._currentStep == -1)
+    //if (this._currentStep == -1)
       return this._position;
       
     return this._trajectory[this._currentStep];

@@ -22,25 +22,30 @@ class Level {
   }
 
   init() {
+  // alert('init');
     this.points = 0;
-    this.maxPoints = this.countFood();
+    //this.maxPoints = this.countFood();
     // !!! add this.maxPoints = all carrots on the field
     for (let i = 0; i < this.wolves.length; ++i)
       this.wolves[i].addTrajectoryLayerToField(this.field);
+    //alert('init done');
   }
   
   loadFromJSON(JSONString) {
     let lev = JSON.parse(JSONString);
-    
+    //alert('begin');
     this.lights = lev.lights;
     this.pig = new Pig(lev.pig._position);
     
     this.wolves = [];
     for (let i = 0; i < lev.wolves.length; ++i) {
       let curTraj = lev.wolves[i].trajectory;
+      //alert(curTraj);
       let curStep = curTraj._currentStep;
       this.wolves.push(new Wolf(curTraj._trajectory[curStep], curTraj._trajectory));
     }
+
+    //alert('wolves created');
 
     // read field
     this.field = new Field(lev.field.height, lev.field.width);
