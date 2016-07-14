@@ -1,7 +1,8 @@
 window.onload = function() {
+  $("#popupN").hide();
   let db = new DB();
   if (db.auth() !== "ok") {
-    alert("Error. Please, refresh the page"); //TODO: replace alert with normal notification
+    $("#popupN").show();
   } else {
     db.getLeaderBoard(25, function(usersScores) {
       for (let i = 0; i < usersScores.length; i++) {

@@ -24,7 +24,7 @@ class Unit {
     if (currentLevel.field.freeCell(next)) {
       movePlayer(direction);
       ++globalSteps;
-      $('steps-output').innerHTML = globalSteps;
+      document.getElementById('steps-output').innerHTML = globalSteps;
       winLoseCheck();
     }    
   }

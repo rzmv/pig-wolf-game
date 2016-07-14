@@ -23,7 +23,7 @@ function checkKey(e) {
   if (dir.direction != ''){
     currentLevel.pig.tryMove(dir);
    // ++globalSteps;
-   // $('steps-output').innerHTML = globalSteps;
+   // document.getElementById('steps-output').innerHTML = globalSteps;
   }
 }
 
@@ -33,8 +33,8 @@ window.onload = function(){
 }
 
 function level() {
-  $('steps-output').innerHTML = 0;
-  $('points-output').innerHTML = 0;
+  document.getElementById('steps-output').innerHTML = 0;
+  document.getElementById('points-output').innerHTML = 0;
   globalSteps = 0;
   globalPoints = 0;
   document.getElementById("levels").style="display:none";
@@ -123,7 +123,7 @@ function levelToMenu() {
 }
 
 function menuToScoreboard() {
-  location.href='scoreboard.html';
+  location.href="scoreboard.html";
 }
 
 function submitResult() {
@@ -131,7 +131,7 @@ function submitResult() {
   let inputUN = document.getElementById("username").value;
   let score   = document.getElementById("userScore").innerText;
   if (inputUN === "") {
-    alert("Error");
+    $('#username').focus();
   } else {
     if (inputUN !== Username) {
       Username = inputUN;
@@ -139,7 +139,7 @@ function submitResult() {
     }
     db.auth();
     db.setData(Username, score, UsersResultID);
-    //alert("Yo");
+    popUpShow();
   }
 
 }
