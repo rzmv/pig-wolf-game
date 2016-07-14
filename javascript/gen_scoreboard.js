@@ -1,5 +1,5 @@
 window.onload = function() {
-  $("#popup1").hide();
+  $("#popupN").hide();
   let db = new DB();
   if (db.auth() !== "ok") {
     $("#popupN").show();

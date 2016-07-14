@@ -1,7 +1,5 @@
 'use strict';
 
-function $(id) { return document.getElementById(id); }
-
 function Point(i, j) {
   return { row: i, col: j };  
 }
@@ -41,7 +39,7 @@ function keyToDirection(keyCode) {
 
 function incrementPoints() {
   ++globalPoints;
-  $('points-output').innerHTML = globalPoints;
+  document.getElementById('points-output').innerHTML = globalPoints;
 }
 
 function pointsDistance(p1, p2) {
