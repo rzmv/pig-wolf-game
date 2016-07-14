@@ -35,8 +35,15 @@ class DB {
   //return [<score, username>]
   getLeaderBoard(count, callback) {
     this.scoreboard.ref('scoreboard/').orderByChild('score').limitToLast(count).once('value', function(value) {
-      let result = Object.values(value.val()).sort(function(l, r) {
-        return l.score < r.score; //larger
+      let data = value.val(); 
+      let result = [];
+      for (let key in data) {
+        if (data.hasOwnProperty(key)) {
+          result.push(data[key]);
+        }
+      }
+      result.sort(function(l, r) {
+        return r.score - l.score; //larger
       });
       callback(result);
     });
