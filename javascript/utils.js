@@ -73,20 +73,21 @@ function alertPoint(point) {
   alert('(' + point.row + ', ' + point.col + ')');
 }
 
-let di = [1, -1, 0, 0];
-let dj = [0, 0, -1, 1];
+let di = [1, -1, 0, 0, 1, 1, -1, -1];
+let dj = [0, 0, -1, 1, 1, -1, 1, -1];
 
 // return points in bfs-order
 function getPointsFromRange(point, range) {
   let ans = [];
   let que = [point], index = 0;
   let used = {};
+  used[JSON.stringify(point)] = true;
 
   while (index < que.length) {
     let cur = que[index++];
     ans.push(cur);
 
-    for (let z = 0; z < 4; ++z) {
+    for (let z = 0; z < 8; ++z) {
       let child = Point(cur.row + di[z], cur.col + dj[z]);
       if (!used[JSON.stringify(child)] && pointsDistance(point, child) <= range && currentLevel.field.inBounds(child)) {
         used[JSON.stringify(child)] = true;

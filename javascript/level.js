@@ -98,14 +98,14 @@ class Level {
     
     this.pig.visibilityRange = visibilityRange;
     this.lights = false;  
-    //animateTurningLightsOff(this.pig.position(), this.pig.visibilityRange);
-    
+    animateTurningLightsOff(this.pig.position(), this.pig.visibilityRange);
+    /*
     for (let i = 0; i < this.field.height; ++i)
       for (let j = 0; j < this.field.width; ++j) {
         this.field.cells[i][j].addToLayer('darkness', 'darkness');
         redrawCell(this.field.cells[i][j]);
       }
-    
+    */
   }
 
   turnLightsOn() {
@@ -113,13 +113,13 @@ class Level {
       return;
 
     this.lights = true;
-    //animateTurningLightsOn(this.pig.position(), this.pig.visibilityRange);
-    
+    animateTurningLightsOn(this.pig.position(), this.pig.visibilityRange);
+    /*
     for (let i = 0; i < this.field.height; ++i)
       for (let j = 0; j < this.field.width; ++j) {
         this.field.cells[i][j].removeLayer('darkness');
         redrawCell(this.field.cells[i][j]);
       }
-    
+    */
   }
 }
