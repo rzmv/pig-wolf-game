@@ -61,7 +61,7 @@ function winLoseCheck() {
       globalPoints = parseInt(document.getElementById("points-output").innerText);
       globalSteps  = parseInt(document.getElementById("steps-output").innerText);
       //hyperbola
-      let score = Math.floor((currentLevel.maxPoints / (currentLevel.maxPoints - globalPoints)) * 9.354 * globalPoints + (currentLevel.field.width * currentLevel.field.height / globalSteps) * globalPoints);
+      let score = Math.floor((currentLevel.maxPoints / (currentLevel.maxPoints - globalPoints + 1)) * 9.354 * globalPoints + (currentLevel.field.width * currentLevel.field.height / globalSteps) * globalPoints);
       document.getElementById("userScore").innerText = score;
 
       if (Username !== "" && UserResultID !== "-1") {
