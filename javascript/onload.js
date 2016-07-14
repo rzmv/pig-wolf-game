@@ -131,7 +131,7 @@ function submitResult() {
   let inputUN = document.getElementById("username").value;
   let score   = document.getElementById("userScore").innerText;
   if (inputUN === "") {
-    alert("Error");
+    $("#username").focus();
   } else {
     if (inputUN !== Username) {
       Username = inputUN;
