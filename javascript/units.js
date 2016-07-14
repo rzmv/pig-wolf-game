@@ -7,12 +7,14 @@ const Point = utils.Point;
 class Unit {
   constructor(position, name, image) {
     this._position = position;
+    this._prevPosition = position;
     this.name = name;
     this.normalImg = image;
 
     // cause we need function in Wolf's position
     // so let's make it general
     this.position = () => this._position;
+    this.prevPosition = () => this._prevPosition;
     this._currentImg = this.normalImg;
     this.image = () => this._currentImg;
   }
@@ -29,7 +31,8 @@ class Unit {
 
   move(direction) {
     let next = direction.nextPoint(this.position());
-    this._position = next;
+    this._prevPosition = this._position;
+    this._position     = next;
   }
 }
 
@@ -63,7 +66,7 @@ class Trajectory {
     this._currentDirection = 0;
     return 0;
   }
-  
+
   currentPosition() {
     return this._trajectory[this._currentStep];
   }
@@ -74,7 +77,7 @@ class Trajectory {
     if ((curStep + curDir == this._trajectory.length) ||
        (curStep + curDir < 0))
     {
-      this._currentDirection = -this._currentDirection;  
+      this._currentDirection = -this._currentDirection;
     }
     this._currentStep += this._currentDirection;
   }
@@ -123,6 +126,7 @@ class Wolf extends Unit {
   }
 
   move() {
+    this._prevPosition = this.position();
     this.trajectory.move();
   }
 

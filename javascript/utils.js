@@ -50,16 +50,25 @@ function pointsDistance(p1, p2) {
 }
 
 function winLoseCheck() {
-  for (let i = 0; i < currentLevel.wolves.length; ++i)
-    if (pointsDistance(currentLevel.pig.position(), currentLevel.wolves[i].position()) <= 0) {
+  for (let i = 0; i < currentLevel.wolves.length; ++i) {
+    if (pointsDistance(currentLevel.pig.position(), currentLevel.wolves[i].position())     <= 0 ||
+       (pointsDistance(currentLevel.pig.prevPosition(), currentLevel.wolves[i].position()) <= 0 &&
+       pointsDistance(currentLevel.pig.position(), currentLevel.wolves[i].prevPosition())  <= 0))
+    {
       document.getElementById("lose").style="display:block";
       document.getElementById("background").style="display:block";
 
-      document.getElementById("userScore").innerText = document.getElementById("points-output").innerText;
+      globalPoints = parseInt(document.getElementById("points-output").innerText);
+      globalSteps  = parseInt(document.getElementById("steps-output").innerText);
+      //hyperbola
+      let score = Math.floor((currentLevel.maxPoints / (currentLevel.maxPoints - globalPoints)) * 9.354 * globalPoints + (currentLevel.field.width * currentLevel.field.height / globalSteps) * globalPoints);
+      document.getElementById("userScore").innerText = score;
+
       if (Username !== "" && UserResultID !== "-1") {
         document.getElementById("Username").value = Username;
       }
     }
+  }
 }
 
 function alertPoint(point) {

@@ -35,7 +35,8 @@ window.onload = function(){
 function level() {
   $('steps-output').innerHTML = 0;
   $('points-output').innerHTML = 0;
-
+  globalSteps = 0;
+  globalPoints = 0;
   document.getElementById("levels").style="display:none";
   document.getElementById("background").style="display:none";
 
@@ -125,10 +126,10 @@ function menuToScoreboard() {
   location.href='scoreboard.html';
 }
 
-function sumbitResult() {
+function submitResult() {
   let db = new DB();
   let inputUN = document.getElementById("username").value;
-  let points = document.getElementById("userScore").innerText = document.getElementById("points-output").innerText;
+  let score   = document.getElementById("userScore").innerText;
   if (inputUN === "") {
     alert("Error");
   } else {
@@ -137,8 +138,8 @@ function sumbitResult() {
       UsersResultID = db.genResultID();
     }
     db.auth();
-    db.setData(Username, points, UsersResultID);
-    alert("Yo");
+    db.setData(Username, score, UsersResultID);
+    //alert("Yo");
   }
 
 }
