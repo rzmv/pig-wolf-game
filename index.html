@@ -74,8 +74,14 @@
   <div class = "b-pop-lose" id = 'lose'>
     <pl>You lose :(</pl>
     <div>
-      <input id="username" type="text">
-      <p id="userScore"></p>
+      <div>
+        <p1> Score:</p1>
+        <p1 id="userScore"></p1>
+      </div>
+      <div>
+        <p1> User name:</p1>
+        <input id="username" type="text">
+      </div>
       <buttonLose id = "saveLoseRes" onclick = sumbitResult()>
         Submit
       </buttonLose>
@@ -83,7 +89,7 @@
     <buttonLose id = "returnToMenu" onclick = loseToMenu()>
       Menu
     </buttonLose>
-    <buttonLose id = "returnToMenu" onclick = level()>
+    <buttonLose id = "level" onclick = level()>
       Reload
     </buttonLose>
   </div>

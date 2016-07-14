@@ -76,13 +76,14 @@ class Level {
     };
 
     let JSONString = JSON.stringify(lev);
-    let textArea = document.createElement('textarea');
+    /*let textArea = document.createElement('textarea');
     textArea.id = 'JSONTextArea';
     textArea.appendChild(document.createTextNode(JSONString));
     textArea.setAttribute('rows', 100);
     textArea.setAttribute('cols', 100);
 
     document.body.appendChild(textArea);
+    */
     return JSONString;
     //output.write(JSON.stringify(level));
   }

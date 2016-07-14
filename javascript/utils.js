@@ -59,9 +59,7 @@ function winLoseCheck() {
       if (Username !== "" && UserResultID !== "-1") {
         document.getElementById("Username").value = Username;
       }
-
     }
-      
 }
 
 function alertPoint(point) {

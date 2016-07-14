@@ -105,9 +105,9 @@ class ItemFire extends StaticItem {
   }
 }
 
-class ItemDarkness extends StaticItem {
+class ItemBlackButton extends StaticItem {
   constructor() {
-    super('darkness', 'images/black.svg');
+    super('blackButton', 'images/black.svg');
     this.visibilityRange = 1;
   }
 

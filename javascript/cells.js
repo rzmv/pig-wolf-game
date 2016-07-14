@@ -18,7 +18,7 @@ class Cell {
         case 'button': this.staticItems.push(new ItemButton(itemsArray[i].doorPosition)); break;
         case 'snowflake': this.staticItems.push(new ItemSnowflake()); break;
         case 'fire': this.staticItems.push(new ItemFire()); break;
-        case 'darkness': this.staticItems.push(new ItemDarkness()); break;
+        case 'blackButton': this.staticItems.push(new ItemBlackButton()); break;
         case 'lamp': this.staticItems.push(new ItemLamp()); break;
       }
     }
