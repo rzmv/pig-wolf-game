@@ -1,11 +1,10 @@
 #scoreboard {
-  border: 1px solid darkgreen;
-  border-collapse: collapse;
   display: inline-block;
   position: relative;
 }
 
 #scoreText {
+  top: 14%;
   text-align: center;
   margin-left: 0;
   color: darkred;
@@ -16,9 +15,7 @@
 }
 
 .scorebCell {
-  font-size: 150%;
-  border: 4px solid darkgreen;
-  border-collapse: collapse;
+  font-size: 125%;
 }
 
 .numberCell {
@@ -27,4 +24,11 @@
 
 * {
   font-family: Areal;
+}
+
+.div-score {
+  top: 7%;
+  height: 7%;
+  position: relative;
+  text-align: center;
 }
