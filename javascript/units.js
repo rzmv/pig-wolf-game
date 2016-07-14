@@ -16,10 +16,14 @@ class Unit {
   }
 
   tryMove(direction) {
+    //alert('pig try move from');
+    //alertPoint(this._position);
     let next = direction.nextPoint(this.position());
-    if (globalField.freeCell(next)) {
+    //alertPoint(next);
+    
+    if (currentLevel.field.freeCell(next)) {
       movePlayer(direction);
-      winLoseCheck()
+      winLoseCheck();
     }    
   }
 

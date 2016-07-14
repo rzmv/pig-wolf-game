@@ -16,7 +16,7 @@ function getHTMLImgByImage(image, cssClass) {
 }
 
 function drawUnit(unit) {
-  let cell = globalField.pointToCell(unit.position());
+  let cell = currentLevel.field.pointToCell(unit.position());
   cell.addToLayer('unit', unit);
 }
 
@@ -27,7 +27,7 @@ function redrawCell(cell) {
 
 function animateMovement(unit, func, direction) {
   let pos = unit.position();
-  let cell = globalField.pointToCell(pos);
+  let cell = currentLevel.field.pointToCell(pos);
   cell.leave(unit);
   
   redrawCell(cell);
@@ -36,23 +36,23 @@ function animateMovement(unit, func, direction) {
   unit[func](direction);
  
   pos = unit.position();
-  cell = globalField.pointToCell(pos);
+  cell = currentLevel.field.pointToCell(pos);
   cell.visit(unit);
   redrawCell(cell);
 }
 
 function movePlayer(direction) {
-  animateMovement(globalPig, 'move', direction);
-  for (let i = 0; i < globalWolves.length; ++i)
-    animateMovement(globalWolves[i], 'move');     
+  animateMovement(currentLevel.pig, 'move', direction);
+  for (let i = 0; i < currentLevel.wolves.length; ++i)
+    animateMovement(currentLevel.wolves[i], 'move');     
 }
 
 function initialDraw() {
-  drawUnit(globalPig);
-  for (let i = 0; i < globalWolves.length; ++i)
-    drawUnit(globalWolves[i]);
+  drawUnit(currentLevel.pig);
+  for (let i = 0; i < currentLevel.wolves.length; ++i)
+    drawUnit(currentLevel.wolves[i]);
 
-  for (let i = 0; i < globalField.height; ++i)
-    for (let j = 0; j < globalField.width; ++j)
-      redrawCell(globalField.pointToCell(Point(i, j)));
+  for (let i = 0; i < currentLevel.field.height; ++i)
+    for (let j = 0; j < currentLevel.field.width; ++j)
+      redrawCell(currentLevel.field.pointToCell(Point(i, j)));
 }

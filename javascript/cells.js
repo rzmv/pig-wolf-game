@@ -14,7 +14,7 @@ class Cell {
         case 'wall': this.staticItems.push(new ItemWall()); break;
         case 'food': this.staticItems.push(new ItemFood()); break;
         case 'door': this.staticItems.push(new ItemDoor()); break;
-        case 'button': this.staticItems.push(new ItemButton(itemsArray[i].cellDoor)); break;
+        case 'button': this.staticItems.push(new ItemButton(itemsArray[i].doorPosition)); break;
       }
     }
   }
@@ -83,7 +83,7 @@ class Cell {
       let img = getTrajectoryAddress(this.layerTrajectory[i]);
       ans += getHTMLImgByImage(img, 'layer-trajectory');
     }
-
+    
     // !!! different staticItems has different z-indeces
     for (let i = 0; i < this.staticItems.length; ++i) {
       ans += getHTMLImgByImage(this.staticItems[i].image, 'layer-staticItem');

@@ -14,11 +14,13 @@ var globalWolves = [];
 var globalField = {};
 var globalPoints = 0;
 
+var currentLevel;
+
 function checkKey(e) {
   e = e || window.event;
   let dir = keyToDirection(e.keyCode);
   if (dir.direction != '')
-    globalPig.tryMove(dir);
+    currentLevel.pig.tryMove(dir);
 }
 
 window.onload = function(){
@@ -36,9 +38,8 @@ function level() {
     table.removeChild(table.firstChild);
   }
   globalField = new Field(10, 10);
+  //document.getElementById('mainDiv').appendChild(globalField.table);
 
-  document.getElementById('mainDiv').appendChild(globalField.table);
-  
   globalField.changeCell(Point(5, 5), 'grass', [{'itemName':'wall'}]);
   globalField.changeCell(Point(5, 6), 'grass', [{'itemName':'wall'}]);
   globalField.changeCell(Point(6, 6), 'grass', [{'itemName':'wall'}]);
@@ -60,8 +61,7 @@ function level() {
   globalField.changeCell(Point(1, 9), 'wood');
 
   globalField.changeCell(Point(0, 9), 'wood', [{'itemName':'food'}]);
-  let curDoor = globalField.pointToCell(Point(1, 7));
-  globalField.changeCell(Point(9, 0), 'grass', [{'itemName':'button', 'cellDoor':curDoor}]);
+  globalField.changeCell(Point(9, 0), 'grass', [{'itemName':'button', 'doorPosition':Point(1, 7)}]);
   
   globalPig = new Pig(Point(1, 1));
   globalWolf = new Wolf(Point(2, 2), [Point(2, 2), Point(2, 3), Point (2, 4), Point(1, 4)]);
@@ -73,11 +73,17 @@ function level() {
   for (let i = 0; i < globalWolves.length; ++i)
     globalWolves[i].addTrajectoryLayerToField(globalField);
 
+  //initialDraw();
+  
+  currentLevel = new Level(globalField, globalPig, globalWolves);
+  let JSONLevel = currentLevel.showJSON();
+  currentLevel.loadFromJSON(JSONLevel);
+  
+  document.getElementById('mainDiv').appendChild(currentLevel.field.table);
+  currentLevel.showJSON();
+
   initialDraw();
-  
-  let curLevel = new Level(globalField, globalPig, globalWolves);
-  curLevel.showJSON();
-  
+
   document.onkeydown = checkKey;
 }
 

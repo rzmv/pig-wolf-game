@@ -6,6 +6,7 @@ class StaticItem {
     this.image = image;
     this.visible = true;
     this.passable = passable;
+    this.doorPosition = null;
   }
 
   // return new StaticItem, after pig has visited the cell
@@ -62,16 +63,18 @@ class ItemDoor extends StaticItem {
 }
 
 class ItemButton extends StaticItem {
-  constructor(cellDoor) {
+  constructor(doorPosition) {
     super('button', 'images/lock.svg');
-    this.cellDoor = cellDoor;
+    this.doorPosition = doorPosition;
   }
 
   // !!! ~ image source changes to pressed button 
   nextState() {
     this.image = 'images/unlock.svg';
-    this.cellDoor.openDoor();
-    redrawCell(this.cellDoor);
+    
+    let cellDoor = currentLevel.field.pointToCell(this.doorPosition);
+    cellDoor.openDoor();
+    redrawCell(cellDoor);
     return this;
   }
 
