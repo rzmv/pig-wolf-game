@@ -1,5 +1,7 @@
 'use strict';
 
+function $(id) { return document.getElementById(id); }
+
 function checkKey(e) {
   e = e || window.event;
   /*let dir = keyToDirection(e.keyCode);
