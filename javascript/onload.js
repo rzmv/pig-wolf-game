@@ -110,3 +110,21 @@ function levelToMenu() {
 function menuToScoreboard() {
   location.href='scoreboard.html';
 }
+
+function sumbitResult() {
+  let db = new DB();
+  let inputUN = document.getElementById("username").value;
+  let points = document.getElementById("userScore").innerText = document.getElementById("points-output").innerText;
+  if (inputUN === "") {
+    alert("Error");
+  } else {
+    if (inputUN !== Username) {
+      Username = inputUN;
+      UsersResultID = db.genResultID();
+    }
+    db.auth();
+    db.setData(Username, points, UsersResultID);
+    alert("Yo");
+  }
+
+}

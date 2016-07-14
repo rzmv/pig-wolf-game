@@ -6,6 +6,7 @@
   <script src="./javascript/cells.js"></script>
   <script src="./javascript/utils.js"></script>
   <script src="./javascript/animation.js"></script>
+  <script src="./javascript/db.js"></script>
   <script src="./javascript/units.js"></script>
   <script src="./javascript/onload.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
@@ -18,37 +19,6 @@
       storageBucket: "pigwolftable.appspot.com",
     };
     firebase.initializeApp(config);
-
-    //auth
-    /*      firebase.auth().signInWithEmailAndPassword("pigandwolfgame@gmail.com", "123456yhnbvcxz").catch(function(error) {
-     var errorCode = error.code;
-     var errorMessage = error.message;
-     alert(errorCode);
-     alert(errorMessage);
-     });
-
-     var scoreboard = firebase.database();
-
-     //generate resultID
-     var resultID = firebase.database().ref().child('scoreboard').push().key;
-
-     //set data
-     let username = "13";
-     let score    = 2020323;
-     var userScore = {
-     username: username,
-     score   : score
-     };
-     scoreboard.ref("scoreboard/" + resultID).set(userScore);
-
-     //get sorted data
-     var getScores = scoreboard.ref('scoreboard/').orderByChild('score').limitToLast(4).once('value', function(value) {
-     var values = Object.values(value.val());
-     for (let i = values.length - 1; i >= 0; i--) {
-     alert(values[i].score);
-     }
-     });
-     */
   </script>
   <link rel=stylesheet href="stylesheet.css">
 </head>
@@ -100,14 +70,18 @@
   </div>
   <div class = "b-pop-lose" id = 'lose'>
     <pl>You lose :(</pl>
+    <div>
+      <input id="username" type="text">
+      <p id="userScore"></p>
+      <buttonLose id = "saveLoseRes" onclick = sumbitResult()>
+        Sumbit
+      </buttonLose>
+    </div>
     <buttonLose id = "returnToMenu" onclick = loseToMenu()>
       Menu
     </buttonLose>
     <buttonLose id = "returnToMenu" onclick = level()>
       Reload
-    </buttonLose>
-    <buttonLose id = "saveLoseRes" onclick = save()>
-      Save Results
     </buttonLose>
   </div>
 </div>
