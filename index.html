@@ -25,6 +25,9 @@
   <script>
     $(document).ready(function(){   
         popUpHide();
+        $("#levelDiv").hide();
+        $("#gameDiv").hide();
+        $("#scoreDiv").hide();
     });
 
     function popUpShow(){
@@ -35,6 +38,10 @@
         $("#popupN").hide();
     }
   </script>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>      
   <link rel=stylesheet href="stylesheet.css">
 </head>
 <body>
@@ -43,78 +50,52 @@
       Your result successfully submited
     <a href="javascript:popUpHide()">Hide</a>
     </div>
+  </div> 
+  <div>   
+    <nav>
+      <div class="nav-wrapper">
+        <a href="" class="brand-logo center">Pig and wolf</a>
+          <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a onclick="test()">Levels</a></li>
+            <li><a href="scoreboard.html">Scoreboard</a></li>
+          </ul>
+     </div>
+    </nav>
   </div>
-<div>
-<div class = "Points">
-  <p1>
-  Carrots:<p id="points-output"> 0 </p>
-  Steps:<p id="steps-output"> 0 </p>
-  </p1>
-</div>
-<div id="mainDiv" class="div-table">
+  <div class="centerDiv"> 
 
-</div>
-<div class="b-popup" id = "background">
-  <header>
-    <h1>Pig and Wolf</h1>
-  </header>
-  <div class="b-popup-menu" id = "menu">
-    <buttonM id = "gameB" onclick = goToLevels()>
-      Game
-    </buttonM>
-    <buttonM id = "resultsB" onclick = menuToScoreboard()>
-      Results
-    </buttonM>
-  </div>
-  <div class = "b-popup-selectLevel" id = 'levels'>
-    <buttonL id = "level1" onclick = level()>
-      Level1
-    </buttonL>
-    <buttonL id = "level2">
-      Level2
-    </buttonL>
-    <buttonL id = "level3" >
-      Level3
-    </buttonL>
+    <div id="welcomeDiv">
+      <button id="welGameBtn" class="btn waves-effect waves-light" type="submit" onclick="welToLevels()">Play
+      </button>  
+    </div>  
 
-    <buttonM id = "menuL"  onclick = 'levelToMenu()'>
-      Menu
-    </buttonM>
-  </div>
-  <div class = "b-popup-results" id = 'results'>
-
-  </div>
-  <div class = "b-pop-win" id = 'win'>
-    <pw>You win!</pw>
-    <buttonW id = "NextLevel" onclick = WinToNextLevel()>
-      Next Level
-    </buttonW>
-    <buttonW id = "ReturnToMenu" onclick = winToMenu()>
-      Menu
-    </buttonW>
-  </div>
-  <div class = "b-pop-lose" id = 'lose'>
-    <pl>You lose :(</pl>
-    <div>
-      <div>
-        <p1> Score:</p1>
-        <p1 id="userScore"></p1>
-      </div>
-      <div>
-        <p1> User name:</p1>
-        <input id="username" type="text">
-      </div>
-      <buttonLose id = "saveLoseRes" onclick = submitResult()>
-        Submit
-      </buttonLose>
+    <div id="levelDiv">
+      <buttonL id="level1" class="btn waves-effect waves-light" onclick="level()">
+        Level1
+      </buttonL>
+      <buttonL id="level2" class="btn waves-effect waves-light">
+        Level2
+      </buttonL>
+      <buttonL id="level3" class="btn waves-effect waves-light">
+        Level3
+      </buttonL>
     </div>
-    <buttonLose id = "returnToMenu" onclick = loseToMenu()>
-      Menu
-    </buttonLose>
-    <buttonLose id = "level" onclick = level()>
-      Reload
-    </buttonLose>
+
+    <div id="gameDiv">
+      <div class = "Points">
+        <p1>
+          Carrots:<p id="points-output"> 0 </p>
+          Steps:<p id="steps-output"> 0 </p>
+        </p1>
+      </div>
+      <div id="mainDiv" class="div-table">
+
+      </div>
+    </div>     
+
+    <dir id="scoreDiv">
+    
+    </dir>
   </div>
-</div>
 </body>
 </html>

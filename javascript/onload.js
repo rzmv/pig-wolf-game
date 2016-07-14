@@ -12,8 +12,8 @@ function checkKey(e) {
 }
 
 window.onload = function(){
-  document.getElementById("menu").style="display:block";
-  document.getElementById("background").style="display:block";
+  /*document.getElementById("menu").style="display:block";
+  document.getElementById("background").style="display:block";*/
 }
 
 function level() {
@@ -21,8 +21,8 @@ function level() {
   document.getElementById('points-output').innerHTML = 0;
   globalSteps = 0;
   globalPoints = 0;
-  document.getElementById("levels").style="display:none";
-  document.getElementById("background").style="display:none";
+  /*document.getElementById("levels").style="display:none";
+  document.getElementById("background").style="display:none";*/
 
   var table = document.getElementById('mainDiv');
   
@@ -83,4 +83,9 @@ function submitResult() {
     popUpShow();
   }
 
+}
+
+function welToLevels() {
+  $("#welcomeDiv").hide();
+  $("#levelDiv").show();
 }
