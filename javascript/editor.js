@@ -69,7 +69,7 @@ class Editor {
       curCol.onclick = function () {
         self.currentItemType = itemType;
         self.currentItemName = arr[i];
-        updateCurrentTool();
+        self.updateCurrentTool();
       };
       curRow.appendChild(curCol);  
     }
