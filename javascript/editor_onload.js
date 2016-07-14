@@ -34,10 +34,12 @@ window.onload = function(){
 }
 
 function generateField() {
-  let height = $('levelHeight').value;
-  let width = $('levelWidth').value;
+  let height = $('fieldlHeight').value;
+  let width = $('fieldWidth').value;
+  let background = $('fieldBackground').value;
   
-  currentLevel.field = new Field(height, width);
+  currentLevel.field = new Field(height, width, background);
+  editor.makeFieldCellsClickable();
   showField();
 }
 
