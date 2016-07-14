@@ -62,6 +62,7 @@ function showJSON() {
 
 function loadFromJSON() {
   currentLevel.loadFromJSON($('JSONTextArea').value);
+  editor = new Editor(currentLevel);
   showField();
   alert('LOADED FROM JSON');
 }
