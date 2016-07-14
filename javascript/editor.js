@@ -169,20 +169,16 @@ class Editor {
     if (this.currentItemName == 'clear') {
       this.latestWolf = null;
 
+      let t = [];
+
       for (let i = 0; i < this.level.wolves.length; ++i) {
         let curWolf = this.level.wolves[i];
-        if (JSON.stringify(curWolf.position()) == JSON.stringify(point)) {
-          
-          // delete element from array
-          let a = this.level.wolves.slice(0, Math.max(0, i));
-          let len = this.level.wolves.length;
-          let inext = Math.min(i+1, len - 1);
-
-          let b = this.level.wolves.slice(inext, len - inext - 1);
-          this.level.wolves = a.concat(b);
+        if (JSON.stringify(curWolf.position()) != JSON.stringify(point)) {
+          t.push(curWolf);
         }
       }
 
+      this.level.wolves = t;
       this.completeFieldRedraw();
       return;
     }

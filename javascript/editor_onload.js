@@ -39,7 +39,7 @@ window.onload = function(){
 
   editor = new Editor(currentLevel);
 
-  $('buttonCompleteRedraw').onclick = editor.completeFieldRedraw();
+  $('buttonCompleteRedraw').onclick = () => editor.completeFieldRedraw(); 
   document.onkeydown = checkKey;
 }
 
