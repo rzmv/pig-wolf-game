@@ -60,11 +60,13 @@ function level() {
   globalField.changeCell(Point(1, 8), 'wood');
   globalField.changeCell(Point(1, 9), 'wood');
 
-  globalField.changeCell(Point(0, 9), 'wood', [{'itemName':'food'}]);
+  globalField.changeCell(Point(0, 9), 'wood', [{'itemName':'food'}, {'itemName':'lamp'}]);
   globalField.changeCell(Point(9, 0), 'grass', [{'itemName':'button', 'doorPosition':Point(1, 7)}]);
   
   globalField.changeCell(Point(3, 3), 'grass', [{'itemName':'snowflake'}]);
   globalField.changeCell(Point(9, 9), 'grass', [{'itemName':'fire'}]);
+
+  globalField.changeCell(Point(9, 8), 'grass', [{'itemName':'darkness'}]);
 
   globalPig = new Pig(Point(1, 1));
   globalWolf = new Wolf(Point(2, 2), [Point(2, 2), Point(2, 3), Point (2, 4), Point(1, 4)]);

@@ -76,6 +76,13 @@ p {
   z-index: 4;
 }
 
+.layer-darkness {
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 10;
+}
+
 td {
   position: relative;
 }
