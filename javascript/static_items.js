@@ -1,12 +1,13 @@
 'use strict';
 
 class StaticItem {
-  constructor(name, image, passable = true) {
+  constructor(name, image, className = '', passable = true) {
     this.name = name;
     this.image = image;
     this.visible = true;
     this.passable = passable;
     this.doorPosition = null;
+    this.className = className;
   }
 
   // return new StaticItem, after pig has visited the cell
@@ -38,7 +39,7 @@ class ItemEmpty extends StaticItem {
 
 class ItemWall extends StaticItem {
   constructor() {
-    super('wall', 'images/wall.svg' , false);
+    super('wall', 'images/wall.svg' , 'layer-item-wall', false);
   }
 
   // !!! wolf can pass through wall
@@ -47,7 +48,7 @@ class ItemWall extends StaticItem {
 
 class ItemFood extends StaticItem {
   constructor() {
-    super('food', 'images/carrot.svg');
+    super('food', 'images/carrot.svg', 'layer-item-food');
   }
 
   nextState() {
@@ -58,13 +59,13 @@ class ItemFood extends StaticItem {
 
 class ItemDoor extends StaticItem {
   constructor() {
-    super('door', 'images/door.svg', false);
+    super('door', 'images/door.svg', 'layer-item-wall', false);
   }
 }
 
 class ItemButton extends StaticItem {
   constructor(doorPosition) {
-    super('button', 'images/lock.svg');
+    super('button', 'images/lock.svg', 'layer-item-button');
     this.doorPosition = doorPosition;
   }
 
@@ -85,7 +86,7 @@ class ItemButton extends StaticItem {
 
 class ItemSnowflake extends StaticItem {
   constructor() {
-    super('snowflake', 'images/snowflake.svg');
+    super('snowflake', 'images/snowflake.svg', 'layer-item-wolves');
   }
 
   nextState() {
@@ -96,7 +97,7 @@ class ItemSnowflake extends StaticItem {
 
 class ItemFire extends StaticItem {
   constructor() {
-    super('fire', 'images/fire.svg');
+    super('fire', 'images/fire.svg', 'layer-item-wolves');
   }
 
   nextState() {
@@ -107,7 +108,7 @@ class ItemFire extends StaticItem {
 
 class ItemBlackButton extends StaticItem {
   constructor() {
-    super('blackButton', 'images/black.svg');
+    super('blackButton', 'images/black.svg', 'layer-item-map');
     this.visibilityRange = 1;
   }
 
@@ -119,7 +120,7 @@ class ItemBlackButton extends StaticItem {
 
 class ItemLamp extends StaticItem {
   constructor() {
-    super('lamp', 'images/lamp.svg');
+    super('lamp', 'images/lamp.svg', 'layer-item-map');
   }
 
   nextState() {
