@@ -125,10 +125,10 @@ function menuToScoreboard() {
   location.href='scoreboard.html';
 }
 
-function sumbitResult() {
+function submitResult() {
   let db = new DB();
   let inputUN = document.getElementById("username").value;
-  let points = document.getElementById("userScore").innerText = document.getElementById("points-output").innerText;
+  let score   = document.getElementById("userScore").innerText;
   if (inputUN === "") {
     alert("Error");
   } else {
@@ -137,8 +137,8 @@ function sumbitResult() {
       UsersResultID = db.genResultID();
     }
     db.auth();
-    db.setData(Username, points, UsersResultID);
-    alert("Yo");
+    db.setData(Username, score, UsersResultID);
+    //alert("Yo");
   }
 
 }
