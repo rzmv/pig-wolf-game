@@ -32,27 +32,27 @@ function redrawCell(cell) {
 }
 
 function animateMovement(unit, func, direction) {
-  let pos = unit.position();
-  let cell = currentLevel.field.pointToCell(pos);
+  let prev = unit.position();
+  let cell = currentLevel.field.pointToCell(prev);
   cell.leave(unit);
   redrawCell(cell);
   
   // update unit's coordinates
   unit[func](direction);
  
-  pos = unit.position();
-  cell = currentLevel.field.pointToCell(pos);
+  let cur = unit.position();
+  cell = currentLevel.field.pointToCell(cur);
   cell.visit(unit);
   redrawCell(cell);
+
+  if (!currentLevel.lights && unit.name == 'pig')
+    redrawDarkness(prev, cur);
 }
 
 function movePlayer(direction) {
   animateMovement(currentLevel.pig, 'move', direction);
   for (let i = 0; i < currentLevel.wolves.length; ++i)
     animateMovement(currentLevel.wolves[i], 'move');
-
-  if (!currentLevel.lights)
-    redrawDarkness(); 
 }
 
 function initialDraw() {
@@ -65,27 +65,38 @@ function initialDraw() {
       redrawCell(currentLevel.field.pointToCell(Point(i, j)));
 }
 
-function redrawDarkness() {
-  // !!!TODO: rewrite it to bfs, it'll be O(r^2) not O(width * height)
-  let lev = currentLevel;
-             alert(lev.field.height)
+//getPointsFromRange(point, range)
+
+function addDarkness(point, range) {
+  let arr = getPointsFromRange(point, range);
+  for (let i = 0; i < arr.length; ++i) {
+    let curCell = currentLevel.field.pointToCell(arr[i]);
+    curCell.addToLayer('darkness', 'darkness');
+    redrawCell(curCell);
+  }
+}
+
+function removeDarkness(point, range) {
+  let arr = getPointsFromRange(point, range);
+  for (let i = 0; i < arr.length; ++i) {
+    let curCell = currentLevel.field.pointToCell(arr[i]);
+    curCell.removeLayer('darkness');
+    redrawCell(curCell);
+  }
+}
+
+function redrawDarkness(prev, cur) {
   // some error occured, pig can see thole field
-  if (lev.pig.visibilityRange == 0)
+  if (currentLevel.pig.visibilityRange == 0)
     return;
 
-  for (let i = 0; i < lev.field.height; ++i)
-    for (let j = 0; j < lev.field.width; ++j) {
-      let dist = pointsDistance(lev.pig.position(), Point(i, j));
-      /*
-      alert('PIG ' + lev.pig.position().row + ' ' + lev.pig.position().col);
-      alertPoint(Point(i, j));
-      alert('DISTANCE = ' + dist);
-      */
-      if (dist > lev.pig.visibilityRange)
-        lev.field.cells[i][j].addToLayer('darkness', 'darkness');
-      else
-        lev.field.cells[i][j].removeLayer('darkness');
-
-      redrawCell(lev.field.cells[i][j]);
-    }
+  addDarkness(prev, currentLevel.pig.visibilityRange);
+  removeDarkness(cur, currentLevel.pig.visibilityRange);
 }
+
+animateTurningLightsOff(point, range)
+{
+  //let arr = getPointsFromRange(point, 1000);
+
+}
+
