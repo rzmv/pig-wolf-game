@@ -50,8 +50,11 @@ function pointsDistance(p1, p2) {
 }
 
 function winLoseCheck() {
-  for (let i = 0; i < currentLevel.wolves.length; ++i)
-    if (pointsDistance(currentLevel.pig.position(), currentLevel.wolves[i].position()) <= 0) {
+  for (let i = 0; i < currentLevel.wolves.length; ++i) {
+    if (pointsDistance(currentLevel.pig.position(), currentLevel.wolves[i].position())     <= 0 ||
+       (pointsDistance(currentLevel.pig.prevPosition(), currentLevel.wolves[i].position()) <= 0 &&
+       pointsDistance(currentLevel.pig.position(), currentLevel.wolves[i].prevPosition())  <= 0))
+    {
       document.getElementById("lose").style="display:block";
       document.getElementById("background").style="display:block";
 
@@ -65,6 +68,7 @@ function winLoseCheck() {
         document.getElementById("Username").value = Username;
       }
     }
+  }
 }
 
 function alertPoint(point) {
