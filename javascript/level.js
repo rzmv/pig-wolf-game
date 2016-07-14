@@ -24,17 +24,7 @@ class Level {
     for (let i = 0; i < this.wolves.length; ++i)
       this.wolves[i].addTrajectoryLayerToField(this.field);
   }
-
-  _createStaticItemByName(name, doorPosition) {
-    switch(name) {
-      case 'empty': return new ItemEmpty(doorPosition); break;
-      case 'wall': return new ItemWall(doorPosition); break;
-      case 'food': return new ItemFood(doorPosition); break;
-      case 'door': return new ItemDoor(doorPosition); break;
-      case 'button': return new ItemButton(doorPosition); break;
-    }
-  }
-
+  
   loadFromJSON(JSONString) {
     let lev = JSON.parse(JSONString);
     
@@ -76,14 +66,14 @@ class Level {
     };
 
     let JSONString = JSON.stringify(lev);
-    /*let textArea = document.createElement('textarea');
+    let textArea = document.createElement('textarea');
     textArea.id = 'JSONTextArea';
     textArea.appendChild(document.createTextNode(JSONString));
     textArea.setAttribute('rows', 100);
     textArea.setAttribute('cols', 100);
 
     document.body.appendChild(textArea);
-    */
+    
     return JSONString;
     //output.write(JSON.stringify(level));
   }

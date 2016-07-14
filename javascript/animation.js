@@ -17,11 +17,12 @@ function getDarknessAddress(darkness) {
 function getHTMLImgByImage(image, cssClass = '', priority = null) {
   if (image === '') {
     return '';
-  }
+  }                                                   
   return '<img src = "' + image + '" class = "' + cssClass + '" width="49" height = "49">';
 }
 
 function drawUnit(unit) {
+  alert(currentLevel);
   let cell = currentLevel.field.pointToCell(unit.position());
   cell.addToLayer('unit', unit);
 }
@@ -56,6 +57,7 @@ function movePlayer(direction) {
 }
 
 function initialDraw() {
+  alertPoint(currentLevel.pig.position());
   drawUnit(currentLevel.pig);
   for (let i = 0; i < currentLevel.wolves.length; ++i)
     drawUnit(currentLevel.wolves[i]);
@@ -68,7 +70,7 @@ function initialDraw() {
 function redrawDarkness() {
   // !!!TODO: rewrite it to bfs, it'll be O(r^2) not O(width * height)
   let lev = currentLevel;
-  
+             alert(lev.field.height)
   // some error occured, pig can see thole field
   if (lev.pig.visibilityRange == 0)
     return;
