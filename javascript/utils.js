@@ -54,8 +54,7 @@ function winLoseCheck() {
     if (pointsDistance(currentLevel.pig.position(), currentLevel.wolves[i].position()) <= 0){
       document.getElementById("lose").style="display:block";
       document.getElementById("background").style="display:block";
-    }
-      
+    } 
 }
 
 function alertPoint(point) {
