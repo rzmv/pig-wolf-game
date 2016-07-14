@@ -35,7 +35,8 @@ window.onload = function(){
 function level() {
   $('steps-output').innerHTML = 0;
   $('points-output').innerHTML = 0;
-
+  globalSteps = 0;
+  globalPoints = 0;
   document.getElementById("levels").style="display:none";
   document.getElementById("background").style="display:none";
 
@@ -73,7 +74,7 @@ function level() {
   globalField.changeCell(Point(3, 3), 'grass', [{'itemName':'snowflake'}]);
   globalField.changeCell(Point(9, 9), 'grass', [{'itemName':'fire'}]);
 
-  globalField.changeCell(Point(9, 8), 'grass', [{'itemName':'blackButton'}]);
+  globalField.changeCell(Point(9, 8), 'grass', [{'itemName':'food'}, {'itemName':'snowflake'}, {'itemName':'blackButton'}]);
 
   globalPig = new Pig(Point(1, 1));
   globalWolf = new Wolf(Point(2, 2), [Point(2, 2), Point(2, 3), Point (2, 4), Point(1, 4)]);

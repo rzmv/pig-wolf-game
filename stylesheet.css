@@ -52,35 +52,63 @@ p1 {
   top: 0;
   left: 0;
   position: absolute;
-  z-index: 1;
+  z-index: 10;
 }
 
 .layer-trajectory {
   top: 0;
   left: 0;
   position: absolute;
-  z-index: 2;
+  z-index: 20;
 }
 
-.layer-staticItem {
+.layer-item-map {
   top: 0;
   left: 0;
   position: absolute;
-  z-index: 3;
+  z-index: 30;
+}
+
+.layer-item-wolves {
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 31;
+}
+
+.layer-item-button {
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 32;
+}
+
+.layer-item-food {
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 33;
+}
+
+.layer-item-wall {
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 34;
 }
 
 .layer-unit {  
   top: 0;
   left: 0;
   position: absolute;
-  z-index: 4;
+  z-index: 40;
 }
 
 .layer-darkness {
   top: 0;
   left: 0;
   position: absolute;
-  z-index: 10;
+  z-index: 50;
 }
 
 td {

@@ -60,7 +60,7 @@ function winLoseCheck() {
       //hyperbola
       let score = Math.floor((currentLevel.maxPoints / (currentLevel.maxPoints - carrots)) * 9.354 * carrots + (currentLevel.field.width * currentLevel.field.height / steps) * carrots);
       document.getElementById("userScore").innerText = score;
-
+      
       if (Username !== "" && UserResultID !== "-1") {
         document.getElementById("Username").value = Username;
       }
