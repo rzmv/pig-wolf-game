@@ -13,10 +13,17 @@
 </head>
 
 <body>
-  <input id = "levelHeight"> Height </input>
-  <input id = "levelWidth"> Width </input>
-  <button id = "buttonGenerate" onclick = "generateField()"> Generate field </button>
+  <div id = "control-panel" align = "left" width = "300px">
+    <input id = "fieldlHeight"> Height </input> <br>
+    <input id = "fieldWidth"> Width </input> <br>
+    <input id = "fieldBackground"> Default background </input> <br>
+    <button id = "buttonGenerate" onclick = "generateField()"> Generate field </button>
+  </div>
   
+  <div id = "tools-panel" align = "center">
+    <h2 id = "currentTool"> asdf </h2>
+  </div>
+
   <div id="mainDiv" class="div-table">
 
   </div>

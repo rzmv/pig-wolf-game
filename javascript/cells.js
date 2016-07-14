@@ -10,18 +10,24 @@ class Cell {
     this.layerDarkness = '';
 
     for (let i = 0; i < itemsArray.length; ++i) {
-      switch(itemsArray[i].itemName) {
-        case 'empty': this.staticItems.push(new ItemEmpty()); break;
-        case 'wall': this.staticItems.push(new ItemWall()); break;
-        case 'food': this.staticItems.push(new ItemFood()); break;
-        case 'door': this.staticItems.push(new ItemDoor()); break;
-        case 'button': this.staticItems.push(new ItemButton(itemsArray[i].doorPosition)); break;
-        case 'snowflake': this.staticItems.push(new ItemSnowflake()); break;
-        case 'fire': this.staticItems.push(new ItemFire()); break;
-        case 'blackButton': this.staticItems.push(new ItemBlackButton()); break;
-        case 'lamp': this.staticItems.push(new ItemLamp()); break;
-      }
+      let curName = itemsArray[i].itemName;
+      let doorPos = itemsArray[i].doorPosition;
+      this.staticItems.push(this.createStaticItemByName(curName, doorPos));  
     }
+  }
+
+  createStaticItemByName(itemName, doorPosition = null) {
+    switch(itemName) {
+      case 'empty': return new ItemEmpty();
+      case 'wall': return new ItemWall();
+      case 'food': return new ItemFood();
+      case 'door': return new ItemDoor();
+      case 'button': return new ItemButton(doorPosition);
+      case 'snowflake': return new ItemSnowflake();
+      case 'fire': return new ItemFire();
+      case 'blackButton': return new ItemBlackButton();
+      case 'lamp': return new ItemLamp();
+    }  
   }
 
   countFood() {
@@ -114,13 +120,13 @@ class Cell {
 }
 
 class Field {
-  constructor(height, width) {
+  constructor(height, width, defaultBackground = 'grass') {
     this.height = height;
     this.width = width;
-    this._createCells(height, width);
+    this._createCells(height, width, defaultBackground);
   }
   
-  _createCells(height, width) {
+  _createCells(height, width, defaultBackground) {
     this.cells = [];
     this.table = document.createElement('table');
     this.table.className = 'table';
@@ -132,7 +138,7 @@ class Field {
         let tableCell = document.createElement('td');
         tableCell.className = 'table-cell';
         tableRow.appendChild(tableCell);
-        row.push(new Cell(tableCell));  
+        row.push(new Cell(tableCell, defaultBackground));  
       }
       this.table.appendChild(tableRow);
       this.cells.push(row);
