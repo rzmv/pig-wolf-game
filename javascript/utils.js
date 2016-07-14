@@ -55,12 +55,12 @@ function winLoseCheck() {
       document.getElementById("lose").style="display:block";
       document.getElementById("background").style="display:block";
 
-      let carrots = parseInt(document.getElementById("points-output").innerText);
-      let steps   = parseInt(document.getElementById("steps-output").innerText);
+      globalPoints = parseInt(document.getElementById("points-output").innerText);
+      globalSteps  = parseInt(document.getElementById("steps-output").innerText);
       //hyperbola
-      let score = Math.floor((currentLevel.maxPoints / (currentLevel.maxPoints - carrots)) * 9.354 * carrots + (currentLevel.field.width * currentLevel.field.height / steps) * carrots);
+      let score = Math.floor((currentLevel.maxPoints / (currentLevel.maxPoints - globalPoints)) * 9.354 * globalPoints + (currentLevel.field.width * currentLevel.field.height / globalSteps) * globalPoints);
       document.getElementById("userScore").innerText = score;
-      
+
       if (Username !== "" && UserResultID !== "-1") {
         document.getElementById("Username").value = Username;
       }
