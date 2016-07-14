@@ -23,6 +23,8 @@ class Unit {
     
     if (currentLevel.field.freeCell(next)) {
       movePlayer(direction);
+      ++globalSteps;
+      $('steps-output').innerHTML = globalSteps;
       winLoseCheck();
     }    
   }
@@ -65,7 +67,6 @@ class Trajectory {
   move() {
     let curStep = this._currentStep;
     let curDir = this._currentDirection;
-    
     if ((curStep + curDir == this._trajectory.length) ||
        (curStep + curDir < 0))
     {
@@ -75,7 +76,7 @@ class Trajectory {
   }
 
   shiftToDirName(shift) {
-    switch (shift.row + ' ' + shift.col) {
+      switch (shift.row + ' ' + shift.col) {
       case '-1 0': return 'up'; break;
       case '1 0': return 'down'; break;
       case '0 -1': return 'left'; break;

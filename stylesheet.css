@@ -39,9 +39,9 @@ body {
   margin-right: 30%;
 }
 
-p {
-  color: darkred;
-  margin-left: 40%;
+p1 {
+  text-align: center; 
+  color: darkred; 
   font-family: courier;
   font-size: 150%;
   text-transform: uppercase;
@@ -222,6 +222,6 @@ pl{
 
 h1{
   font-size: 100px;
-  color : red;
+  color: white;
   text-align: center;
 }

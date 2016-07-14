@@ -55,6 +55,7 @@ function winLoseCheck() {
       document.getElementById("lose").style="display:block";
       document.getElementById("background").style="display:block";
     }
+      
 }
 
 function alertPoint(point) {

@@ -29,7 +29,6 @@ function animateMovement(unit, func, direction) {
   let pos = unit.position();
   let cell = currentLevel.field.pointToCell(pos);
   cell.leave(unit);
-  
   redrawCell(cell);
   
   // update unit's coordinates
