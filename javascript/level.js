@@ -22,19 +22,16 @@ class Level {
   }
 
   init() {
-  // alert('init');
     this.points = 0;
     this.maxPoints = this.countFood();
     Carrots = this.countFood();
     // !!! add this.maxPoints = all carrots on the field
     for (let i = 0; i < this.wolves.length; ++i)
       this.wolves[i].addTrajectoryLayerToField(this.field);
-    //alert('init done');
   }
   
   loadFromJSON(JSONString) {
     let lev = JSON.parse(JSONString);
-    //alert('begin');
     this.lights = lev.lights;
     
     this.pig = new Pig(lev.pig._position);
@@ -44,12 +41,8 @@ class Level {
       let curTraj = lev.wolves[i].trajectory;
 
       let curStep = curTraj._currentStep;
-      //alert(curTraj._trajectory.length + ' ' + curStep);
-      alertPoint(curTraj._trajectory[0]);
       this.wolves.push(new Wolf(curTraj._trajectory[curStep], curTraj._trajectory));
     }
-
-    //alert('wolves created');
 
     // read field
     this.field = new Field(lev.field.height, lev.field.width);
@@ -79,16 +72,7 @@ class Level {
     };
     
     let JSONString = JSON.stringify(lev);
-    /*let textArea = document.createElement('textarea');
-    textArea.id = 'JSONTextArea';
-    textArea.appendChild(document.createTextNode(JSONString));
-    textArea.setAttribute('rows', 100);
-    textArea.setAttribute('cols', 100);
-
-    document.body.appendChild(textArea);
-    */
     return JSONString;
-    //output.write(JSON.stringify(level));
   }
 
   freezeWolves() {
