@@ -5,9 +5,11 @@ class StaticItem {
     this.name = name;
     this.image = image;
     this.visible = true;
-    this.passable = passable;
     this.doorPosition = null;
     this.className = className;
+    
+    this._passable = passable;
+    this.passable = () => this._passable;
   }
 
   // return new StaticItem, after pig has visited the cell
@@ -41,10 +43,6 @@ class ItemWall extends StaticItem {
   constructor() {
     super('wall', 'images/brick-tile-150-sew.jpg' , 'layer-item-wall', false);
   }
-
-  // !!! wolf can pass through wall
-  // maybe later we need to turn-off this ability
-  // on the other hand it's all on level-designer desires
 }
 
 class ItemFood extends StaticItem {
@@ -60,28 +58,45 @@ class ItemFood extends StaticItem {
 
 class ItemDoor extends StaticItem {
   constructor() {
-    super('door', 'images/door.svg', 'layer-item-door', false);
+  // !!! TODO change image to door_opened
+    super('door', 'images/door_closed.svg', 'layer-item-door', false);
+    this.imagesArray = ['images/door_closed.svg', 'images/wolfhead.svg'];
+    this.passableArray = [false, true];
+    this.currentArrayIndex = 0;
+    
+    this.passable = () => this.passableArray[this.currentArrayIndex];
+  }
+
+  toogle() {
+    this.currentArrayIndex = (this.currentArrayIndex + 1) % 2;
+    this.image = this.imagesArray[this.currentArrayIndex];    
+  }
+
+  nextState() {
+    return this;
   }
 }
 
 class ItemButton extends StaticItem {
   constructor(doorPosition) {
-    super('button', 'images/lock.svg', 'layer-item-button');
+    super('button', 'images/button_closed.svg', 'layer-item-button');
     this.doorPosition = doorPosition;
+    this.imagesArray = ['images/button_closed.svg', 'images/button_opened.svg'];
+    this.currentArrayIndex = 0;
   }
 
-  // !!! ~ image source changes to pressed button 
+  // !!! image doesn't change to pressed button automatically 
   nextState() {
-    this.image = 'images/unlock.svg';
-    
-    let cellDoor = currentLevel.field.pointToCell(this.doorPosition);
-    cellDoor.openDoor();
-    redrawCell(cellDoor);
     return this;
   }
 
   toogleVisibility() {
     return this;
+  }
+
+  toogle() {
+    this.currentArrayIndex = (this.currentArrayIndex + 1) % 2;
+    this.image = this.imagesArray[this.currentArrayIndex];    
   }
 }
 

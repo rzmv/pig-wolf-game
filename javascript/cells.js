@@ -40,7 +40,7 @@ class Cell {
 
   isFree() {
     for (let i = 0; i < this.staticItems.length; ++i)
-      if (!this.staticItems[i].passable)
+      if (!this.staticItems[i].passable())
         return false;
     return true;
   }
@@ -125,6 +125,14 @@ class Cell {
     ans += getHTMLImgByImage(darknessImg, 'layer-darkness');
     return ans;
   }
+
+  getStaticItemByName(name) {
+    for (let i = 0; i < this.staticItems.length; ++i)
+      if (this.staticItems[i].name == name)
+        return this.staticItems[i];
+    
+    return null;
+  }
 }
 
 class Field {
@@ -172,5 +180,22 @@ class Field {
     if (this.inBounds(point))
       return this.pointToCell(point).isFree();
     return false;  
+  }
+
+  toogleDoorByButton(buttonPosition) {
+    let cellButton = this.pointToCell(buttonPosition);
+    let buttonItem = cellButton.getStaticItemByName('button');
+
+    if (buttonItem !== null) {
+      let cellDoor = this.pointToCell(buttonItem.doorPosition);
+      let doorItem = cellDoor.getStaticItemByName('door');
+      
+      // !!!
+      buttonItem.toogle();
+      doorItem.toogle();
+    
+      redrawCell(cellButton);
+      redrawCell(cellDoor);
+    }
   }
 }
