@@ -22,7 +22,10 @@ function getHTMLImgByImage(image, cssClass = '', priority = null) {
 }
 
 function drawUnit(unit) {
+  //alert('drawUnit');
   let cell = currentLevel.field.pointToCell(unit.position());
+  
+  //alert(cell);
   cell.addToLayer('unit', unit);
 }
 
@@ -57,9 +60,12 @@ function movePlayer(direction) {
 
 function initialDraw() {
   drawUnit(currentLevel.pig);
+  //alert('drawPig');
+
   for (let i = 0; i < currentLevel.wolves.length; ++i)
     drawUnit(currentLevel.wolves[i]);
 
+  //alert('drawWolves');
   for (let i = 0; i < currentLevel.field.height; ++i)
     for (let j = 0; j < currentLevel.field.width; ++j)
       redrawCell(currentLevel.field.pointToCell(Point(i, j)));
@@ -96,7 +102,37 @@ function redrawDarkness(prev, cur) {
 
 function animateTurningLightsOff(point, range)
 {
-  //let arr = getPointsFromRange(point, 1000);
-
+  let arr = getPointsFromRange(point, 1000);
+  
+  let rec = function (i) {
+    if (i >= 0 && pointsDistance(point, arr[i]) > range) {
+      let curCell = currentLevel.field.pointToCell(arr[i]);
+      curCell.addToLayer('darkness', 'darkness');
+      redrawCell(curCell);
+      setTimeout(() => rec(i - 1), 10);
+    }
+  }
+  
+  rec(arr.length - 1);
 }
 
+function animateTurningLightsOn(point, range)
+{ 
+  let arr = getPointsFromRange(point, 1000);
+  
+  let i;
+  for (i = 0; i < arr.length; ++i)
+    if (pointsDistance(point, arr[i]) > range)
+      break;
+
+  let rec = function (i) {
+    if (i < arr.length) {
+      let curCell = currentLevel.field.pointToCell(arr[i]);
+      curCell.removeLayer('darkness');
+      redrawCell(curCell);
+      setTimeout(() => rec(i + 1), 10);
+    }
+  }
+
+  rec(i);
+}

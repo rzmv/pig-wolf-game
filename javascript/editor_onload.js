@@ -26,7 +26,8 @@ function showField() {
     el.removeChild(el.firstChild);
   }
 
-  $('mainDiv').appendChild(currentLevel.field.table)
+  $('mainDiv').appendChild(currentLevel.field.table);
+  //alert('before initialDraw');
   initialDraw();
 }
 
@@ -64,6 +65,7 @@ function showJSON() {
 function loadFromJSON() {
   currentLevel.loadFromJSON($('JSONTextArea').value);
   editor = new Editor(currentLevel);
+  //alert('before showField');
   showField();
   alert('LOADED FROM JSON');
 }
