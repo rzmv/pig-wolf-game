@@ -63,18 +63,18 @@ class Trajectory {
     
     // we're not staying on the trajectory
     // then we'll stay at the same place
-    /*this._trajectory = [position];
+    this._trajectory = [position];
     this._currentDirection = 0;
     return 0;
-    */
-    return -1;
+    
+    //return -1;
   }
 
   currentPosition() {
     // we're not yet on the trajectory
     // (we're building this trajectory in module Editor
     //if (this._currentStep == -1)
-      return this._position;
+    //  return this._position;
       
     return this._trajectory[this._currentStep];
   }
@@ -128,6 +128,8 @@ class Wolf extends Unit {
   constructor(position, trajectory = []) {
     super(position, 'wolf', 'images/wolf.svg');
     this.frozenImg = 'images/blue_wolf.svg';
+    alert('creating Wolf');
+
     this.trajectory = new Trajectory(position, trajectory);
     this.position = () => this.trajectory.currentPosition();
     this.influenceOnCell = 'toogleVisibility';
