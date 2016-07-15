@@ -3,6 +3,7 @@
 var globalPoints = 0;
 var globalSteps = 0;
 var currentLevel;
+var LevelN = 0;
 
 function checkKey(e) {
   e = e || window.event;
@@ -14,9 +15,15 @@ function checkKey(e) {
 window.onload = function(){
   document.getElementById("menu").style="display:block";
   document.getElementById("background").style="display:block";
-}
+  for(let i = 0; i < LEVELS.length; i++){
+     let curBtn = document.createElement('buttonL');
+     curBtn.onclick = () => level(i);
+     curBtn.innerHTML = 'level ' + (i + 1);      
+     document.getElementById('levels').appendChild(curBtn);
+  }
+}    
 
-function level() {
+function level(index) {
   document.getElementById('steps-output').innerHTML = 0;
   document.getElementById('points-output').innerHTML = 0;
   globalSteps = 0;
@@ -29,10 +36,6 @@ function level() {
   while (table.firstChild) {
     table.removeChild(table.firstChild);
   }
-
-  // index will be passed as a parameter to this function
-  let index = 2;
-  index = Math.min(index, LEVELS.length - 1);
 
   currentLevel = new Level();
   currentLevel.loadFromJSON(LEVELS[index]);
