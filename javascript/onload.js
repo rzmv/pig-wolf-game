@@ -21,7 +21,7 @@ window.onload = function(){
      curBtn.onclick = () => level(i);
      curBtn.innerHTML = 'level ' + (i + 1);     
      curBtn.className = "btn waves-effect waves-light";
-     document.getElementById('levels').appendChild(curBtn);
+     document.getElementById('levelDiv').appendChild(curBtn);
   }
 }    
 
@@ -63,8 +63,10 @@ function goToLevels() {
 }
 
 function winToMenu() {
-  document.getElementById("win").style="display:none";
-  document.getElementById("menu").style="display:block";
+ /* document.getElementById("win").style="display:none";
+  document.getElementById("menu").style="display:block";*/
+  $("#win").hide();
+  $("#levelDiv").show();   
 }
 
 function loseToMenu() {

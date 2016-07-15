@@ -128,7 +128,7 @@ class Wolf extends Unit {
   constructor(position, trajectory = []) {
     super(position, 'wolf', 'images/wolf.svg');
     this.frozenImg = 'images/blue_wolf.svg';
-    alert('creating Wolf');
+    // alert('creating Wolf');
 
     this.trajectory = new Trajectory(position, trajectory);
     this.position = () => this.trajectory.currentPosition();

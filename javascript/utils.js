@@ -73,8 +73,13 @@ function winLoseCheck() {
     }
   }
   if (globalPoints === Carrots){
-    document.getElementById("win").style="display:block";
-    document.getElementById("background").style="display:block";
+    /*document.getElementById("win").style="display:block";
+    document.getElementById("background").style="display:block";*/
+    $("#gameDiv").hide();
+    $(".centerDiv").show();
+    $("#win").show();
+
+
     globalPoints = parseInt(document.getElementById("points-output").innerText);
     globalSteps  = parseInt(document.getElementById("steps-output").innerText);
     //hyperbola
