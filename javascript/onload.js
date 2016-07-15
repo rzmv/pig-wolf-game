@@ -31,6 +31,8 @@ function level(index) {
   document.getElementById("levels").style="display:none";
   document.getElementById("background").style="display:none";
 
+  document.getElementById('level').onclick = () => level(index);
+
   var table = document.getElementById('mainDiv');
   
   while (table.firstChild) {

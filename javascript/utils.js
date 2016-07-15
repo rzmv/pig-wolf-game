@@ -67,6 +67,10 @@ function winLoseCheck() {
       }
     }
   }
+  if (globalPoints === 4){
+    document.getElementById("win").style="display:block";
+    document.getElementById("background").style="display:block";
+  }   
 }
 
 function alertPoint(point) {
