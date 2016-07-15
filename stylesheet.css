@@ -10,6 +10,7 @@ body {
 .table {
   border: 1px solid darkgreen;
   border-collapse: collapse;
+  background-color: black;
 }
 
 #gameDiv {
@@ -19,8 +20,6 @@ body {
 #mainDiv {
 	width: 96vmin;
 	height: 96vmin;
-	/*max-width: 1000px;
-	max-height: 1000px;*/
 	overflow: hidden;
 }
 
@@ -342,4 +341,13 @@ h1 {
   font-size: 100px;
   color: white;
   text-align: center;
+}
+
+p1 {
+  text-align: center; 
+  color: darkred; 
+  font-family: courier;
+  font-size: 150%;
+  text-transform: uppercase;
+  font-weight: 600;
 }

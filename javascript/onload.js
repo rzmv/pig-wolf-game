@@ -38,7 +38,7 @@ function level() {
 
   currentLevel = new Level();
   currentLevel.loadFromJSON(LEVELS[index]);
-  alert(currentLevel.field.table);    
+  //alert(currentLevel.field.table);    
   document.getElementById('mainDiv').appendChild(currentLevel.field.table);
   initialDraw();
 
@@ -56,9 +56,13 @@ function winToMenu() {
 }
 
 function loseToMenu() {
-  document.getElementById("lose").style="display:none";
-  document.getElementById("menu").style="display:block";
+  /*document.getElementById("lose").style="display:none";
+  document.getElementById("menu").style="display:block";*/
+  $("#scoreDiv").hide();
+  $("#levelDiv").show();
+  alert("ww");
 }
+  
 
 function levelToMenu() {
   document.getElementById("levels").style="display:none";
