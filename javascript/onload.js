@@ -4,6 +4,7 @@ var globalPoints = 0;
 var globalSteps = 0;
 var currentLevel;
 var Carrots = 0;
+var ResultScore = 0;
 
 function checkKey(e) {
   e = e || window.event;

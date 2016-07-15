@@ -60,16 +60,21 @@ function winLoseCheck() {
       globalSteps  = parseInt(document.getElementById("steps-output").innerText);
       //hyperbola
       let score = Math.floor((currentLevel.maxPoints / (currentLevel.maxPoints - globalPoints + 1)) * 9.354 * globalPoints + (currentLevel.field.width * currentLevel.field.height / globalSteps) * globalPoints);
+      score += ResultScore;
       document.getElementById("userScore").innerText = score;
-
       if (Username !== "" && UserResultID !== "-1") {
         document.getElementById("Username").value = Username;
       }
+      ResultScore = 0;
     }
   }
   if (globalPoints === Carrots){
     document.getElementById("win").style="display:block";
     document.getElementById("background").style="display:block";
+    globalPoints = parseInt(document.getElementById("points-output").innerText);
+    globalSteps  = parseInt(document.getElementById("steps-output").innerText);
+    //hyperbola
+    ResultScore += Math.floor((currentLevel.maxPoints / (currentLevel.maxPoints - globalPoints + 1)) * 9.354 * globalPoints + (currentLevel.field.width * currentLevel.field.height / globalSteps) * globalPoints);
   }   
 }
 
