@@ -67,7 +67,7 @@ function winLoseCheck() {
       }
     }
   }
-  if (globalPoints === 4){
+  if (globalPoints === Carrots){
     document.getElementById("win").style="display:block";
     document.getElementById("background").style="display:block";
   }   

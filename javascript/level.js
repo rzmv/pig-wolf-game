@@ -25,6 +25,7 @@ class Level {
   // alert('init');
     this.points = 0;
     this.maxPoints = this.countFood();
+    Carrots = this.countFood();
     // !!! add this.maxPoints = all carrots on the field
     for (let i = 0; i < this.wolves.length; ++i)
       this.wolves[i].addTrajectoryLayerToField(this.field);

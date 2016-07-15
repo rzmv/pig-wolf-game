@@ -3,7 +3,7 @@
 var globalPoints = 0;
 var globalSteps = 0;
 var currentLevel;
-var LevelN = 0;
+var Carrots = 0;
 
 function checkKey(e) {
   e = e || window.event;
@@ -30,8 +30,10 @@ function level(index) {
   globalPoints = 0;
   document.getElementById("levels").style="display:none";
   document.getElementById("background").style="display:none";
+  document.getElementById("win").style="display:none";
 
   document.getElementById('level').onclick = () => level(index);
+  document.getElementById('nextlevel').onclick = () => level(index + 1);
 
   var table = document.getElementById('mainDiv');
   
