@@ -51,7 +51,9 @@ class ItemFood extends StaticItem {
   }
 
   nextState() {
-    incrementPoints();
+    // we don't need to do this in editor game
+    if (isRealGame)
+      incrementPoints();
     return new ItemEmpty();
   }
 }

@@ -182,6 +182,9 @@ class Editor {
           this.applyWolf(point);
         break;
     }
+
+    // save state, we need it after we played on this level in editor
+    initialLevelState = currentLevel.saveToJSON();
   }
 
   finishWolf() {
@@ -196,6 +199,9 @@ class Editor {
 
     this.completeFieldRedraw();
     alert('WOLF SUCCESSFULLY CREATED');  
+    
+    // save state, we need it after we played on this level in editor
+    initialLevelState = currentLevel.saveToJSON();
   }
 
   applyWolf(point) {
