@@ -17,6 +17,7 @@ function checkKey(e) {
   editor.finishWolf();
 }
 
+var Carrots;
 var currentLevel;
 var editor;
 
@@ -27,7 +28,6 @@ function showField() {
   }
 
   $('mainDiv').appendChild(currentLevel.field.table);
-  //alert('before initialDraw');
   initialDraw();
 }
 

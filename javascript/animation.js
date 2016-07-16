@@ -22,10 +22,7 @@ function getHTMLImgByImage(image, cssClass = '', priority = null) {
 }
 
 function drawUnit(unit) {
-  //alert('drawUnit');
   let cell = currentLevel.field.pointToCell(unit.position());
-  
-  //alert(cell);
   cell.addToLayer('unit', unit);
 }
 
@@ -60,12 +57,10 @@ function movePlayer(direction) {
 
 function initialDraw() {
   drawUnit(currentLevel.pig);
-  //alert('drawPig');
 
   for (let i = 0; i < currentLevel.wolves.length; ++i)
     drawUnit(currentLevel.wolves[i]);
 
-  //alert('drawWolves');
   for (let i = 0; i < currentLevel.field.height; ++i)
     for (let j = 0; j < currentLevel.field.width; ++j)
       redrawCell(currentLevel.field.pointToCell(Point(i, j)));

@@ -173,8 +173,6 @@ class Editor {
     let finalWolf = new Wolf(this.latestWolf.position(), this.latestWolfTrajectory);
     this.level.wolves.push(finalWolf);
 
-    alert(this.latestWolfTrajectory);
-
     this.latestWolf = null;
     this.latestWolfTrajectory = [];
 
@@ -213,6 +211,7 @@ class Editor {
       this.latestWolfTrajectory = [];
     }
 
+    this.completeFieldRedraw();
     redrawCell(curCell);
   }
 
@@ -231,7 +230,8 @@ class Editor {
     
     // latest wolf is just a point and a trajectory, we need to draw it by ourselves
     if (this.latestWolf !== null) {
-      this.level.field.pointToCell(this.latestWolfPoint).addToLayer('unit', this.latestWolf.image());
+      this.level.field.pointToCell(this.latestWolf.position()).addToLayer('unit', this.latestWolf);
+      this.latestWolf.trajectory.addLayerToField(this.level.field, this.latestWolfTrajectory);
     }
 
     initialDraw();

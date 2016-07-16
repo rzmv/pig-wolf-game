@@ -99,10 +99,13 @@ class Trajectory {
     }
   }
 
-  addLayerToField(field) {
-    for (let i = 1; i < this._trajectory.length; ++i) {
-      let prev = this._trajectory[i - 1];
-      let cur = this._trajectory[i];
+  addLayerToField(field, traj = null) {
+    if (traj === null)
+      traj = this._trajectory;
+
+    for (let i = 1; i < traj.length; ++i) {
+      let prev = traj[i - 1];
+      let cur = traj[i];
       let prevLine = this.shiftToDirName(Point(cur.row - prev.row, cur.col - prev.col));
       let curLine = this.shiftToDirName(Point(prev.row - cur.row, prev.col - cur.col));
             
@@ -128,6 +131,7 @@ class Wolf extends Unit {
   constructor(position, trajectory = []) {
     super(position, 'wolf', 'images/wolf.svg');
     this.frozenImg = 'images/blue_wolf.svg';
+
     // alert('creating Wolf');
 
     this.trajectory = new Trajectory(position, trajectory);
