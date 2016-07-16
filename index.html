@@ -12,13 +12,10 @@
   <script src="./javascript/onload.js"></script>
   <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>  
-  
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-  
   <script>
     // Initialize Firebase
     var config = {
@@ -58,7 +55,6 @@
   </div> 
   
   <div class="centerDiv"> 
-
     <div id="welcomeDiv">
       <button id="welGameBtn" class="btn waves-effect waves-light" type="submit" onclick="welToLevels()">Play
       </button>  
@@ -68,81 +64,69 @@
      
     </div>
     <div id="scoreDiv">
-
-	    <p>You lose:(</p>
-    		<div>
-      			<div>
-        			<p> Score:</p>
-        			<p id="userScore"></p>
-      			</div>
-     			 <div>
-			        <p> User name:</p>
-       				 <input id="username" type="text">
-            
-		          <div>
-            		 <button id = "saveLoseRes" onclick = submitResult() class="btn waves-effect waves-light">
-		      		  Submit
-		    		 </button>
-		     			<button id= "returnToMenu" onclick = "loseToMenu()" class="btn waves-effect waves-light">
-		       			 Menu
-      				 </button>
-	        			 <button id="level" class="btn waves-effect waves-light">
-      					   Reload
-		    			 </button>
-          	
-
-      </div>
-
-            
-        
-         </div>
-      </div>
-    </div>
-
-     <div id="win">
-
-      <p>WIN!</p>
+      <p>You lose:(</p>
+      <div>
         <div>
-            <div>
-              <p> Score:</p>
-              <p id="userScore"></p>
-            </div>
-           <div>
-              <p> User name:</p>
-               <input id="username" type="text">
-            
-              <div>
-                 <button id = "nextlevel"  class="btn waves-effect waves-light">
-                Next Level
-             </button>
-             </div>
+          <p> Score:</p>
+          <p id="userScore"></p>
+        </div>
+        <div>
+          <p> User name:</p>
+          <input id="username" type="text"> 
+          <div>
+            <button id = "saveLoseRes" onclick = submitResult() class="btn waves-effect waves-light">
+              Submit
+            </button>
+            <button id= "returnToMenu" onclick = "loseToMenu()" class="btn waves-effect waves-light">
+              Menu
+            </button>
+            <button id="level" class="btn waves-effect waves-light">
+              Reload
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
-</div>
-</div>
+    <div id="win">
+      <p>WIN!</p>
+      <div>
+        <div>
+          <p> Score:</p>
+          <p id="userScore"></p>
+        </div>
+        <div>
+          <p> User name:</p>
+          <input id="username" type="text">        
+          <div>
+            <button id = "nextlevel"  class="btn waves-effect waves-light">
+              Next Level
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <div>   
+  <div>   
     <nav>
       <div class="nav-wrapper">
         <a href="" class="brand-logo center">Pig and wolf</a>
-          <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a onclick="test()">Levels</a></li>
-            <li><a href=".\scoreboard.html">Scoreboard</a></li>
-          </ul>
-     </div>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><a onclick="toLevel()">Levels</a></li>
+          <li><a href=".\scoreboard.html">Scoreboard</a></li>
+        </ul>
+      </div>
     </nav>
   </div>    
-  </div>
     
-	<div id="gameDiv">
-		<div class = "Points">
-			Carrots:<p1 id="points-output"> 0 </p1>
-			Steps:<p1 id="steps-output"> 0 </p1>
-		</div>
-		<div id="mainDiv" class="div-table">
-		</div>
-	</div>
-
+  <div id="gameDiv">
+    <div class = "Points">
+      Carrots:<p1 id="points-output"> 0 </p1>
+      Steps:<p1 id="steps-output"> 0 </p1>
+    </div>
+    <div id="mainDiv" class="div-table">
+    </div>
+  </div>
 </body>
 </html>

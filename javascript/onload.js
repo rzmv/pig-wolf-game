@@ -109,3 +109,12 @@ function welToLevels() {
   $("#welcomeDiv").hide();
   $("#levelDiv").show();
 }
+
+function toLevel() {
+  $("#welGameBtn").hide();
+  $("#gameDiv").hide();
+  $("#scoreDiv").hide();
+  $("#win").hide();
+  $(".centerDiv").show();
+  $("#levelDiv").show();
+}
