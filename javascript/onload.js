@@ -14,38 +14,48 @@ function checkKey(e) {
 }
 
 window.onload = function(){
-  document.getElementById("menu").style="display:block";
-  document.getElementById("background").style="display:block";
+
+
   for(let i = 0; i < LEVELS.length; i++){
-     let curBtn = document.createElement('buttonL');
+     let curBtn = document.createElement('button');
      curBtn.onclick = () => level(i);
-     curBtn.innerHTML = 'level ' + (i + 1);      
-     document.getElementById('levels').appendChild(curBtn);
+     curBtn.innerHTML = 'level ' + (i + 1);     
+     curBtn.className = "btn waves-effect waves-light";
+     document.getElementById('levelDiv').appendChild(curBtn);
   }
 }    
+
 
 function level(index) {
   document.getElementById('steps-output').innerHTML = 0;
   document.getElementById('points-output').innerHTML = 0;
   globalSteps = 0;
   globalPoints = 0;
-  document.getElementById("levels").style="display:none";
+  $("#levelDiv").hide();
+  $("#gameDiv").show();
+  $(".centerDiv").hide();
+  /*document.getElementById("levels").style="display:none";
+  document.getElementById("background").style="display:none";*/
+/*  document.getElementById("levels").style="display:none";
   document.getElementById("background").style="display:none";
-  document.getElementById("win").style="display:none";
+  document.getElementById("win").style="display:none";*/
 
   document.getElementById('level').onclick = () => level(index);
   document.getElementById('nextlevel').onclick = () => level(index + 1);
 
-  var table = document.getElementById('mainDiv');
-  
+  var table = document.getElementById('mainDiv');  
   while (table.firstChild) {
     table.removeChild(table.firstChild);
   }
 
   currentLevel = new Level();
   currentLevel.loadFromJSON(LEVELS[index]);
-  
+
+  $("#mainDiv").css({"width" : 6 * currentLevel.field.width  + "vmin",
+                     "height": 6 * currentLevel.field.height + "vmin"}); //TODO: get width/height dynamically
+
   document.getElementById('mainDiv').appendChild(currentLevel.field.table);
+
   initialDraw();
 
   document.onkeydown = checkKey;
@@ -57,14 +67,20 @@ function goToLevels() {
 }
 
 function winToMenu() {
-  document.getElementById("win").style="display:none";
-  document.getElementById("menu").style="display:block";
+ /* document.getElementById("win").style="display:none";
+  document.getElementById("menu").style="display:block";*/
+  $("#win").hide();
+  $("#levelDiv").show();   
 }
 
 function loseToMenu() {
-  document.getElementById("lose").style="display:none";
-  document.getElementById("menu").style="display:block";
+  /*document.getElementById("lose").style="display:none";
+  document.getElementById("menu").style="display:block";*/
+  $("#scoreDiv").hide();
+  $("#levelDiv").show();
+  alert("ww");
 }
+  
 
 function levelToMenu() {
   document.getElementById("levels").style="display:none";
@@ -91,4 +107,18 @@ function submitResult() {
     popUpShow();
   }
 
+}
+
+function welToLevels() {
+  $("#welcomeDiv").hide();
+  $("#levelDiv").show();
+}
+
+function toLevel() {
+  $("#welGameBtn").hide();
+  $("#gameDiv").hide();
+  $("#scoreDiv").hide();
+  $("#win").hide();
+  $(".centerDiv").show();
+  $("#levelDiv").show();
 }

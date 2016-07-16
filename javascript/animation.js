@@ -20,7 +20,7 @@ function getHTMLImgByImage(image, cssClass = '', priority = null) {
   if (image === '') {
     return '';
   }                                                   
-  return '<img src = "' + image + '" class = "' + cssClass + '" width="49" height = "49">';
+  return '<img src = "' + image + '" class = "' + cssClass + '">';
 }
 
 function drawUnit(unit) {

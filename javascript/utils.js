@@ -64,11 +64,15 @@ function loseCheck() {
     if (pointsDistance(curPig, curWolf) == 0 ||
       pointsDistance(prevPig, curWolf) == 0 && pointsDistance(curPig, prevWolf) == 0)
     {
-      document.getElementById("lose").style="display:block";
-      document.getElementById("background").style="display:block";
+/*      document.getElementById("lose").style="display:block";
+      document.getElementById("background").style="display:block";*/
+      $("#gameDiv").hide();
+      $(".centerDiv").show();
+      $("#scoreDiv").show();
 
       globalPoints = parseInt(document.getElementById("points-output").innerText);
       globalSteps  = parseInt(document.getElementById("steps-output").innerText);
+      // alert(globalSteps);
       //hyperbola
       let score = scoreFormula();
       score += ResultScore;
@@ -80,13 +84,16 @@ function loseCheck() {
       return true;
     }
   }
+<<<<<<< HEAD
   return false;
 }
 
 function winCheck() {
   if (globalPoints === Carrots) {
-    document.getElementById("win").style="display:block";
-    document.getElementById("background").style="display:block";
+    $("#gameDiv").hide();
+    $(".centerDiv").show();
+    $("#win").show();
+
     globalPoints = parseInt(document.getElementById("points-output").innerText);
     globalSteps  = parseInt(document.getElementById("steps-output").innerText);
     //hyperbola
@@ -100,7 +107,7 @@ function winLoseCheck() {
 }
 
 function alertPoint(point) {
-  alert('(' + point.row + ', ' + point.col + ')');
+  // alert('(' + point.row + ', ' + point.col + ')');
 }
 
 let di = [1, -1, 0, 0, 1, 1, -1, -1];
