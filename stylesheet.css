@@ -14,25 +14,25 @@ body {
 }
 
 #gameDiv {
-	margin: 0 auto;
+  margin: 0 auto;
 }
 
 #mainDiv {
-	width: 96vmin;
-	height: 96vmin;
-	overflow: hidden;
+  overflow: hidden;
 }
 
 .table-cell {
   text-align: center;
   overflow: hidden;
-  padding: 0px;
-  margin: 15px;
+  border: 1px solid darkgreen;
+  padding: 0;
+  margin: 0;
 }
 
-.table-cell, .table-cell img {
-  width: 8vmin;  /* 96 / 12 */
-  height: 8vmin;
+.table-cell,
+.table-cell img {
+  width: 6vmin;
+  height: 6vmin;
 }
 
 #table td {padding: 0px; margin: 0px;}
@@ -300,15 +300,15 @@ h1 {
 }
 
 .centerDiv {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	overflow: hidden;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #welGameBtn {

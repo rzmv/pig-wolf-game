@@ -50,8 +50,12 @@ function level(index) {
 
   currentLevel = new Level();
   currentLevel.loadFromJSON(LEVELS[index]);
-  //alert(currentLevel.field.table);    
+
+  $("#mainDiv").css({"width" : 6 * currentLevel.field.width  + "vmin",
+                     "height": 6 * currentLevel.field.height + "vmin"}); //TODO: get width/height dynamically
+
   document.getElementById('mainDiv').appendChild(currentLevel.field.table);
+
   initialDraw();
 
   document.onkeydown = checkKey;
