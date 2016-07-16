@@ -139,3 +139,7 @@ function getPointsFromRange(point, range) {
 function equalPoints(a, b) {
   return JSON.stringify(a) == JSON.stringify(b);
 }
+
+function pointsDiff(a, b) {
+  return Point(a.row - b.row, a.col - b.col);
+}

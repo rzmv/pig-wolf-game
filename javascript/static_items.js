@@ -86,7 +86,7 @@ class ItemButton extends StaticItem {
 
 class ItemSnowflake extends StaticItem {
   constructor() {
-    super('snowflake', 'images/snowflake.svg', 'layer-item-wolves');
+    super('snowflake', 'images/snowflake.svg', 'layer-item-fire-snow');
   }
 
   nextState() {
@@ -97,7 +97,7 @@ class ItemSnowflake extends StaticItem {
 
 class ItemFire extends StaticItem {
   constructor() {
-    super('fire', 'images/fire.svg', 'layer-item-wolves');
+    super('fire', 'images/fire.svg', 'layer-item-fire-snow');
   }
 
   nextState() {

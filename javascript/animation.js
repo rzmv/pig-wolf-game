@@ -16,6 +16,12 @@ function getDarknessAddress(darkness) {
   return 'images/black.svg';
 }
 
+function getArrowAddress(arrow) {
+  if (arrow === '')
+    return '';
+  return 'images/arrow_' + arrow + '.svg';
+}
+
 function getHTMLImgByImage(image, cssClass = '', priority = null) {
   if (image === '') {
     return '';
@@ -33,7 +39,7 @@ function redrawCell(cell) {
   tableCell.innerHTML = cell.getLayersHTMLString();
 }
 
-// !!! meaning abandoned
+// !!! in meaning 'abandoned'
 var leftCells = [];
 var visitedCells = [];
 

@@ -75,23 +75,42 @@ class Trajectory {
     return this._trajectory[this._currentStep];
   }
 
-  move() {
+  // return and object {'step':value, 'direction':value}
+  nextStepAndDirection() {
     let curStep = this._currentStep;
     let curDir = this._currentDirection;
+    
+    let nextStep = curStep;
+    let nextDir = curDir;
+
     if ((curStep + curDir == this._trajectory.length) ||
        (curStep + curDir < 0))
     {
       if (this._isCycle) {
         if (curStep + curDir == this._trajectory.length)
-          this._currentStep = 1;
+          nextStep = 1;
         else
-          this._currentStep = this._trajectory.length - 2;
-        return;
+          nextStep = this._trajectory.length - 2;
+        return {'step':nextStep, 'direction':nextDir};
       }
       else
-        this._currentDirection = -this._currentDirection;
+        nextDir = -this._currentDirection;
     }
-    this._currentStep += this._currentDirection;
+    nextStep += nextDir;
+    return {'step':nextStep, 'direction':nextDir};  
+  }
+
+  move() {
+    let t = this.nextStepAndDirection();
+    this._currentStep = t.step;
+    this._currentDirection = t.direction;  
+  }
+
+  directionToNextPoint() {
+    let t = this.nextStepAndDirection();
+    let curPoint = this._trajectory[this._currentStep];
+    let nextPoint = this._trajectory[t.step];
+    return this.shiftToDirName(pointsDiff(nextPoint, curPoint));
   }
 
   shiftToDirName(shift) {
@@ -100,6 +119,7 @@ class Trajectory {
       case '1 0': return 'down'; break;
       case '0 -1': return 'left'; break;
       case '0 1': return 'right'; break;
+      case '0 0': return ''; break;
     }
   }
 
@@ -110,8 +130,8 @@ class Trajectory {
     for (let i = 1; i < traj.length; ++i) {
       let prev = traj[i - 1];
       let cur = traj[i];
-      let prevLine = this.shiftToDirName(Point(cur.row - prev.row, cur.col - prev.col));
-      let curLine = this.shiftToDirName(Point(prev.row - cur.row, prev.col - cur.col));
+      let prevLine = this.shiftToDirName(pointsDiff(cur, prev));
+      let curLine = this.shiftToDirName(pointsDiff(prev, cur));
             
       field.pointToCell(prev).addToLayer('trajectory', prevLine);
       field.pointToCell(cur).addToLayer('trajectory', curLine);  

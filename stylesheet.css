@@ -74,7 +74,7 @@ body {
   z-index: 30;
 }
 
-.layer-item-wolves {
+.layer-item-fire-snow {
   top: 0;
   left: 0;
   position: absolute;
@@ -107,6 +107,13 @@ body {
   left: 0;
   position: absolute;
   z-index: 40;
+}
+
+.layer-arrow {  
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 45;
 }
 
 .layer-darkness {
