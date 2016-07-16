@@ -1,6 +1,7 @@
-#scoreboard {
-  display: inline-block;
+#scoreboardT {
+  display: table;
   position: relative;
+  padding: 0;
 }
 
 #scoreText {
@@ -31,4 +32,99 @@
   height: 7%;
   position: relative;
   text-align: center;
+}
+
+.mdl-shadow--2dp {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+#mdl-data-table {
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-collapse: collapse;
+  white-space: nowrap;
+  font-size: 13px;
+  background-color: white;
+}
+
+#mdl-data-table thead {
+  padding-bottom: 3px;
+}
+
+#mdl-data-table thead
+.mdl-data-table__select {
+  margin-top: 0;
+}
+
+#mdl-data-table tbody tr {
+  position: relative;
+  height: 48px;
+  transition-duration: 0.28s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: background-color;
+}
+
+#mdl-data-table tbody tr.is-selected {
+  background-color: #e0e0e0;
+}
+
+#mdl-data-table tbody tr:hover {
+  background-color: #eeeeee;
+}
+
+#mdl-data-table td,
+#mdl-data-table th {
+  padding: 0 18px 12px 18px;
+  text-align: right;
+}
+
+#mdl-data-table td:first-of-type,
+#mdl-data-table th:first-of-type {
+  padding-left: 24px;
+}
+
+#mdl-data-table td:last-of-type,
+#mdl-data-table th:last-of-type {
+  padding-right: 24px;
+}
+
+#mdl-data-table td {
+  position: relative;
+  vertical-align: middle;
+  height: 48px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding-top: 12px;
+  box-sizing: border-box;
+}
+
+#mdl-data-table td
+#mdl-data-table__select {
+  vertical-align: middle;
+}
+
+#mdl-data-table th {
+  position: relative;
+  vertical-align: bottom;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 24px;
+  letter-spacing: 0;
+  height: 48px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.54);
+  padding-bottom: 8px;
+  box-sizing: border-box;
+}
+
+.centerDivT {
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

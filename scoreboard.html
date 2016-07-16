@@ -1,10 +1,14 @@
 <!doctype html5>
 <html>
   <head>
-    <script src="./javascript/gen_scoreboard.js"></script>
-    <script src="./javascript/db.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script src="./javascript/gen_scoreboard.js"></script>
+    <script src="./javascript/db.js"></script>
     <script>
       var config = {
         apiKey: "AIzaSyBAjZ13FHcaqIGVjrbTDTZb1JV5crYKtt4",
@@ -14,11 +18,9 @@
       };
       firebase.initializeApp(config);
     </script>
-    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-		<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
     <link rel=stylesheet href="stylesheet.css">
     <link rel=stylesheet href="scoreboard_stylesheet.css">
+    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
   </head>
   <body>
     <div class="b-popup-notification" id="popupN">
@@ -26,17 +28,34 @@
         Error. Please, refresh the page
       </div>
     </div>
-    <div class="div-score">
-      <p id="scoreText">Scoreboard:</p>
+
+    <div>
+      <nav>
+        <div class="nav-wrapper">
+          <a href="" class="brand-logo center">Pig and wolf</a>
+          <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a onclick="toLevel()">Levels</a></li>
+            <li><a href=".\scoreboard.html">Scoreboard</a></li>
+          </ul>
+        </div>
+      </nav>
     </div>
-    <div class="div-tableScore">
-      <table id="scoreboard" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-        <tr>
-          <th class="scorebCell">#</th>
-          <th class="scorebCell">usermame</th>
-          <th class="scorebCell">score</th>
-        </tr>
-      </table>
+
+    <p id="scoreText">Scoreboard:</p>
+    <div class="centerDivT">
+      <div class="mainDiv">
+        <table id="mdl-data-table" class="mdl-shadow--2dp">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>usermame</th>
+              <th>score</th>
+            </tr>
+          </thead>
+          <tbody id="scoreboard">
+          </tbody>
+        </table>
+      </div>
     </div>
   </body>
 </html>

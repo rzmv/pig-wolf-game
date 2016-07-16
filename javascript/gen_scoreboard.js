@@ -15,21 +15,15 @@ window.onload = function() {
 
 function addTableRow(id, username, score) {
   let tableRow = document.createElement('tr');
-
   let idCell = document.createElement('td');
   idCell.innerText = id;
 
   let userCell = document.createElement('td');
   userCell.innerText = username;
-
   let scoreCell = document.createElement('td');
   scoreCell.innerText = score;
-
-  userCell.className = scoreCell.className = "scorebCell";
-  idCell.className += 'scorebCell numberCell';
   tableRow.appendChild(idCell);
   tableRow.appendChild(userCell);
   tableRow.appendChild(scoreCell);
-
   document.getElementById('scoreboard').appendChild(tableRow);
 }
