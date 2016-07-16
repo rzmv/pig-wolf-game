@@ -17,6 +17,7 @@ function checkKey(e) {
   editor.finishWolf();
 }
 
+var Carrots;
 var currentLevel;
 var editor;
 
@@ -26,7 +27,7 @@ function showField() {
     el.removeChild(el.firstChild);
   }
 
-  $('mainDiv').appendChild(currentLevel.field.table)
+  $('mainDiv').appendChild(currentLevel.field.table);
   initialDraw();
 }
 
@@ -64,6 +65,7 @@ function showJSON() {
 function loadFromJSON() {
   currentLevel.loadFromJSON($('JSONTextArea').value);
   editor = new Editor(currentLevel);
+  //alert('before showField');
   showField();
   alert('LOADED FROM JSON');
 }

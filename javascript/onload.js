@@ -3,6 +3,8 @@
 var globalPoints = 0;
 var globalSteps = 0;
 var currentLevel;
+var Carrots = 0;
+var ResultScore = 0;
 
 function checkKey(e) {
   e = e || window.event;
@@ -12,11 +14,19 @@ function checkKey(e) {
 }
 
 window.onload = function(){
-  /*document.getElementById("menu").style="display:block";
-  document.getElementById("background").style="display:block";*/
-}
 
-function level() {
+
+  for(let i = 0; i < LEVELS.length; i++){
+     let curBtn = document.createElement('button');
+     curBtn.onclick = () => level(i);
+     curBtn.innerHTML = 'level ' + (i + 1);     
+     curBtn.className = "btn waves-effect waves-light";
+     document.getElementById('levelDiv').appendChild(curBtn);
+  }
+}    
+
+
+function level(index) {
   document.getElementById('steps-output').innerHTML = 0;
   document.getElementById('points-output').innerHTML = 0;
   globalSteps = 0;
@@ -26,15 +36,17 @@ function level() {
   $(".centerDiv").hide();
   /*document.getElementById("levels").style="display:none";
   document.getElementById("background").style="display:none";*/
+/*  document.getElementById("levels").style="display:none";
+  document.getElementById("background").style="display:none";
+  document.getElementById("win").style="display:none";*/
+
+  document.getElementById('level').onclick = () => level(index);
+  document.getElementById('nextlevel').onclick = () => level(index + 1);
 
   var table = document.getElementById('mainDiv');  
   while (table.firstChild) {
     table.removeChild(table.firstChild);
   }
-
-  // index will be passed as a parameter to this function
-  let index = 1;
-  index = Math.min(index, LEVELS.length - 1);
 
   currentLevel = new Level();
   currentLevel.loadFromJSON(LEVELS[index]);
@@ -51,8 +63,10 @@ function goToLevels() {
 }
 
 function winToMenu() {
-  document.getElementById("win").style="display:none";
-  document.getElementById("menu").style="display:block";
+ /* document.getElementById("win").style="display:none";
+  document.getElementById("menu").style="display:block";*/
+  $("#win").hide();
+  $("#levelDiv").show();   
 }
 
 function loseToMenu() {

@@ -35,6 +35,7 @@
         $("#levelDiv").hide();
         $("#gameDiv").hide();
         $("#scoreDiv").hide();
+        $("#win").hide();
     });
 
     function popUpShow(){
@@ -64,15 +65,7 @@
     </div>  
 
     <div id="levelDiv">
-      <button id="level1" class="btn waves-effect waves-light" onclick="level()">
-        Level1
-      </button>
-      <button id="level2" class="btn waves-effect waves-light">
-        Level2
-      </button>
-      <button id="level3" class="btn waves-effect waves-light">
-        Level3
-      </button>
+     
     </div>
     <div id="scoreDiv">
 
@@ -93,7 +86,7 @@
 		     			<button id= "returnToMenu" onclick = "loseToMenu()" class="btn waves-effect waves-light">
 		       			 Menu
       				 </button>
-	        			 <button id="level" onclick = level() class="btn waves-effect waves-light">
+	        			 <button id="level" class="btn waves-effect waves-light">
       					   Reload
 		    			 </button>
           	
@@ -105,7 +98,29 @@
          </div>
       </div>
     </div>
-  </div>  
+
+     <div id="win">
+
+      <p>WIN!</p>
+        <div>
+            <div>
+              <p> Score:</p>
+              <p id="userScore"></p>
+            </div>
+           <div>
+              <p> User name:</p>
+               <input id="username" type="text">
+            
+              <div>
+                 <button id = "nextlevel"  class="btn waves-effect waves-light">
+                Next Level
+             </button>
+             </div>
+      </div>
+    </div>
+
+</div>
+</div>
 
     <div>   
     <nav>
@@ -117,7 +132,7 @@
           </ul>
      </div>
     </nav>
-  </div>
+  </div>    
   </div>
     
 	<div id="gameDiv">

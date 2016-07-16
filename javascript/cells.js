@@ -105,12 +105,11 @@ class Cell {
       ans += getHTMLImgByImage(img, 'layer-trajectory');
     }
     
-    // !!! different staticItems has different z-indeces
     for (let i = 0; i < this.staticItems.length; ++i) {
       ans += getHTMLImgByImage(this.staticItems[i].image, this.staticItems[i].className);
     }
 
-    let unitImg = this.layerUnit !== null ? this.layerUnit.image() : '';
+    let unitImg = (this.layerUnit !== null) ? this.layerUnit.image() : '';
     ans += getHTMLImgByImage(unitImg, 'layer-unit');
 
     let darknessImg = getDarknessAddress(this.layerDarkness);

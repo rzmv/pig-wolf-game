@@ -24,6 +24,7 @@ class Level {
   init() {
     this.points = 0;
     this.maxPoints = this.countFood();
+    Carrots = this.countFood();
     // !!! add this.maxPoints = all carrots on the field
     for (let i = 0; i < this.wolves.length; ++i)
       this.wolves[i].addTrajectoryLayerToField(this.field);
@@ -31,13 +32,14 @@ class Level {
   
   loadFromJSON(JSONString) {
     let lev = JSON.parse(JSONString);
-    
     this.lights = lev.lights;
+    
     this.pig = new Pig(lev.pig._position);
     
     this.wolves = [];
     for (let i = 0; i < lev.wolves.length; ++i) {
       let curTraj = lev.wolves[i].trajectory;
+
       let curStep = curTraj._currentStep;
       this.wolves.push(new Wolf(curTraj._trajectory[curStep], curTraj._trajectory));
     }
@@ -57,7 +59,7 @@ class Level {
 
         this.field.changeCell(Point(i, j), curBackground, curStaticItems);
       }
-      
+          
     this.init();
   }
 
@@ -70,16 +72,7 @@ class Level {
     };
     
     let JSONString = JSON.stringify(lev);
-    /*let textArea = document.createElement('textarea');
-    textArea.id = 'JSONTextArea';
-    textArea.appendChild(document.createTextNode(JSONString));
-    textArea.setAttribute('rows', 100);
-    textArea.setAttribute('cols', 100);
-
-    document.body.appendChild(textArea);
-    */
     return JSONString;
-    //output.write(JSON.stringify(level));
   }
 
   freezeWolves() {
@@ -98,14 +91,14 @@ class Level {
     
     this.pig.visibilityRange = visibilityRange;
     this.lights = false;  
-    //animateTurningLightsOff(this.pig.position(), this.pig.visibilityRange);
-    
+    animateTurningLightsOff(this.pig.position(), this.pig.visibilityRange);
+    /*
     for (let i = 0; i < this.field.height; ++i)
       for (let j = 0; j < this.field.width; ++j) {
         this.field.cells[i][j].addToLayer('darkness', 'darkness');
         redrawCell(this.field.cells[i][j]);
       }
-    
+    */
   }
 
   turnLightsOn() {
@@ -113,13 +106,13 @@ class Level {
       return;
 
     this.lights = true;
-    //animateTurningLightsOn(this.pig.position(), this.pig.visibilityRange);
-    
+    animateTurningLightsOn(this.pig.position(), this.pig.visibilityRange);
+    /*
     for (let i = 0; i < this.field.height; ++i)
       for (let j = 0; j < this.field.width; ++j) {
         this.field.cells[i][j].removeLayer('darkness');
         redrawCell(this.field.cells[i][j]);
       }
-    
+    */
   }
 }

@@ -27,8 +27,10 @@ class Editor {
     
     this.latestButton = null;
     this.latestButtonPosition = null;
-    this.latestWolf = null;
     
+    this.latestWolf = null;
+    this.latestWolfTrajectory = []; 
+
     this.updateCurrentTool();
   }
 
@@ -149,6 +151,13 @@ class Editor {
   }
 
   addSelectedItem(point) {
+    if (this.latestWolf !== null && this.currentItemType != 'wolf') {
+      this.latestWolf = null;
+      this.latestTrajectory = [];
+      this.level.wolves.pop();
+      this.completeFieldRedraw();
+    }
+
     switch (this.currentItemType) {
       case 'background': this.applyBackground(point); break;
       case 'staticItem': this.applyStaticItem(point); break;
@@ -158,14 +167,17 @@ class Editor {
   }
 
   finishWolf() {
-    this.latestWolf.trajectory = new Trajectory(this.latestWolf._position,
-      this.latestWolf.trajectory._trajectory);
+    if (this.latestWolf === null)
+      return;
+
+    let finalWolf = new Wolf(this.latestWolf.position(), this.latestWolfTrajectory);
+    this.level.wolves.push(finalWolf);
+
+    this.latestWolf = null;
+    this.latestWolfTrajectory = [];
 
     this.completeFieldRedraw();
     alert('WOLF SUCCESSFULLY CREATED');  
-
-    this.latestWolf = null;
-    this.latestWolfTrajectory = []; 
   }
 
   applyWolf(point) {
@@ -173,6 +185,7 @@ class Editor {
     
     if (this.currentItemName == 'clear') {
       this.latestWolf = null;
+      this.latestWolfTrajectory = [];
 
       let t = [];
 
@@ -190,17 +203,15 @@ class Editor {
 
     // we're editing his trajectory
     if (this.latestWolf !== null) {
-      this.latestWolf.trajectory._trajectory.push(point);
+      this.latestWolfTrajectory.push(point);
       this.completeFieldRedraw();
     }
     else {
-      let wolf = new Wolf(point, []);
-      curCell.addToLayer('unit', wolf);
-      this.level.wolves.push(wolf);
-      
-      this.latestWolf = wolf;
+      this.latestWolf = new Wolf(point, []);
+      this.latestWolfTrajectory = [];
     }
 
+    this.completeFieldRedraw();
     redrawCell(curCell);
   }
 
@@ -217,6 +228,12 @@ class Editor {
       curWolf.trajectory.addLayerToField(this.level.field);
     }
     
+    // latest wolf is just a point and a trajectory, we need to draw it by ourselves
+    if (this.latestWolf !== null) {
+      this.level.field.pointToCell(this.latestWolf.position()).addToLayer('unit', this.latestWolf);
+      this.latestWolf.trajectory.addLayerToField(this.level.field, this.latestWolfTrajectory);
+    }
+
     initialDraw();
   }
 }
