@@ -4,19 +4,13 @@ function $(id) { return document.getElementById(id); }
 
 function checkKey(e) {
   e = e || window.event;
-  /*let dir = keyToDirection(e.keyCode);
-  if (dir.direction != ''){
-    currentLevel.pig.tryMove(dir);
-   // ++globalSteps;
-   // $('steps-output').innerHTML = globalSteps;
-  }
- */
-
+ 
  // its 'q' for 'quit' from editing wolf's trajectory
- if (e.keyCode == 81)
-  editor.finishWolf();
+  if (e.keyCode == 81)
+    editor.finishWolf();
 }
 
+// need carrots for compatibility with other non-levels-editor modules
 var Carrots;
 var currentLevel;
 var editor;
@@ -27,7 +21,7 @@ function showField() {
     el.removeChild(el.firstChild);
   }
 
-  $('mainDiv').appendChild(currentLevel.field.table);
+  el.appendChild(currentLevel.field.table);
   initialDraw();
 }
 
@@ -65,7 +59,6 @@ function showJSON() {
 function loadFromJSON() {
   currentLevel.loadFromJSON($('JSONTextArea').value);
   editor = new Editor(currentLevel);
-  //alert('before showField');
   showField();
   alert('LOADED FROM JSON');
 }

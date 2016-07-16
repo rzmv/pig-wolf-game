@@ -47,11 +47,22 @@ function pointsDistance(p1, p2) {
     Math.abs(p1.col - p2.col));
 }
 
-function winLoseCheck() {
+function scoreFormula() {
+  //hyperbola
+  return Math.floor((currentLevel.maxPoints / (currentLevel.maxPoints - globalPoints + 1)) *
+    9.354 * globalPoints + (currentLevel.field.width * currentLevel.field.height / globalSteps) * globalPoints);
+}
+
+function loseCheck() {
   for (let i = 0; i < currentLevel.wolves.length; ++i) {
-    if (pointsDistance(currentLevel.pig.position(), currentLevel.wolves[i].position())     <= 0 ||
-       (pointsDistance(currentLevel.pig.prevPosition(), currentLevel.wolves[i].position()) <= 0 &&
-       pointsDistance(currentLevel.pig.position(), currentLevel.wolves[i].prevPosition())  <= 0))
+    let prevPig = currentLevel.pig.prevPosition();
+    let curPig = currentLevel.pig.position();
+
+    let prevWolf = currentLevel.wolves[i].prevPosition();
+    let curWolf = currentLevel.wolves[i].position();
+
+    if (pointsDistance(curPig, curWolf) == 0 ||
+      pointsDistance(prevPig, curWolf) == 0 && pointsDistance(curPig, prevWolf) == 0)
     {
       document.getElementById("lose").style="display:block";
       document.getElementById("background").style="display:block";
@@ -59,23 +70,33 @@ function winLoseCheck() {
       globalPoints = parseInt(document.getElementById("points-output").innerText);
       globalSteps  = parseInt(document.getElementById("steps-output").innerText);
       //hyperbola
-      let score = Math.floor((currentLevel.maxPoints / (currentLevel.maxPoints - globalPoints + 1)) * 9.354 * globalPoints + (currentLevel.field.width * currentLevel.field.height / globalSteps) * globalPoints);
+      let score = scoreFormula();
       score += ResultScore;
       document.getElementById("userScore").innerText = score;
       if (Username !== "" && UserResultID !== "-1") {
         document.getElementById("Username").value = Username;
       }
       ResultScore = 0;
+      return true;
     }
   }
-  if (globalPoints === Carrots){
+  return false;
+}
+
+function winCheck() {
+  if (globalPoints === Carrots) {
     document.getElementById("win").style="display:block";
     document.getElementById("background").style="display:block";
     globalPoints = parseInt(document.getElementById("points-output").innerText);
     globalSteps  = parseInt(document.getElementById("steps-output").innerText);
     //hyperbola
-    ResultScore += Math.floor((currentLevel.maxPoints / (currentLevel.maxPoints - globalPoints + 1)) * 9.354 * globalPoints + (currentLevel.field.width * currentLevel.field.height / globalSteps) * globalPoints);
-  }   
+    ResultScore += scoreFormula();
+  }
+}
+
+function winLoseCheck() {
+  if (!loseCheck())
+    winCheck();
 }
 
 function alertPoint(point) {

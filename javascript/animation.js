@@ -5,6 +5,8 @@ function getTrajectoryAddress(trajectory) {
 }
 
 function getBackgroundAddress(background) {
+  if (background == 'wood')
+    return 'images/wood_bg.jpg';
   return 'images/' + background + '.svg';
 }
 
@@ -31,28 +33,47 @@ function redrawCell(cell) {
   tableCell.innerHTML = cell.getLayersHTMLString();
 }
 
+// !!! meaning abandoned
+var leftCells = [];
+var visitedCells = [];
+
 function animateMovement(unit, func, direction) {
   let prev = unit.position();
   let cell = currentLevel.field.pointToCell(prev);
   cell.leave(unit);
-  redrawCell(cell);
-  
+  leftCells.push(cell);
+  //redrawCell(cell);
+
   // update unit's coordinates
   unit[func](direction);
  
   let cur = unit.position();
   cell = currentLevel.field.pointToCell(cur);
   cell.visit(unit);
-  redrawCell(cell);
+  visitedCells.push(cell);
+  //redrawCell(cell);
 
   if (!currentLevel.lights && unit.name == 'pig')
     redrawDarkness(prev, cur);
 }
 
 function movePlayer(direction) {
-  animateMovement(currentLevel.pig, 'move', direction);
+  leftCells = [];
+  visitedCells = [];
+
+  // first move wolves, then pig
   for (let i = 0; i < currentLevel.wolves.length; ++i)
     animateMovement(currentLevel.wolves[i], 'move');
+  
+  animateMovement(currentLevel.pig, 'move', direction);
+
+  for (let i = 0; i < leftCells.length; ++i) {
+    redrawCell(leftCells[i]);
+  }
+  for (let i = 0; i < visitedCells.length; ++i) {
+    redrawCell(visitedCells[i]);
+  }
+  
 }
 
 function initialDraw() {
@@ -65,8 +86,6 @@ function initialDraw() {
     for (let j = 0; j < currentLevel.field.width; ++j)
       redrawCell(currentLevel.field.pointToCell(Point(i, j)));
 }
-
-//getPointsFromRange(point, range)
 
 function addDarkness(point, range) {
   let arr = getPointsFromRange(point, range);

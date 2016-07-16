@@ -23,6 +23,8 @@ class Unit {
     let next = direction.nextPoint(this.position());
     if (currentLevel.field.freeCell(next)) {
       movePlayer(direction);
+      
+      // !!! move it to function in module like onload.js or smth like that
       ++globalSteps;
       document.getElementById('steps-output').innerHTML = globalSteps;
       winLoseCheck();

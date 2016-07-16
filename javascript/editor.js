@@ -114,7 +114,7 @@ class Editor {
       curCell.staticItems.push(curItem);        
       
       if (curName == 'button') {
-        this.latestButton = curCell;
+        this.latestButton = curItem;
         this.latestButtonPosition = point;
       }
 
@@ -144,7 +144,7 @@ class Editor {
 
     this.level.pig._position = newPoint;
 
-    oldCell.removeLayer('unit');
+    oldCell.removeLayer('unit', this.level.pig);
     newCell.addToLayer('unit', this.level.pig);
     redrawCell(oldCell);
     redrawCell(newCell);            
@@ -187,16 +187,15 @@ class Editor {
       this.latestWolf = null;
       this.latestWolfTrajectory = [];
 
-      let t = [];
-
-      for (let i = 0; i < this.level.wolves.length; ++i) {
+      // remove latest added to this cell wolf
+      for (let i = this.level.wolves.length - 1; i >= 0; --i) {
         let curWolf = this.level.wolves[i];
-        if (JSON.stringify(curWolf.position()) != JSON.stringify(point)) {
-          t.push(curWolf);
+        if (JSON.stringify(curWolf.position()) == JSON.stringify(point)) {
+          this.level.wolves.splice(i, 1);
+          break;
         }
       }
 
-      this.level.wolves = t;
       this.completeFieldRedraw();
       return;
     }
@@ -204,7 +203,6 @@ class Editor {
     // we're editing his trajectory
     if (this.latestWolf !== null) {
       this.latestWolfTrajectory.push(point);
-      this.completeFieldRedraw();
     }
     else {
       this.latestWolf = new Wolf(point, []);
@@ -212,7 +210,6 @@ class Editor {
     }
 
     this.completeFieldRedraw();
-    redrawCell(curCell);
   }
 
   completeFieldRedraw() {
@@ -220,7 +217,7 @@ class Editor {
       for (let j = 0; j < this.level.field.width; ++j) {
         let curCell = this.level.field.cells[i][j];
         curCell.layerTrajectory = [];
-        curCell.layerUnit = null;
+        curCell.layerUnit = [];
       }
     
     for (let i = 0; i < this.level.wolves.length; ++i) {
@@ -228,12 +225,12 @@ class Editor {
       curWolf.trajectory.addLayerToField(this.level.field);
     }
     
-    // latest wolf is just a point and a trajectory, we need to draw it by ourselves
+    // latestWolf isn't in array level.wolves, we need to draw it and his trajectory by ourselves
     if (this.latestWolf !== null) {
       this.level.field.pointToCell(this.latestWolf.position()).addToLayer('unit', this.latestWolf);
       this.latestWolf.trajectory.addLayerToField(this.level.field, this.latestWolfTrajectory);
     }
-
+    
     initialDraw();
   }
 }

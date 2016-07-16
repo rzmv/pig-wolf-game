@@ -5,7 +5,7 @@ class Cell {
     this.tableCell = tableCellAdress;
     this.addToLayer('background', background);
     this.layerTrajectory = [];
-    this.layerUnit = null;
+    this.layerUnit = [];
     this.staticItems = [];
     this.layerDarkness = '';
 
@@ -56,17 +56,24 @@ class Cell {
     switch (layerName) {
       case 'background': this.layerBackground = objectName; break;
       case 'trajectory': this.addTrajectory(objectName); break;
-      case 'unit': this.layerUnit = objectName; break;
+      case 'unit': this.layerUnit.push(objectName); break;
       case 'darkness': this.layerDarkness = objectName; break;
     } 
   }
 
-  removeLayer(layerName) {
+  removeLayer(layerName, unit) {
     switch (layerName) {
       case 'background': this.layerBackground = ''; break;
       case 'trajectory': this.layerTrajectory = []; break;
-      case 'unit': this.layerUnit = null; break;
       case 'darkness': this.layerDarkness = ''; break;
+      case 'unit': {
+        for (let i = 0; i < this.layerUnit.length; ++i)
+          if (this.layerUnit[i].name == unit.name) {
+            this.layerUnit.splice(i, 1);
+            break;
+          }
+        break;
+      }
     }
   }
 
@@ -85,7 +92,7 @@ class Cell {
   leave(unit) {
     if (unit !== null) {
       this.unitInfluence(unit);
-      this.removeLayer('unit');
+      this.removeLayer('unit', unit);
     }
   }
 
@@ -109,7 +116,7 @@ class Cell {
       ans += getHTMLImgByImage(this.staticItems[i].image, this.staticItems[i].className);
     }
 
-    let unitImg = (this.layerUnit !== null) ? this.layerUnit.image() : '';
+    let unitImg = (this.layerUnit.length) ? this.layerUnit[0].image() : '';
     ans += getHTMLImgByImage(unitImg, 'layer-unit');
 
     let darknessImg = getDarknessAddress(this.layerDarkness);

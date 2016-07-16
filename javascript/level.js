@@ -54,6 +54,11 @@ class Level {
         let curStaticItems = [];
         for (let z = 0; z < curCell.staticItems.length; ++z) {
           let curItem = curCell.staticItems[z];
+
+          //alert(curItem.name);
+          //if (curItem.name == 'button')
+          //  alertPoint(curItem.doorPosition);
+
           curStaticItems.push({'itemName':curItem.name, 'doorPosition':curItem.doorPosition});
         }
 
