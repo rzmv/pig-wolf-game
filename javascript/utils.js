@@ -84,7 +84,7 @@ function loseCheck() {
       return true;
     }
   }
-<<<<<<< HEAD
+
   return false;
 }
 
