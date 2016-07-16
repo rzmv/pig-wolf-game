@@ -19,10 +19,18 @@ function getDarknessAddress(darkness) {
 function getArrowAddress(arrow) {
   if (arrow === '')
     return '';
-  return 'images/arrow_' + arrow + '.svg';
+  
+  //return 'images/crossarrow_' + arrow + '.svg';
+
+  switch (arrow) {
+    case 'up': return 'images/wolf_ears.svg';
+    case 'left': return 'images/wolf_nose.svg';
+    case 'down': return 'images/wolf_teeth.svg';
+    case 'right': return 'images/wolf_nape.svg';
+  }
 }
 
-function getHTMLImgByImage(image, cssClass = '', priority = null) {
+function getHTMLImgByImage(image, cssClass = '') {
   if (image === '') {
     return '';
   }                                                   

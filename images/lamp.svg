@@ -5,14 +5,10 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="400"
-   height="400"
-   id="svg2998"
    version="1.1"
-   inkscape:version="0.48.5 r10040"
-   sodipodi:docname="black.svg">
+   id="svg2998"
+   height="400"
+   width="400">
   <metadata
      id="metadata3009">
     <rdf:RDF>
@@ -27,76 +23,51 @@
   </metadata>
   <defs
      id="defs3007" />
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1920"
-     inkscape:window-height="1028"
-     id="namedview3005"
-     showgrid="false"
-     inkscape:zoom="1.486692"
-     inkscape:cx="90.166915"
-     inkscape:cy="210.54004"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg2998" />
   <g
      id="g3000">
     <title
        id="title3002">Layer 1</title>
     <rect
-       fill="#000000"
-       stroke="#000000"
-       stroke-width="6"
-       stroke-dasharray="null"
-       stroke-linejoin="null"
-       stroke-linecap="null"
-       x="2.424988"
-       y="3.164001"
-       width="400"
+       id="svg_9"
        height="400"
-       id="svg_9" />
+       width="400"
+       y="3.164001"
+       x="2.424988"
+       stroke-linecap="null"
+       stroke-linejoin="null"
+       stroke-dasharray="null"
+       stroke-width="6"
+       stroke="#000000"
+       fill="#000000" />
   </g>
   <path
-     style="fill:#ffcc00"
-     d="m -0.23781213,203.18668 0,-202.85374302 202.61593213,0 202.61593,0 0,202.85374302 0,202.85375 -202.61593,0 -202.61593213,0 0,-202.85375 z"
      id="path3011"
-     inkscape:connector-curvature="0" />
+     d="m -0.23781213,203.18668 0,-202.85374302 202.61593213,0 202.61593,0 0,202.85374302 0,202.85375 -202.61593,0 -202.61593213,0 0,-202.85375 z"
+     style="fill:#ffcc00" />
   <g
-     id="g3035"
-     transform="matrix(1.7985934,0,0,1.1648392,-323.21108,-101.40155)">
+     transform="matrix(1.7985934,0,0,1.1648392,-323.21108,-101.40155)"
+     id="g3035">
     <title
        id="title3037">Layer 1</title>
     <path
-       stroke-miterlimit="4"
-       id="path4377"
+       style="fill:#ffff00;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-miterlimit:4"
        d="m 292.99912,94.120003 c -97.0936,-1.234726 -111.34894,90.695577 -109.55305,115.838827 1.80161,25.22293 9.03467,39.48688 33.22507,71.83804 18.63297,24.9188 26.93921,17.76297 26.93927,73.63404 0,8.08172 4.48993,16.16351 4.48993,16.16351 0,0 18.85748,17.95954 42.20483,17.06152 23.34739,-0.89794 44.89878,-15.26556 46.69477,-24.2453 1.7959,-8.97973 1.69931,-28.9779 8.08172,-52.98053 3.64399,-13.70397 47.11759,-52.82455 53.87857,-87.10366 7.15803,-36.29261 -7.96957,-128.971729 -105.96112,-130.206448 z"
-       inkscape:connector-curvature="0"
-       style="fill:#ffff00;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-miterlimit:4" />
+       id="path4377"
+       stroke-miterlimit="4" />
     <path
-       stroke-miterlimit="4"
-       id="path4379"
+       style="fill:#7f7f7f;fill-rule:evenodd;stroke:#000000;stroke-width:7.5;stroke-linejoin:round;stroke-miterlimit:4"
        d="m 332.64841,371.86084 c 0,0 -11.79605,21.62616 -43.25214,20.31543 -31.45612,-1.31067 -42.37836,-19.66003 -42.37836,-19.66003 0,0 -1.07815,4.2597 0.65534,8.95629 -1.21549,2.62128 -1.02045,6.71875 0.59912,10.26685 -1.25446,3.90179 -1.14844,7.8266 0.92999,10.7038 -0.57678,4.99164 -1.07666,7.51764 5.91355,14.50787 6.99023,6.99023 22.48431,14.10846 34.71725,13.23468 12.23291,-0.87378 37.89987,-5.31042 42.81525,-24.90271 0.99872,-3.98083 0,-6.5534 0,-6.5534 0,0 2.40295,-3.27668 0,-6.77179 1.96603,-4.15046 0.87378,-7.42707 -0.21845,-9.39313 1.96598,-2.83979 1.09223,-8.08252 0.21845,-10.70386 z"
-       inkscape:connector-curvature="0"
-       style="fill:#7f7f7f;fill-rule:evenodd;stroke:#000000;stroke-width:7.5;stroke-linejoin:round;stroke-miterlimit:4" />
+       id="path4379"
+       stroke-miterlimit="4" />
     <path
-       stroke-miterlimit="4"
-       id="path4383"
+       style="fill:#7f7f7f;fill-rule:evenodd;stroke:#000000;stroke-width:3.83124995;stroke-linejoin:round;stroke-miterlimit:4"
        d="m 247.49051,384.3783 c 0,0 16.95813,22.0473 40.4646,21.55944 17.64776,-0.36627 36.96646,-6.84246 45.60715,-20.84179"
-       inkscape:connector-curvature="0"
-       style="fill:#7f7f7f;fill-rule:evenodd;stroke:#000000;stroke-width:3.83124995;stroke-linejoin:round;stroke-miterlimit:4" />
+       id="path4383"
+       stroke-miterlimit="4" />
     <path
-       stroke-miterlimit="4"
-       id="path4385"
+       style="fill:#7f7f7f;fill-rule:evenodd;stroke:#000000;stroke-width:3.83124995;stroke-linejoin:round;stroke-miterlimit:4"
        d="m 249.13,395.31335 c 0,0 10.7143,23.05683 40.79835,23.00623 30.62286,-0.0525 42.76675,-22.40631 42.76675,-22.40631"
-       inkscape:connector-curvature="0"
-       style="fill:#7f7f7f;fill-rule:evenodd;stroke:#000000;stroke-width:3.83124995;stroke-linejoin:round;stroke-miterlimit:4" />
+       id="path4385"
+       stroke-miterlimit="4" />
   </g>
 </svg>
