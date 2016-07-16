@@ -190,7 +190,7 @@ class Editor {
       // remove latest added to this cell wolf
       for (let i = this.level.wolves.length - 1; i >= 0; --i) {
         let curWolf = this.level.wolves[i];
-        if (JSON.stringify(curWolf.position()) == JSON.stringify(point)) {
+        if (equalPoints(curWolf.position(), point)) {
           this.level.wolves.splice(i, 1);
           break;
         }

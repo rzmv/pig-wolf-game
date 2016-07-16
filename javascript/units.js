@@ -1,8 +1,4 @@
 'use strict';
-/*
-const utils = require('./utils');
-const Point = utils.Point;
-*/
 
 class Unit {
   constructor(position, name, image) {
@@ -53,6 +49,7 @@ class Trajectory {
     this._trajectory = trajectory || [];
     this._currentDirection = (this._trajectory.length > 1 ? 1 : 0);
     this._currentStep = this._getTrajectoryStep(position);    
+    this._isCycle = this._isTrajectoryCycle(this._trajectory);
     this._position = position;
 
     // need to rememeber for wolf.freeze
@@ -60,7 +57,7 @@ class Trajectory {
   }
   _getTrajectoryStep(position) {
     for (let i = 0; i < this._trajectory.length; ++i)
-      if (JSON.stringify(this._trajectory[i]) == JSON.stringify(position))
+      if (equalPoints(this._trajectory[i], position))
         return i;
     
     // we're not staying on the trajectory
@@ -68,16 +65,13 @@ class Trajectory {
     this._trajectory = [position];
     this._currentDirection = 0;
     return 0;
-    
-    //return -1;
+  }
+
+  _isTrajectoryCycle(trajectory) {
+    return trajectory.length > 1 && equalPoints(trajectory[0], trajectory[trajectory.length - 1]);
   }
 
   currentPosition() {
-    // we're not yet on the trajectory
-    // (we're building this trajectory in module Editor
-    //if (this._currentStep == -1)
-    //  return this._position;
-      
     return this._trajectory[this._currentStep];
   }
 
@@ -87,7 +81,15 @@ class Trajectory {
     if ((curStep + curDir == this._trajectory.length) ||
        (curStep + curDir < 0))
     {
-      this._currentDirection = -this._currentDirection;
+      if (this._isCycle) {
+        if (curStep + curDir == this._trajectory.length)
+          this._currentStep = 1;
+        else
+          this._currentStep = this._trajectory.length - 2;
+        return;
+      }
+      else
+        this._currentDirection = -this._currentDirection;
     }
     this._currentStep += this._currentDirection;
   }
@@ -134,8 +136,6 @@ class Wolf extends Unit {
     super(position, 'wolf', 'images/wolf.svg');
     this.frozenImg = 'images/blue_wolf.svg';
 
-    // alert('creating Wolf');
-
     this.trajectory = new Trajectory(position, trajectory);
     this.position = () => this.trajectory.currentPosition();
     this.influenceOnCell = 'toogleVisibility';
@@ -160,17 +160,3 @@ class Wolf extends Unit {
     this._currentImg = this.normalImg;
   }
 }
-
-// DEBUG
-/*
-let defaultPig = new Pig(Point(0, 0));
-console.log(defaultPig);
-
-console.log(new Pig(Point(2, 5), 50));
-
-let w = new Wolf(Point(100, 100), 2, [Point(100, 100), Point(100, 101)]);
-for (let i = 0; i < 5; ++i) {
-  console.log(w.position());
-  w.move();
-}
-*/
