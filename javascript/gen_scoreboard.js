@@ -8,6 +8,8 @@ window.onload = function() {
         console.log(usersScores[i].score);
         addTableRow(i + 1, usersScores[i].username, usersScores[i].score);
       }
+      $("#loadC").hide();
+      $("#table").show();
     });
   }
 }
