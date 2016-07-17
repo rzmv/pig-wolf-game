@@ -83,17 +83,12 @@ class Cell {
   }
 
   visit(unit) {
-    if (unit !== null) {
-      this.unitInfluence(unit);
-      this.addToLayer('unit', unit);
-    }
+    this.unitInfluence(unit);
+    this.addToLayer('unit', unit);
   }
 
   leave(unit) {
-    if (unit !== null) {
-      //this.unitInfluence(unit);
-      this.removeLayer('unit', unit);
-    }
+    this.removeLayer('unit', unit);
   }
 
   openDoor() {

@@ -39,7 +39,7 @@ function getHTMLImgByImage(image, cssClass = '') {
 
 function drawUnit(unit) {
   let cell = currentLevel.field.pointToCell(unit.position());
-  cell.addToLayer('unit', unit);
+  cell.visit(unit);
 }
 
 function redrawCell(cell) {
@@ -47,13 +47,15 @@ function redrawCell(cell) {
   tableCell.innerHTML = cell.getLayersHTMLString();
 }
 
+let cellsToRedraw = [];
+
 function animateMovement(unit, func, direction) {
   let prev = unit.position();
   let cell = currentLevel.field.pointToCell(prev);
   let lights = currentLevel.lights;
 
   cell.leave(unit);
-  redrawCell(cell);
+  cellsToRedraw.push(cell);
 
   // update unit's coordinates
   unit[func](direction);
@@ -61,18 +63,23 @@ function animateMovement(unit, func, direction) {
   let cur = unit.position();
   cell = currentLevel.field.pointToCell(cur);
   cell.visit(unit);
-  redrawCell(cell);
+  cellsToRedraw.push(cell);
 
   if (!lights && unit.name == 'pig')
     redrawDarkness(prev, cur);
 }
 
 function movePlayer(direction) {
+  cellsToRedraw = [];
+
   // first move wolves, then pig, this order is important for freezing wolves
   for (let i = 0; i < currentLevel.wolves.length; ++i)
     animateMovement(currentLevel.wolves[i], 'move');
   
   animateMovement(currentLevel.pig, 'move', direction);
+
+  for (let i = 0; i < cellsToRedraw.length; ++i)
+    redrawCell(cellsToRedraw[i]);
 }
 
 function initialDraw() {
