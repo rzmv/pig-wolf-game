@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   id="svg2"
+   preserveAspectRatio="xMidYMid meet"
+   height="451"
+   width="423">
+  <defs
+     id="defs25" />
+  <metadata
+     id="metadata4">Image by Paul Sherman
+Published by wpclipart.com
+License is Public Domain
+Created by potrace 1.12, written by Peter Selinger 2001-2015<rdf:RDF>
+  <cc:Work
+     rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type
+       rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+    <dc:title></dc:title>
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+  <g
+     id="g11">
+    <title
+       id="title13">Layer 1</title>
+    <g
+       fill="#000000"
+       transform="translate(0,451) scale(0.10000000149011612,-0.10000000149011612) "
+       id="svg_1">
+      <path
+         id="path4146"
+         d="m 1541.9336,2694.2382 c -2.7378,-5.254 -4.9628,-9.2597 -5.9375,-10.2344 -6,-6 -101.9883,-59.0078 -212.9883,-118.0078 -212,-111 -361.0039,-195.9961 -519.0039,-295.9961 l -66.11329,-41.3281 -173.02734,-583.9453 c 4.23687,-3.8913 7.82521,-8.3875 11.13281,-13.7305 27,-42 153.00391,-167.9961 229.00391,-230.9961 156,-128 411.00001,-271.9961 595.00001,-335.9961 l 80.9961,-29.0039 4.6875,-4.7266 c -31.6097,133.3014 -34.4621,208.4945 -57.9688,370.1563 -28.9777,126.8631 -23.5519,322.3275 -13.789,463.1445 l 61.0547,439.4336 66.9531,391.2305 z"
+         style="fill:#ff0000" />
+      <path
+         id="path4233"
+         d="m 385,2324.0038 c -99,0 -166.00391,-27.0039 -224.00391,-89.0039 -99.999998,-108 -73.999998,-286.9961 60,-415.9961 71,-68 190.00391,-132 279.00391,-150 27.27131,-5.3357 44.21467,-10.3775 56.30858,-17.9297 l 168.78907,569.6094 -17.08985,-10.6836 -66.01562,40.9961 c -89,53 -158.99218,74.0078 -256.99218,73.0078 z"
+         style="fill:#000000" />
+    </g>
+  </g>
+</svg>

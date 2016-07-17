@@ -110,6 +110,7 @@ class Level {
     if (this.lights)
       return;
 
+    this.pig.visibility = 0;
     this.lights = true;
     animateTurningLightsOn(this.pig.position(), this.pig.visibilityRange);
     /*

@@ -6,7 +6,7 @@ function getTrajectoryAddress(trajectory) {
 
 function getBackgroundAddress(background) {
   if (background == 'wood')
-    return 'images/wood_bg.jpg';
+    return 'images/wood.jpg';
   return 'images/' + background + '.svg';
 }
 
@@ -16,7 +16,21 @@ function getDarknessAddress(darkness) {
   return 'images/black.svg';
 }
 
-function getHTMLImgByImage(image, cssClass = '', priority = null) {
+function getArrowAddress(arrow) {
+  if (arrow === '')
+    return '';
+  
+  //return 'images/crossarrow_' + arrow + '.svg';
+
+  switch (arrow) {
+    case 'up': return 'images/wolf_ears.svg';
+    case 'left': return 'images/wolf_nose.svg';
+    case 'down': return 'images/wolf_teeth.svg';
+    case 'right': return 'images/wolf_nape.svg';
+  }
+}
+
+function getHTMLImgByImage(image, cssClass = '') {
   if (image === '') {
     return '';
   }                                                   
@@ -25,7 +39,7 @@ function getHTMLImgByImage(image, cssClass = '', priority = null) {
 
 function drawUnit(unit) {
   let cell = currentLevel.field.pointToCell(unit.position());
-  cell.addToLayer('unit', unit);
+  cell.visit(unit);
 }
 
 function redrawCell(cell) {
@@ -33,16 +47,15 @@ function redrawCell(cell) {
   tableCell.innerHTML = cell.getLayersHTMLString();
 }
 
-// !!! meaning abandoned
-var leftCells = [];
-var visitedCells = [];
+let cellsToRedraw = [];
 
 function animateMovement(unit, func, direction) {
   let prev = unit.position();
   let cell = currentLevel.field.pointToCell(prev);
+  let lights = currentLevel.lights;
+
   cell.leave(unit);
-  leftCells.push(cell);
-  //redrawCell(cell);
+  cellsToRedraw.push(cell);
 
   // update unit's coordinates
   unit[func](direction);
@@ -50,30 +63,23 @@ function animateMovement(unit, func, direction) {
   let cur = unit.position();
   cell = currentLevel.field.pointToCell(cur);
   cell.visit(unit);
-  visitedCells.push(cell);
-  //redrawCell(cell);
+  cellsToRedraw.push(cell);
 
-  if (!currentLevel.lights && unit.name == 'pig')
+  if (!lights && unit.name == 'pig')
     redrawDarkness(prev, cur);
 }
 
 function movePlayer(direction) {
-  leftCells = [];
-  visitedCells = [];
+  cellsToRedraw = [];
 
-  // first move wolves, then pig
+  // first move wolves, then pig, this order is important for freezing wolves
   for (let i = 0; i < currentLevel.wolves.length; ++i)
     animateMovement(currentLevel.wolves[i], 'move');
   
   animateMovement(currentLevel.pig, 'move', direction);
 
-  for (let i = 0; i < leftCells.length; ++i) {
-    redrawCell(leftCells[i]);
-  }
-  for (let i = 0; i < visitedCells.length; ++i) {
-    redrawCell(visitedCells[i]);
-  }
-  
+  for (let i = 0; i < cellsToRedraw.length; ++i)
+    redrawCell(cellsToRedraw[i]);
 }
 
 function initialDraw() {
@@ -119,10 +125,18 @@ function animateTurningLightsOff(point, range)
   let arr = getPointsFromRange(point, 1000);
   
   let rec = function (i) {
+
+    // point distance to the point with Black-Button
     if (i >= 0 && pointsDistance(point, arr[i]) > range) {
-      let curCell = currentLevel.field.pointToCell(arr[i]);
-      curCell.addToLayer('darkness', 'darkness');
-      redrawCell(curCell);
+      
+      // point distance to the current pig's position
+      // need this check because pig can move, while we are drawing darkness 
+      if (pointsDistance(currentLevel.pig.position(), arr[i]) > range) {
+        let curCell = currentLevel.field.pointToCell(arr[i]);
+        curCell.addToLayer('darkness', 'darkness');
+        redrawCell(curCell);
+      }
+
       setTimeout(() => rec(i - 1), 10);
     }
   }
@@ -136,7 +150,7 @@ function animateTurningLightsOn(point, range)
   
   let i;
   for (i = 0; i < arr.length; ++i)
-    if (pointsDistance(point, arr[i]) > range)
+    if (pointsDistance(point, arr[i]) > range - 1)
       break;
 
   let rec = function (i) {

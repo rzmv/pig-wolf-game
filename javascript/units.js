@@ -1,8 +1,4 @@
 'use strict';
-/*
-const utils = require('./utils');
-const Point = utils.Point;
-*/
 
 class Unit {
   constructor(position, name, image) {
@@ -53,6 +49,7 @@ class Trajectory {
     this._trajectory = trajectory || [];
     this._currentDirection = (this._trajectory.length > 1 ? 1 : 0);
     this._currentStep = this._getTrajectoryStep(position);    
+    this._isCycle = this._isTrajectoryCycle(this._trajectory);
     this._position = position;
 
     // need to rememeber for wolf.freeze
@@ -60,7 +57,7 @@ class Trajectory {
   }
   _getTrajectoryStep(position) {
     for (let i = 0; i < this._trajectory.length; ++i)
-      if (JSON.stringify(this._trajectory[i]) == JSON.stringify(position))
+      if (equalPoints(this._trajectory[i], position))
         return i;
     
     // we're not staying on the trajectory
@@ -68,28 +65,52 @@ class Trajectory {
     this._trajectory = [position];
     this._currentDirection = 0;
     return 0;
-    
-    //return -1;
+  }
+
+  _isTrajectoryCycle(trajectory) {
+    return trajectory.length > 1 && equalPoints(trajectory[0], trajectory[trajectory.length - 1]);
   }
 
   currentPosition() {
-    // we're not yet on the trajectory
-    // (we're building this trajectory in module Editor
-    //if (this._currentStep == -1)
-    //  return this._position;
-      
     return this._trajectory[this._currentStep];
   }
 
-  move() {
+  // return and object {'step':value, 'direction':value}
+  nextStepAndDirection() {
     let curStep = this._currentStep;
     let curDir = this._currentDirection;
+    
+    let nextStep = curStep;
+    let nextDir = curDir;
+
     if ((curStep + curDir == this._trajectory.length) ||
        (curStep + curDir < 0))
     {
-      this._currentDirection = -this._currentDirection;
+      if (this._isCycle) {
+        if (curStep + curDir == this._trajectory.length)
+          nextStep = 1;
+        else
+          nextStep = this._trajectory.length - 2;
+        return {'step':nextStep, 'direction':nextDir};
+      }
+      else
+        nextDir = -this._currentDirection;
     }
-    this._currentStep += this._currentDirection;
+    nextStep += nextDir;
+    return {'step':nextStep, 'direction':nextDir};  
+  }
+
+  move() {
+    let t = this.nextStepAndDirection();
+    this._currentStep = t.step;
+    this._currentDirection = t.direction;  
+  }
+
+  directionToNextPoint() {
+    let t = this.nextStepAndDirection();
+    let curPoint = this._trajectory[this._currentStep];
+    let nextPoint = this._trajectory[t.step];
+    return this.shiftToDirName(pointsDiff(nextPoint, curPoint));
   }
 
   shiftToDirName(shift) {
@@ -98,6 +119,7 @@ class Trajectory {
       case '1 0': return 'down'; break;
       case '0 -1': return 'left'; break;
       case '0 1': return 'right'; break;
+      case '0 0': return ''; break;
     }
   }
 
@@ -108,8 +130,8 @@ class Trajectory {
     for (let i = 1; i < traj.length; ++i) {
       let prev = traj[i - 1];
       let cur = traj[i];
-      let prevLine = this.shiftToDirName(Point(cur.row - prev.row, cur.col - prev.col));
-      let curLine = this.shiftToDirName(Point(prev.row - cur.row, prev.col - cur.col));
+      let prevLine = this.shiftToDirName(pointsDiff(cur, prev));
+      let curLine = this.shiftToDirName(pointsDiff(prev, cur));
             
       field.pointToCell(prev).addToLayer('trajectory', prevLine);
       field.pointToCell(cur).addToLayer('trajectory', curLine);  
@@ -133,8 +155,6 @@ class Wolf extends Unit {
   constructor(position, trajectory = []) {
     super(position, 'wolf', 'images/wolf.svg');
     this.frozenImg = 'images/blue_wolf.svg';
-
-    // alert('creating Wolf');
 
     this.trajectory = new Trajectory(position, trajectory);
     this.position = () => this.trajectory.currentPosition();
@@ -160,17 +180,3 @@ class Wolf extends Unit {
     this._currentImg = this.normalImg;
   }
 }
-
-// DEBUG
-/*
-let defaultPig = new Pig(Point(0, 0));
-console.log(defaultPig);
-
-console.log(new Pig(Point(2, 5), 50));
-
-let w = new Wolf(Point(100, 100), 2, [Point(100, 100), Point(100, 101)]);
-for (let i = 0; i < 5; ++i) {
-  console.log(w.position());
-  w.move();
-}
-*/
