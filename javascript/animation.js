@@ -6,7 +6,7 @@ function getTrajectoryAddress(trajectory) {
 
 function getBackgroundAddress(background) {
   if (background == 'wood')
-    return 'images/wood_bg.jpg';
+    return 'images/wood.jpg';
   return 'images/' + background + '.svg';
 }
 
