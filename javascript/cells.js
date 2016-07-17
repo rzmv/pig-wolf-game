@@ -91,7 +91,7 @@ class Cell {
 
   leave(unit) {
     if (unit !== null) {
-      this.unitInfluence(unit);
+      //this.unitInfluence(unit);
       this.removeLayer('unit', unit);
     }
   }
