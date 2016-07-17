@@ -102,6 +102,13 @@ body {
   z-index: 34;
 }
 
+.layer-item-door {
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 35;
+}
+
 .layer-unit {  
   top: 0;
   left: 0;

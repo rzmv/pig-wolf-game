@@ -44,6 +44,7 @@ class ItemWall extends StaticItem {
 
   // !!! wolf can pass through wall
   // maybe later we need to turn-off this ability
+  // on the other hand it's all on level-designer desires
 }
 
 class ItemFood extends StaticItem {
@@ -59,7 +60,7 @@ class ItemFood extends StaticItem {
 
 class ItemDoor extends StaticItem {
   constructor() {
-    super('door', 'images/door.svg', 'layer-item-wall', false);
+    super('door', 'images/door.svg', 'layer-item-door', false);
   }
 }
 
