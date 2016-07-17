@@ -128,3 +128,7 @@
   align-items: center;
   justify-content: center;
 }
+
+.noShow {
+  display: none;
+}
