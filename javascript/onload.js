@@ -14,8 +14,6 @@ function checkKey(e) {
 }
 
 window.onload = function(){
-
-
   for(let i = 0; i < LEVELS.length; i++){
      let curBtn = document.createElement('button');
      curBtn.onclick = () => level(i);
@@ -34,11 +32,6 @@ function level(index) {
   $("#levelDiv").hide();
   $("#gameDiv").show();
   $(".centerDiv").hide();
-  /*document.getElementById("levels").style="display:none";
-  document.getElementById("background").style="display:none";*/
-/*  document.getElementById("levels").style="display:none";
-  document.getElementById("background").style="display:none";
-  document.getElementById("win").style="display:none";*/
 
   document.getElementById('level').onclick = () => level(index);
   document.getElementById('nextlevel').onclick = () => level(index + 1);
@@ -67,26 +60,15 @@ function goToLevels() {
 }
 
 function winToMenu() {
- /* document.getElementById("win").style="display:none";
-  document.getElementById("menu").style="display:block";*/
   $("#win").hide();
   $("#levelDiv").show();   
 }
 
 function loseToMenu() {
-  /*document.getElementById("lose").style="display:none";
-  document.getElementById("menu").style="display:block";*/
   $("#scoreDiv").hide();
   $("#levelDiv").show();
-  alert("ww");
 }
   
-
-function levelToMenu() {
-  document.getElementById("levels").style="display:none";
-  document.getElementById("menu").style="display:block";
-}
-
 function menuToScoreboard() {
   location.href="scoreboard.html";
 }

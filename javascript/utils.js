@@ -64,8 +64,6 @@ function loseCheck() {
     if (pointsDistance(curPig, curWolf) == 0 ||
       pointsDistance(prevPig, curWolf) == 0 && pointsDistance(curPig, prevWolf) == 0)
     {
-/*      document.getElementById("lose").style="display:block";
-      document.getElementById("background").style="display:block";*/
       $("#gameDiv").hide();
       $(".centerDiv").show();
       $("#scoreDiv").show();
