@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
     <script src="./javascript/gen_scoreboard.js"></script>
     <script src="./javascript/db.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script>
       var config = {
         apiKey: "AIzaSyBAjZ13FHcaqIGVjrbTDTZb1JV5crYKtt4",
@@ -29,17 +30,23 @@
       </div>
     </div>
 
-    <div>
-      <nav>
-        <div class="nav-wrapper">
-          <a href="" class="brand-logo center">Pig and wolf</a>
-          <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a onclick="toLevel()">Levels</a></li>
-            <li><a href=".\scoreboard.html">Scoreboard</a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="" class="brand-logo center">Pig and wolf</a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li>
+            <div class="github-button">
+              <a aria-label="Star 7cats/pig-wolf-game on GitHub" data-count-aria-label="# stargazers on GitHub" data-count-api="/repos/7cats/pig-wolf-game#stargazers_count" data-count-href="/7cats/pig-wolf-game/stargazers" data-style="mega" data-icon="octicon-star" href="https://github.com/7cats/pig-wolf-game" class="github-button github-star">Star</a>
+            </div>
+          </li>
+          <li><a onclick="toLevel()">Levels</a></li>
+          <li><a href=".\scoreboard.html">Scoreboard</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+          <li><a class="signIn">Sign in</a></li>
+        </ul>
+      </div>
+    </nav>
 
     <p id="scoreText">Scoreboard:</p>
     <div class="centerDivT">

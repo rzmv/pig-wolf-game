@@ -10,6 +10,7 @@
   <script src="./javascript/db.js"></script>
   <script src="./javascript/units.js"></script>
   <script src="./javascript/onload.js"></script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>  
   <!-- Compiled and minified CSS -->
@@ -107,18 +108,24 @@
       </div>
     </div>
   </div>
-
-  <div>   
-    <nav>
-      <div class="nav-wrapper">
-        <a href="" class="brand-logo center">Pig and wolf</a>
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
-          <li><a onclick="toLevel()">Levels</a></li>
-          <li><a href=".\scoreboard.html">Scoreboard</a></li>
-        </ul>
-      </div>
-    </nav>
-  </div>    
+  
+  <nav>
+    <div class="nav-wrapper">
+      <a href="" class="brand-logo center">Pig and wolf</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li>
+          <div class="github-button">
+            <a aria-label="Star 7cats/pig-wolf-game on GitHub" data-count-aria-label="# stargazers on GitHub" data-count-api="/repos/7cats/pig-wolf-game#stargazers_count" data-count-href="/7cats/pig-wolf-game/stargazers" data-style="mega" data-icon="octicon-star" href="https://github.com/7cats/pig-wolf-game" class="github-button left">Star</a>
+          </div>
+        </li>
+        <li><a onclick="toLevel()">Levels</a></li>
+        <li><a href=".\scoreboard.html">Scoreboard</a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a class="signIn">Sign in</a></li>
+      </ul>
+    </div>
+  </nav>
     
   <div id="gameDiv">
     <div class = "Points">
@@ -128,6 +135,5 @@
     <div id="mainDiv" class="div-table">
     </div>
   </div>
-  <div>
 </body>
 </html>

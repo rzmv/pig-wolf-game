@@ -366,3 +366,22 @@ p1 {
   text-transform: uppercase;
   font-weight: 600;
 }
+
+.github-button {
+  height: 64px;
+  padding: 0 15px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.github-button iframe {
+  display: block;
+}
+
+.signIn {
+  margin-right: 20px;
+}
+
+.left {
+  margin-left: 20px;
+}
