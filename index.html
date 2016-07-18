@@ -1,6 +1,7 @@
 <!doctype html5>
 <html>
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="./levels/LEVELS.js"></script>
   <script src="./javascript/level.js"></script>
   <script src="./javascript/static_items.js"></script>
@@ -10,8 +11,8 @@
   <script src="./javascript/db.js"></script>
   <script src="./javascript/units.js"></script>
   <script src="./javascript/onload.js"></script>
+  <script src="./javascript/navbar_signin.js"></script>
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>  
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
@@ -122,11 +123,20 @@
         <li><a href=".\scoreboard.html">Scoreboard</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
-        <li><a class="signIn">Sign in</a></li>
+        <li><a id="signIn" class="signIn">Sign in</a></li>
       </ul>
     </div>
   </nav>
     
+  <div id="signInSN" class="signInTab noShow">
+    <div class="signInIco">
+      <img id="gmail" class="signInIco" src=".\images\gmail.svg">
+    </div>
+    <div class="signInIco">
+      <img id="ghub" class="signInIco" src=".\images\github.svg">
+    </div>
+  </div>
+
   <div id="gameDiv">
     <div class = "Points">
       Carrots:<p1 id="points-output"> 0 </p1>

@@ -385,3 +385,24 @@ p1 {
 .left {
   margin-left: 20px;
 }
+
+.signInTab {
+  right: 0;
+  text-align: center;
+  height: 11%;
+  width: 15%;
+  border: 1px solid #ee6e73;
+  position:absolute;
+  overflow: hidden;
+}
+
+.signInIco {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  padding: 12px;
+}
+
+.noShow {
+  display: none;
+}

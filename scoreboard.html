@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
     <script src="./javascript/gen_scoreboard.js"></script>
     <script src="./javascript/db.js"></script>
+    <script src="./javascript/navbar_signin.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script>
       var config = {
@@ -43,10 +44,19 @@
           <li><a href=".\scoreboard.html">Scoreboard</a></li>
         </ul>
         <ul class="right hide-on-med-and-down">
-          <li><a class="signIn">Sign in</a></li>
+          <li><a id="signIn" class="signIn">Sign in</a></li>
         </ul>
       </div>
     </nav>
+
+    <div id="signInSN" class="signInTab noShow">
+      <div class="signInIco">
+       <img id="gmail" class="signInIco" src=".\images\gmail.svg">
+      </div>
+      <div class="signInIco">
+       <img id="ghub" class="signInIco" src=".\images\github.svg">
+      </div>
+    </div>
 
     <p id="scoreText">Scoreboard:</p>
     <div class="centerDivT">
