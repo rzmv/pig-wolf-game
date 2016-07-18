@@ -109,7 +109,7 @@ class ItemFire extends StaticItem {
 
 class ItemBlackButton extends StaticItem {
   constructor() {
-    super('blackButton', 'images/black.svg', 'layer-item-map');
+    super('blackButton', 'images/black-marble.jpg', 'layer-item-map');
     this.visibilityRange = 1;
   }
 

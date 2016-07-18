@@ -10,31 +10,30 @@
   <script src="./javascript/editor.js"></script>
   <script src="./javascript/editor_onload.js"></script>
   <link rel=stylesheet href="stylesheet.css">
+  <link rel=stylesheet href="editor_stylesheet.css">
 </head>
-
 <body>
-  <div id = "control-panel" align = "left">
-    <input id = "fieldHeight"> Height <br>
-    <input id = "fieldWidth"> Width <br>
-    <input id = "fieldBackground"> Default background <br>
-    <button id = "buttonGenerate" onclick = "generateField()"> Generate field </button>
+  <div id="control-panel" class="control-panel">
+    <input id="fieldHeight" type="number"> Height <br>
+    <input id="fieldWidth" type="number"> Width <br>
+    <select id="fieldBackground"> Background </select> <br>
+    <button id="buttonGenerate" onclick="generateField()"> Generate field </button>
   </div>
   
-  <div id = "JSON-panel" style = "position: absolute; top: 5px; left:50%">
-    <button id = "buttonCompleteRedraw" align = "right"> Complete redraw </button>
-    <button id = "buttonShowJSON">  Show JSON </button>
-    <button id = "buttonLoadFromJSON"> Load from JSON </button>
+  <div class="JSON-buttons">
+  <!--  <button id = "buttonCompleteRedraw" align = "right"> Complete redraw </button>
+  -->
+    <button id="buttonShowJSON">  Show JSON </button>
+    <button id="buttonLoadFromJSON"> Load from JSON </button>
   </div>
 
-  <h2 id = "currentTool" align = "center">  </h2>
-
-  <div id = "tools-panel" align = "center">  
+  <div id="tools-panel" class="tools-panel">  
   </div>
 
-  <div id="mainDiv" class="div-table" align = "center">
+  <div id="mainDiv" class="div-table editor-table" align = "center">
   </div>
 
-  <textarea id = "JSONTextArea" rows = "40" cols = "80"></textarea>
+  <br><br><textarea id="JSONTextArea" rows="40" cols="80"></textarea>
 
 </body>
 </html>
