@@ -10,7 +10,7 @@ function checkKey(e) {
     editor.finishWolf();
 }
 
-// need carrots for compatibility with other non-levels-editor modules
+// need carrots for compatibility with other non-levelEditor modules
 var Carrots;
 var currentLevel;
 var editor;
@@ -42,6 +42,7 @@ window.onload = function() {
   //$('buttonCompleteRedraw').onclick = () => editor.completeFieldRedraw(); 
   $('buttonShowJSON').setAttribute('onClick', 'showJSON()');
   $('buttonLoadFromJSON').setAttribute('onClick', 'loadFromJSON()');
+  
   document.onkeydown = checkKey;
 }
 

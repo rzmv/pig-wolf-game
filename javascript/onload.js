@@ -13,8 +13,7 @@ function checkKey(e) {
     currentLevel.pig.tryMove(dir);
 }
 
-window.onload = function(){
-
+window.onload = function() {
 
   for(let i = 0; i < LEVELS.length; i++){
      let curBtn = document.createElement('button');

@@ -30,15 +30,16 @@ class Level {
       this.wolves[i].addTrajectoryLayerToField(this.field);
   }
   
+  
   loadFromJSON(JSONString) {
     let lev = JSON.parse(JSONString);
-    this.lights = lev.lights;
+    this.lights = true;
     
-    this.pig = new Pig(lev.pig._position);
+    this.pig = new Pig(lev.pigPosition);
     
-    this.wolves = [];
-    for (let i = 0; i < lev.wolves.length; ++i) {
-      let curTraj = lev.wolves[i].trajectory;
+    this.wolves = [];       
+    for (let i = 0; i < lev.wolvesTrajectories.length; ++i) {
+      let curTraj = lev.wolvesTrajectories[i];
 
       let curStep = curTraj._currentStep;
       this.wolves.push(new Wolf(curTraj._trajectory[curStep], curTraj._trajectory));
@@ -49,17 +50,16 @@ class Level {
     for (let i = 0; i < lev.field.height; ++i)
       for (let j = 0; j < lev.field.width; ++j) {
         let curCell = lev.field.cells[i][j];
-        let curBackground = curCell.layerBackground;
+        
+        // B for background
+        let curBackground = curCell.B;
 
         let curStaticItems = [];
-        for (let z = 0; z < curCell.staticItems.length; ++z) {
-          let curItem = curCell.staticItems[z];
+        for (let z = 0; z < curCell.I.length; ++z) {
+          // I for staticItems
+          let curItem = curCell.I[z];
 
-          //alert(curItem.name);
-          //if (curItem.name == 'button')
-          //  alertPoint(curItem.doorPosition);
-
-          curStaticItems.push({'itemName':curItem.name, 'doorPosition':curItem.doorPosition});
+          curStaticItems.push({'itemName':curItem.N, 'doorPosition':curItem.P});
         }
 
         this.field.changeCell(Point(i, j), curBackground, curStaticItems);
@@ -69,11 +69,39 @@ class Level {
   }
 
   saveToJSON() {
+    let wolvesTrajectories = [];
+    for (let i = 0; i < this.wolves.length; ++i) {
+      wolvesTrajectories.push(this.wolves[i].trajectory);  
+    }
+    
+    let fieldToSave = {};
+    fieldToSave.height = this.field.height;
+    fieldToSave.width = this.field.width;
+    fieldToSave.cells = [];
+
+    for (let i = 0; i < fieldToSave.height; ++i) {
+      let curRow = [];
+      for (let j = 0; j < fieldToSave.width; ++j) {
+        let curCol = {};
+        curCol.B = this.field.cells[i][j].layerBackground;
+        
+        // I for staticItems
+        curCol.I = [];
+
+        for (let z = 0; z < this.field.cells[i][j].staticItems.length; ++z) {
+          let curItem = this.field.cells[i][j].staticItems[z];
+          curCol.I.push({'N':curItem.name, 'P':curItem.doorPosition});
+        }
+
+        curRow.push(curCol);
+      }
+      fieldToSave.cells.push(curRow);
+    }
+
     let lev = {
-      'field': this.field,
-      'pig': this.pig,
-      'wolves': this.wolves,
-      'lights': true,
+      'field': fieldToSave,
+      'pigPosition': this.pig.position(),
+      'wolvesTrajectories': wolvesTrajectories,
     };
     
     let JSONString = JSON.stringify(lev);
@@ -97,6 +125,8 @@ class Level {
     this.pig.visibilityRange = visibilityRange;
     this.lights = false;  
     animateTurningLightsOff(this.pig.position(), this.pig.visibilityRange);
+    
+    // turn off instantly
     /*
     for (let i = 0; i < this.field.height; ++i)
       for (let j = 0; j < this.field.width; ++j) {
@@ -113,6 +143,8 @@ class Level {
     this.pig.visibility = 0;
     this.lights = true;
     animateTurningLightsOn(this.pig.position(), this.pig.visibilityRange);
+    
+    // turn on instantly
     /*
     for (let i = 0; i < this.field.height; ++i)
       for (let j = 0; j < this.field.width; ++j) {
