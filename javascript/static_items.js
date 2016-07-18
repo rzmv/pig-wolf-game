@@ -39,11 +39,12 @@ class ItemEmpty extends StaticItem {
 
 class ItemWall extends StaticItem {
   constructor() {
-    super('wall', 'images/wall.svg' , 'layer-item-wall', false);
+    super('wall', 'images/brick-tile-150-sew.jpg' , 'layer-item-wall', false);
   }
 
   // !!! wolf can pass through wall
   // maybe later we need to turn-off this ability
+  // on the other hand it's all on level-designer desires
 }
 
 class ItemFood extends StaticItem {
@@ -59,7 +60,7 @@ class ItemFood extends StaticItem {
 
 class ItemDoor extends StaticItem {
   constructor() {
-    super('door', 'images/door.svg', 'layer-item-wall', false);
+    super('door', 'images/door.svg', 'layer-item-door', false);
   }
 }
 
@@ -86,7 +87,7 @@ class ItemButton extends StaticItem {
 
 class ItemSnowflake extends StaticItem {
   constructor() {
-    super('snowflake', 'images/snowflake.svg', 'layer-item-wolves');
+    super('snowflake', 'images/snowflake.svg', 'layer-item-fire-snow');
   }
 
   nextState() {
@@ -97,7 +98,7 @@ class ItemSnowflake extends StaticItem {
 
 class ItemFire extends StaticItem {
   constructor() {
-    super('fire', 'images/fire.svg', 'layer-item-wolves');
+    super('fire', 'images/fire.svg', 'layer-item-fire-snow');
   }
 
   nextState() {

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="423"
+   height="451"
+   preserveAspectRatio="xMidYMid meet"
+   id="svg2"
+   version="1.1">
+  <defs
+     id="defs25" />
+  <metadata
+     id="metadata4">Image by Paul Sherman
+Published by wpclipart.com
+License is Public Domain
+Created by potrace 1.12, written by Peter Selinger 2001-2015<rdf:RDF>
+  <cc:Work
+     rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type
+       rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+    <dc:title></dc:title>
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+  <g
+     style="fill:#ff0000;fill-opacity:1"
+     id="g11">
+    <title
+       id="title13">Layer 1</title>
+    <g
+       style="fill:#ff0000;fill-opacity:1"
+       id="svg_1"
+       transform="translate(0,451) scale(0.10000000149011612,-0.10000000149011612) "
+       fill="#000000">
+      <path
+         style="fill:#ff0000;fill-opacity:1"
+         d="m 2417.0703,4380.5272 c -10.406,0.3948 -23.5,-11.082 -44.0625,-32.5195 -54,-57 -107.0078,-137.0078 -193.0078,-293.0078 -137,-248 -376,-756 -550,-1165 -22.3684,-52.0309 -43.6128,-100.3274 -60.4102,-137.3438 198.2583,86.3107 438.1907,141.3547 642.3047,176.4258 120.977,20.7865 228.9584,34.3585 308.1055,42.8907 l 0,356.0351 c 0,525 -21.9961,853.9883 -65.9961,987.9883 -14.625,43.875 -23.5544,64.0237 -36.9336,64.5312 z"
+         id="path4180" />
+      <path
+         style="fill:#ff0000;fill-opacity:1"
+         d="M 3866.6406,4118.5155 C 3751.5106,4123.8202 3483,3769.5312 3105,3109.9999 c -45.4093,-80.1758 -85.3255,-149.0912 -105.957,-184.0625 163.9951,-19.3355 329.1636,-54.4076 493.5365,-118.3695 150.1942,-77.8403 268.3302,-135.4113 365.7213,-213.2516 l 18.6914,165.6836 c 37,333 54,565 60,825 8,348 -14,525.0078 -65,533.0078 -1.75,0.2656 -3.5241,0.4236 -5.3516,0.5078 z"
+         id="path4178" />
+    </g>
+  </g>
+</svg>

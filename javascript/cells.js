@@ -83,17 +83,12 @@ class Cell {
   }
 
   visit(unit) {
-    if (unit !== null) {
-      this.unitInfluence(unit);
-      this.addToLayer('unit', unit);
-    }
+    this.unitInfluence(unit);
+    this.addToLayer('unit', unit);
   }
 
   leave(unit) {
-    if (unit !== null) {
-      this.unitInfluence(unit);
-      this.removeLayer('unit', unit);
-    }
+    this.removeLayer('unit', unit);
   }
 
   openDoor() {
@@ -118,6 +113,13 @@ class Cell {
 
     let unitImg = (this.layerUnit.length) ? this.layerUnit[0].image() : '';
     ans += getHTMLImgByImage(unitImg, 'layer-unit');
+    
+    // add arrows for wolves
+    for (let i = 0; i < this.layerUnit.length; ++i)
+      if (this.layerUnit[i].name == 'wolf') {
+        let img = getArrowAddress(this.layerUnit[i].trajectory.directionToNextPoint());
+        ans += getHTMLImgByImage(img, 'layer-arrow');
+      }
 
     let darknessImg = getDarknessAddress(this.layerDarkness);
     ans += getHTMLImgByImage(darknessImg, 'layer-darkness');
