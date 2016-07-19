@@ -416,3 +416,7 @@ p1 {
   position:absolute;
   overflow: hidden;
 }
+
+.centerD {
+  text-align: center;
+}

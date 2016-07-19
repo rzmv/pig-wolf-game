@@ -70,20 +70,15 @@
       <div>
         <div>
           <p> Score:</p>
-          <p id="userScore"></p>
+          <p class="userScore"></p>
         </div>
         <div>
-          <p> User name:</p>
-          <input id="username" type="text"> 
-          <div>
-            <button id = "saveLoseRes" onclick = submitResult() class="btn waves-effect waves-light">
-              Submit
+          <div class="centerD">
+            <button id="level" class="btn waves-effect waves-light">
+              Reload
             </button>
             <button id= "returnToMenu" onclick = "loseToMenu()" class="btn waves-effect waves-light">
               Menu
-            </button>
-            <button id="level" class="btn waves-effect waves-light">
-              Reload
             </button>
           </div>
         </div>
@@ -95,12 +90,10 @@
       <div>
         <div>
           <p> Score:</p>
-          <p id="userScore"></p>
+          <p class="userScore"></p>
         </div>
         <div>
-          <p> User name:</p>
-          <input id="username" type="text">        
-          <div>
+          <div class="centerD">
             <button id = "nextlevel"  class="btn waves-effect waves-light">
               Next Level
             </button>
@@ -119,8 +112,8 @@
             <a aria-label="Star 7cats/pig-wolf-game on GitHub" data-count-aria-label="# stargazers on GitHub" data-count-api="/repos/7cats/pig-wolf-game#stargazers_count" data-count-href="/7cats/pig-wolf-game/stargazers" data-style="mega" data-icon="octicon-star" href="https://github.com/7cats/pig-wolf-game" class="github-button github-star">Star</a>
           </div>
         </li>
-        <li><a onclick="toLevel()">Levels</a></li>
-        <li><a href=".\scoreboard.html">Scoreboard</a></li>
+        <li><a onclick="toLevel()">Menu</a></li>
+        <li><a href=".\scoreboard.html">Leaderboard</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
         <li><a id="userSettings" class="signIn noShow"></a></li>
