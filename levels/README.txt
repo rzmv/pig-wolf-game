@@ -1,3 +1,11 @@
+Level-editor
+To create wolf, click on the field, there it'll appear. To create trajectory for him click
+consequently on the cells, with common side. At the end press key 'q', there will be
+a message "wolf created".
+
+When you are playing in Level-editor, to return to initial state press the key 'i'.
+You can stay at place by pressing 'z'.
+
 All levels are stored in one array in file LEVELS.js
 You may create your own level in Level-Editor
 After you created a JSON-file with your level you may add it to the LEVELS-array
