@@ -66,6 +66,7 @@ function loseCheck() {
     {
       $("#gameDiv").hide();
       $(".centerDiv").show();
+      $("#win").hide();
       $("#scoreDiv").show();
 
       globalPoints = parseInt(document.getElementById("points-output").innerText);
@@ -90,6 +91,7 @@ function winCheck() {
   if (globalPoints === Carrots) {
     $("#gameDiv").hide();
     $(".centerDiv").show();
+    $("#scoreDiv").hide();
     $("#win").show();
 
     globalPoints = parseInt(document.getElementById("points-output").innerText);
