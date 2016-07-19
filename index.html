@@ -116,17 +116,31 @@
       <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li>
           <div class="github-button">
-            <a aria-label="Star 7cats/pig-wolf-game on GitHub" data-count-aria-label="# stargazers on GitHub" data-count-api="/repos/7cats/pig-wolf-game#stargazers_count" data-count-href="/7cats/pig-wolf-game/stargazers" data-style="mega" data-icon="octicon-star" href="https://github.com/7cats/pig-wolf-game" class="github-button left">Star</a>
+            <a aria-label="Star 7cats/pig-wolf-game on GitHub" data-count-aria-label="# stargazers on GitHub" data-count-api="/repos/7cats/pig-wolf-game#stargazers_count" data-count-href="/7cats/pig-wolf-game/stargazers" data-style="mega" data-icon="octicon-star" href="https://github.com/7cats/pig-wolf-game" class="github-button github-star">Star</a>
           </div>
         </li>
         <li><a onclick="toLevel()">Levels</a></li>
         <li><a href=".\scoreboard.html">Scoreboard</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
+        <li><a id="userSettings" class="signIn dropdown-button"></a></li>
         <li><a id="signIn" class="signIn">Sign in</a></li>
       </ul>
     </div>
   </nav>
+
+  <div id="userData" class="settingsTab noShow">
+    <a id="signOut" class="waves-effect waves-light btn">Sign out</a>
+  </div>
+
+  <div id="signInSN" class="signInTab noShow">
+    <div class="signInIco">
+     <img id="gmail" class="signInIco" src=".\images\gmail.svg">
+    </div>
+    <div class="signInIco">
+     <img id="ghub" class="signInIco" src=".\images\github.svg">
+    </div>
+  </div>
     
   <div id="signInSN" class="signInTab noShow">
     <div class="signInIco">

@@ -406,3 +406,13 @@ p1 {
 .noShow {
   display: none;
 }
+
+.settingsTab {
+  right: 0;
+  text-align: center;
+  height: 20%;
+  width: 15%;
+  border: 1px solid #ee6e73;
+  position:absolute;
+  overflow: hidden;
+}

@@ -6,16 +6,6 @@ class DB {
     this.scoreboard = firebase.database();
   }
 
-  auth() {
-    let returnCode = "ok";
-    firebase.auth().signInWithEmailAndPassword("pigandwolfgame@gmail.com", "123456yhnbvcxz").catch(function(error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      returnCode = errorCode;
-    }); 
-    return returnCode;
-  }
-
   genResultID() {
     return this.scoreboard.ref().child('scoreboard').push().key;
   }
@@ -43,5 +33,76 @@ class DB {
       });
       callback(result);
     });
+  }
+
+  gmailSignIn() {
+    if (!firebase.auth().currentUser) {
+      var provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope('https://www.googleapis.com/auth/plus.login');
+      firebase.auth().signInWithRedirect(provider);
+    }
+  }
+
+  githubSignIn() {
+    if (!firebase.auth().currentUser) {
+      var provider = new firebase.auth.GithubAuthProvider();
+      provider.addScope('repo');
+      firebase.auth().signInWithPopup(provider).then(function(result) {
+        var token = result.credential.accessToken;
+        var user = result.user;
+        console.log("signG:" + user);
+      }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+        if (errorCode === 'auth/account-exists-with-different-credential') {
+          alert('You have already signed up with a different auth provider for that email.');
+        } else {
+          alert(error);
+        }
+      });
+    }
+  }
+
+  onSignIn(callback) {
+    firebase.auth().getRedirectResult().then(function(result) {
+      if (result.credential) {
+        var token = result.credential.accessToken;
+      }
+      // The signed-in user info.
+      var user = result.user;
+    }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      var email = error.email;
+      var credential = error.credential;
+      if (errorCode === 'auth/account-exists-with-different-credential') {
+        alert('You have already signed up with a different auth provider for that email.');
+      } else {
+        console.error("!!!" + error);
+      }
+    });
+
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        let userData = [];
+
+        userData.push({"displayName" : user.displayName});
+        userData.push({"uid"   : user.uid});
+        userData.push({"email" : user.email});
+
+        userData.push({"refreshToken" : user.refreshToken});
+        userData.push({"providerData" : user.providerData});
+
+        callback(userData);
+      } else {
+        //user is signed out
+      }
+    });
+  }
+
+  signOut() {
+    firebase.auth().signOut();
   }
 }

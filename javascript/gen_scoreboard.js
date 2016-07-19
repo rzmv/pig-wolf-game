@@ -1,17 +1,14 @@
 window.onload = function() {
   let db = new DB();
-  if (db.auth() !== "ok") {
-    $("#popupN").show();
-  } else {
-    db.getLeaderBoard(25, function(usersScores) {
-      for (let i = 0; i < usersScores.length; i++) {
-        console.log(usersScores[i].score);
-        addTableRow(i + 1, usersScores[i].username, usersScores[i].score);
-      }
-      $("#loadC").hide();
-      $("#table").show();
-    });
-  }
+
+  db.getLeaderBoard(25, function(usersScores) {
+    for (let i = 0; i < usersScores.length; i++) {
+      console.log(usersScores[i].score);
+      addTableRow(i + 1, usersScores[i].username, usersScores[i].score);
+    }
+    $("#loadC").hide();
+    $("#table").show();
+  });
 }
 
 function addTableRow(id, username, score) {
