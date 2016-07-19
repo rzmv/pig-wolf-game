@@ -71,11 +71,9 @@ function loseCheck() {
 
       globalPoints = parseInt(document.getElementById("points-output").innerText);
       globalSteps  = parseInt(document.getElementById("steps-output").innerText);
-      // alert(globalSteps);
-      //hyperbola
-      let score = scoreFormula();
-      score += ResultScore;
-      document.getElementById("userScore").innerText = score;
+
+      let score = scoreFormula() + ResultScore;
+      $(".userScore").text(score);
       if (Username !== "" && UserResultID !== "-1") {
         document.getElementById("Username").value = Username;
       }
@@ -96,8 +94,9 @@ function winCheck() {
 
     globalPoints = parseInt(document.getElementById("points-output").innerText);
     globalSteps  = parseInt(document.getElementById("steps-output").innerText);
-    //hyperbola
+
     ResultScore += scoreFormula();
+    $(".userScore").text(ResultScore);
   }
 }
 
