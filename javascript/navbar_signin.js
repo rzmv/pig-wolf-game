@@ -27,7 +27,6 @@ $(function(){
     });
 
     $("#signOut").click(function() {
-      alert("sdf");
       db.signOut();
       $("#userData").hide();
       $("#userSettings").hide();
