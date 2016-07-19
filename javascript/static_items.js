@@ -96,9 +96,15 @@ class ItemButton extends StaticItem {
     return this;
   }
 
-  toogle() {
+  toogle(cellDoor, buttonItem) {
+    // check if there is a wolf in cell with door
+    if (cellDoor.layerUnit.length)
+      return;
+
     this.currentArrayIndex = (this.currentArrayIndex + 1) % 2;
     this.image = this.imagesArray[this.currentArrayIndex];    
+    
+    buttonItem.toogle();
   }
 }
 

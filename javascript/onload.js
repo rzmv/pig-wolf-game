@@ -88,7 +88,7 @@ function loseToMenu() {
   document.getElementById("menu").style="display:block";*/
   $("#scoreDiv").hide();
   $("#levelDiv").show();
-  alert("ww");
+  // alert("ww");
 }
   
 

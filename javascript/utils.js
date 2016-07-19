@@ -99,10 +99,17 @@ function winCheck() {
     $(".centerDiv").show();
     $("#win").show();
 
+    // cause it is lose-div
+    // $("scoreDiv").hide();
+
     globalPoints = parseInt(document.getElementById("points-output").innerText);
     globalSteps  = parseInt(document.getElementById("steps-output").innerText);
     //hyperbola
     ResultScore += scoreFormula();
+
+    document.getElementById("userScore").innerText = ResultScore;
+    
+    //$("userScore").innerText = ResultScore;
   }
 }
 
