@@ -301,7 +301,7 @@ h1 {
   top: 0px;
 }
 
-.b-popup-notification
+.b-popup-notification,
 .b-popup-content-notification {
   margin: 40px auto 0px auto;
   text-align: center;
@@ -326,6 +326,8 @@ h1 {
 }
 
 #welGameBtn {
+  width: 150px;
+  height: 50px;
 }
 
 .div-tableScore {

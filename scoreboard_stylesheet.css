@@ -8,11 +8,10 @@
   top: 14%;
   text-align: center;
   margin-left: 0;
-  color: darkred;
-  font-family: courier;
+  color: #ee6e73;
   font-size: 150%;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 200%;
 }
 
 .scorebCell {
