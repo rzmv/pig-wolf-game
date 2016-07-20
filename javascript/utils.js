@@ -42,6 +42,11 @@ function incrementPoints() {
   document.getElementById('points-output').innerHTML = globalPoints;
 }
 
+function incrementSteps() {
+  ++globalSteps;
+  document.getElementById('steps-output').innerHTML = globalSteps;
+}
+
 function pointsDistance(p1, p2) {
   return Math.max(Math.abs(p1.row - p2.row),
     Math.abs(p1.col - p2.col));
@@ -91,6 +96,9 @@ function winCheck() {
     $(".centerDiv").show();
     $("#scoreDiv").hide();
     $("#win").show();
+
+    // cause it is lose-div
+    // $("scoreDiv").hide();
 
     globalPoints = parseInt(document.getElementById("points-output").innerText);
     globalSteps  = parseInt(document.getElementById("steps-output").innerText);

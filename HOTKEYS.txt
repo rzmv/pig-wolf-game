@@ -1,0 +1,12 @@
+Game:
+  wasd - movement
+  space - stay at place
+  j - open/close the door(when you're staying on a button)
+    - door can't be closed, if there is a wolf in the cell with door
+  r - reload the level
+
+Level-editor:
+  wasd - movement
+  space or z - stay at place
+  j - open the door
+  i - return to level initial state(before you start playing it)

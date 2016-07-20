@@ -8,12 +8,40 @@ function checkKey(e) {
  // its 'q' for 'quit' from editing wolf's trajectory
   if (e.keyCode == 81)
     editor.finishWolf();
+
+  // press 'z' to stay at place
+  if (e.keyCode == 90) {
+    currentLevel.pig.tryMove(new Direction('stay'));
+    return;
+  }
+
+  // press 'i' to return your level to initial state
+  if (e.keyCode == 73) {
+    currentLevel.loadFromJSON(initialLevelState);
+    editor = new Editor(currentLevel);
+    showField();
+    return;  
+  }
+
+  // key 'j' is for toogle button
+  if (e.keyCode == 74) {
+    currentLevel.field.toogleDoorByButton(currentLevel.pig.position());
+    return;
+  }
+
+  let dir = keyToDirection(e.keyCode);
+  if (dir.direction != '')
+    currentLevel.pig.tryMove(dir);
 }
 
 // need carrots for compatibility with other non-levelEditor modules
 var Carrots;
 var currentLevel;
+var initialLevelState;
 var editor;
+
+const isRealGame = false;
+
 const FIELD_MAX_WIDTH = 30;
 const FIELD_MAX_HEIGHT = 20;
 
@@ -63,6 +91,8 @@ function generateField() {
   currentLevel = new Level(f, p, []);
   editor = new Editor(currentLevel); 
   showField();
+
+  initialLevelState = currentLevel.saveToJSON();
 }
 
 function showJSON() {
@@ -75,4 +105,6 @@ function loadFromJSON() {
   editor = new Editor(currentLevel);
   showField();
   alert('LOADED FROM JSON');
+
+  initialLevelState = currentLevel.saveToJSON();
 }

@@ -51,16 +51,17 @@ class ItemFood extends StaticItem {
   }
 
   nextState() {
-    incrementPoints();
+    // we don't need to do this in editor game
+    if (isRealGame)
+      incrementPoints();
     return new ItemEmpty();
   }
 }
 
 class ItemDoor extends StaticItem {
   constructor() {
-  // !!! TODO change image to door_opened
     super('door', 'images/door_closed.svg', 'layer-item-door', false);
-    this.imagesArray = ['images/door_closed.svg', 'images/wolfhead.svg'];
+    this.imagesArray = ['images/door_closed.svg', 'images/door_opened.svg'];
     this.passableArray = [false, true];
     this.currentArrayIndex = 0;
     
@@ -85,7 +86,8 @@ class ItemButton extends StaticItem {
     this.currentArrayIndex = 0;
   }
 
-  // !!! image doesn't change to pressed button automatically 
+  // !!! image doesn't change to pressed button automatically
+  // need to press special key 
   nextState() {
     return this;
   }
@@ -94,9 +96,15 @@ class ItemButton extends StaticItem {
     return this;
   }
 
-  toogle() {
+  toogle(cellDoor, buttonItem) {
+    // check if there is a wolf in cell with door
+    if (cellDoor.layerUnit.length)
+      return;
+
     this.currentArrayIndex = (this.currentArrayIndex + 1) % 2;
     this.image = this.imagesArray[this.currentArrayIndex];    
+    
+    buttonItem.toogle();
   }
 }
 

@@ -190,9 +190,7 @@ class Field {
       let cellDoor = this.pointToCell(buttonItem.doorPosition);
       let doorItem = cellDoor.getStaticItemByName('door');
       
-      // !!!
-      buttonItem.toogle();
-      doorItem.toogle();
+      buttonItem.toogle(cellDoor, doorItem);
     
       redrawCell(cellButton);
       redrawCell(cellDoor);

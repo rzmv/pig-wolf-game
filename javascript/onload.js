@@ -6,6 +6,8 @@ var currentLevel;
 var Carrots = 0;
 var ResultScore = 0;
 
+const isRealGame = true;
+
 function checkKey(e) {
   e = e || window.event;
 

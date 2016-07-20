@@ -15,14 +15,16 @@ class Unit {
     this.image = () => this._currentImg;
   }
 
+  // real game, or editor game
   tryMove(direction) {
     let next = direction.nextPoint(this.position());
-    if (currentLevel.field.freeCell(next)) {
-      movePlayer(direction);
-      
-      // !!! move it to function in module like onload.js or smth like that
-      ++globalSteps;
-      document.getElementById('steps-output').innerHTML = globalSteps;
+    if (!currentLevel.field.freeCell(next))
+      return;
+
+    movePlayer(direction);
+    
+    if (isRealGame) {
+      incrementSteps();
       winLoseCheck();
     }    
   }
@@ -48,8 +50,9 @@ class Trajectory {
   constructor(position, trajectory) {
     this._trajectory = trajectory || [];
     this._currentDirection = (this._trajectory.length > 1 ? 1 : 0);
-    this._currentStep = this._getTrajectoryStep(position);    
-    this._isCycle = this._isTrajectoryCycle(this._trajectory);
+    this._currentStep = this._getTrajectoryStep(position);
+        
+    this._isCycle = this._isTrajectoryCycle(this._trajectory, 0, trajectory.length - 1);
     this._position = position;
 
     // need to rememeber for wolf.freeze
@@ -68,8 +71,8 @@ class Trajectory {
     return 0;
   }
 
-  _isTrajectoryCycle(trajectory) {
-    return trajectory.length > 1 && equalPoints(trajectory[0], trajectory[trajectory.length - 1]);
+  _isTrajectoryCycle(trajectory, first, second) {
+    return trajectory.length > 1 && equalPoints(trajectory[first], trajectory[second]);
   }
 
   currentPosition() {
@@ -113,7 +116,8 @@ class Trajectory {
         nextStep += nextDir;
       }
       else
-        nextStep += 2 * nextDir; 
+        nextStep += 2 * nextDir;
+
     }
 
     return {'step':nextStep, 'direction':nextDir};  
