@@ -60,7 +60,6 @@ class ItemFood extends StaticItem {
 
 class ItemDoor extends StaticItem {
   constructor() {
-  // !!! TODO change image to door_opened
     super('door', 'images/door_closed.svg', 'layer-item-door', false);
     this.imagesArray = ['images/door_closed.svg', 'images/door_opened.svg'];
     this.passableArray = [false, true];
@@ -87,7 +86,8 @@ class ItemButton extends StaticItem {
     this.currentArrayIndex = 0;
   }
 
-  // !!! image doesn't change to pressed button automatically 
+  // !!! image doesn't change to pressed button automatically
+  // need to press special key 
   nextState() {
     return this;
   }

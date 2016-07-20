@@ -1,0 +1,11 @@
+Game:
+  wasd - movement
+  space - stay at place
+  j - open the door
+  r - reload the level
+
+Level-editor:
+  wasd - movement
+  space or z - stay at place
+  j - open the door
+  i - return to level initial state(before you start playing it)
