@@ -3,6 +3,9 @@ To create wolf, click on the field, there it'll appear. To create trajectory for
 consequently on the cells, with common side. At the end press key 'q', there will be
 a message "wolf created".
 
+If you want to bind a button and a door, create first button, then door.
+If all right, you see a message "door binded with button"
+
 When you are playing in Level-editor, to return to initial state press the key 'i'.
 You can stay at place by pressing 'z'.
 

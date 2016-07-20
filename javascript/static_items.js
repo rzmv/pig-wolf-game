@@ -62,7 +62,7 @@ class ItemDoor extends StaticItem {
   constructor() {
   // !!! TODO change image to door_opened
     super('door', 'images/door_closed.svg', 'layer-item-door', false);
-    this.imagesArray = ['images/door_closed.svg', 'images/wolfhead.svg'];
+    this.imagesArray = ['images/door_closed.svg', 'images/door_opened.svg'];
     this.passableArray = [false, true];
     this.currentArrayIndex = 0;
     

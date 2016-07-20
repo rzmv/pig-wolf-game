@@ -7,7 +7,7 @@ input {
 }
 
 .control-panel {
-  position: relative;
+  position: absolute;
   left: 5px;
   top: 5px;
 }
@@ -22,7 +22,7 @@ input {
   position: relative;
   left: 37%;
   margin:auto;
-  top: 5px;
+  top: 15px;
 }
 
 .editor-table {
