@@ -84,7 +84,7 @@ function menuToScoreboard() {
   location.href="scoreboard.html";
 }
 
-function submitResult() {
+/*function submitResult() {
   let db = new DB();
   let inputUN = document.getElementById("username").value;
   let score   = document.getElementById("userScore").innerText;
@@ -100,7 +100,7 @@ function submitResult() {
     popUpShow();
   }
 
-}
+}*/
 
 function welToLevels() {
   $("#welcomeDiv").hide();

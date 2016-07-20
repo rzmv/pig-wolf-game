@@ -1,13 +1,28 @@
+'use strict';
+
 $(function(){
   $(document).ready(function() {
     var db = new DB();
     db.onSignIn(function(userData) {
       console.log(userData);
-      console.log(userData[0].displayName);
+      console.log(userData["displayName"]);
+
+      Username = userData["displayName"];
+      Uid      = userData["uid"];
+
       $("#signInSN").hide();
       $("#signIn").hide();
-      $("#userSettings").text(userData[0].displayName);
+      $("#userSettings").text(Username);
       $("#userSettings").show();
+
+      db.getUsersScore(Uid, function(score) {
+        TopUserScore = score;
+        $("#topScore").text(TopUserScore);
+        if (TopUserScore === -1) {
+          TopUserScore = 0;
+          db.setData(Username, TopUserScore, Uid);
+        }
+      });
     });
 
     $("#userSettings").click(function () {

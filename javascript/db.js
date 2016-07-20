@@ -1,5 +1,8 @@
-var UsersResultID = "-1";
+'use strict';
+
 var Username = "";
+var TopUserScore = -1;
+var Uid = "-1";
 
 class DB {
   constructor() {
@@ -10,12 +13,19 @@ class DB {
     return this.scoreboard.ref().child('scoreboard').push().key;
   }
 
-  setData(username, score, id) {
+  setData(username, score, uid) {
     let userScore = {
       username: username,
       score   : score
     }; 
-    this.scoreboard.ref("scoreboard/" + id).set(userScore);
+    this.scoreboard.ref("scoreboard/" + uid).set(userScore);
+  }
+
+  getUsersScore(uid, callback) {
+    this.scoreboard.ref('scoreboard/' + uid + '/score').once('value', function(value){
+      let answer = value.val() === null ? -1 : value.val();
+      callback(answer);
+    });
   }
 
   //return [<score, username>]
@@ -88,12 +98,12 @@ class DB {
       if (user) {
         let userData = [];
 
-        userData.push({"displayName" : user.displayName});
-        userData.push({"uid"   : user.uid});
-        userData.push({"email" : user.email});
+        userData["displayName"] = user.displayName;
+        userData["uid"]         = user.uid;
+        /*userData.push({"email" : user.email});
 
         userData.push({"refreshToken" : user.refreshToken});
-        userData.push({"providerData" : user.providerData});
+        userData.push({"providerData" : user.providerData});*/
 
         callback(userData);
       } else {

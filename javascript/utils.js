@@ -58,6 +58,15 @@ function scoreFormula() {
     9.354 * globalPoints + (currentLevel.field.width * currentLevel.field.height / globalSteps) * globalPoints);
 }
 
+function submitResult(score) {
+  if (score > TopUserScore) {
+    TopUserScore = score;
+    let db = new DB();
+    db.setData(Username, TopUserScore, Uid);
+    $("#topScore").text(TopUserScore);
+  }
+}
+
 function loseCheck() {
   for (let i = 0; i < currentLevel.wolves.length; ++i) {
     let prevPig = currentLevel.pig.prevPosition();
@@ -78,6 +87,7 @@ function loseCheck() {
       globalSteps  = parseInt(document.getElementById("steps-output").innerText);
 
       let score = scoreFormula() + ResultScore;
+      submitResult(score);
       $(".userScore").text(score);
       if (Username !== "" && UserResultID !== "-1") {
         document.getElementById("Username").value = Username;
@@ -104,6 +114,7 @@ function winCheck() {
     globalSteps  = parseInt(document.getElementById("steps-output").innerText);
 
     ResultScore += scoreFormula();
+    submitResult(ResultScore);
     $(".userScore").text(ResultScore);
   }
 }
