@@ -46,6 +46,9 @@ $(function(){
       $("#userData").hide();
       $("#userSettings").hide();
       $("#signIn").show();
+      Username = "";
+      TopUserScore = -1;
+      Uid = '-1';
     })
 
     $("#gmail").click(function () {
