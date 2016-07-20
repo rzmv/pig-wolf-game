@@ -1,12 +1,23 @@
 'use strict';
 
+const BACKGROUNDS = [
+  'grass',
+  'ground',
+  'wood',
+  'redstone',
+  'ceramic',
+]; 
+
 function getTrajectoryAddress(trajectory) {
   return 'images/trajectory_' + trajectory + '.svg';
 }
 
 function getBackgroundAddress(background) {
-  if (background == 'wood')
-    return 'images/wood.jpg';
+  switch (background) {
+    case 'wood': return 'images/wood.jpg';
+    case 'redstone': return 'images/redstone.jpg';
+    case 'ceramic': return 'images/ceramic.jpg';
+  }
   return 'images/' + background + '.svg';
 }
 
@@ -30,16 +41,24 @@ function getArrowAddress(arrow) {
   }
 }
 
-function getHTMLImgByImage(image, cssClass = '') {
+function getHTMLImgByImage(image, cssClass = '', size = 0) {
   if (image === '') {
     return '';
   }                                                   
-  return '<img src = "' + image + '" class = "' + cssClass + '">';
+  let ans = '<img src = "' + image + '" class = "' + cssClass + '" ';
+  if (size != 0)
+    ans += 'width = ' + size + ' height = ' + size;
+  ans += '>';
+
+  return ans;
 }
 
-function drawUnit(unit) {
+function drawUnit(unit, canTurnLights = true) {
   let cell = currentLevel.field.pointToCell(unit.position());
-  cell.visit(unit);
+  if (canTurnLights)
+    cell.visit(unit);
+  else
+    cell.addToLayer('unit', unit);
 }
 
 function redrawCell(cell) {
@@ -82,8 +101,8 @@ function movePlayer(direction) {
     redrawCell(cellsToRedraw[i]);
 }
 
-function initialDraw() {
-  drawUnit(currentLevel.pig);
+function initialDraw(canTurnLights = true) {
+  drawUnit(currentLevel.pig, canTurnLights);
 
   for (let i = 0; i < currentLevel.wolves.length; ++i)
     drawUnit(currentLevel.wolves[i]);

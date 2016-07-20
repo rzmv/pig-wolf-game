@@ -55,6 +55,7 @@ class Trajectory {
     // need to rememeber for wolf.freeze
     this._latestDirection = this._currentDirection;
   }
+  
   _getTrajectoryStep(position) {
     for (let i = 0; i < this._trajectory.length; ++i)
       if (equalPoints(this._trajectory[i], position))
@@ -97,6 +98,24 @@ class Trajectory {
         nextDir = -this._currentDirection;
     }
     nextStep += nextDir;
+    
+    // check for a door or a wall
+    let nextPoint = this._trajectory[nextStep];
+    let nextCell = currentLevel.field.pointToCell(nextPoint);
+    if (!nextCell.isFree()) {
+      // change direction
+      nextDir = -nextDir;
+      
+      // not last or first element in the array
+      if (nextStep + nextDir == 0 ||
+        nextStep + nextDir == this._trajectory.length - 1)
+      {
+        nextStep += nextDir;
+      }
+      else
+        nextStep += 2 * nextDir; 
+    }
+
     return {'step':nextStep, 'direction':nextDir};  
   }
 

@@ -9,29 +9,29 @@ class Editor {
     while (tp.firstChild) {
       tp.removeChild(tp.firstChild);
     }
+    
+    let curToolHeader = document.createElement('h2');
+    curToolHeader.id = 'currentTool';
+    tp.appendChild(curToolHeader);
 
     this.pushBackgrounds();
-    this.createTableFromArray(this.arrayBackgrounds, 'table-backgrounds', 'background');
+    this.createTableFromArray(this.arrayBackgrounds, 'table-backgrounds', 'background', getBackgroundAddress);
 
     this.pushStaticItems();
-    this.createTableFromArray(this.arrayStaticItems, 'table-staticItems', 'staticItem');
+    this.createTableFromArray(this.arrayStaticItems, 'table-staticItems', 'staticItem', null, 'image');
 
-    this.pushPigs();
-    this.createTableFromArray(this.arrayPigs, 'table-pigs', 'pig');
-
-    this.pushWolves();
-    this.createTableFromArray(this.arrayWolves, 'table-wolves', 'wolf');
+    this.pushUnits();
+    this.createTableFromArray(this.arrayUnits, 'table-units', 'unit', null, '_currentImg');
 
     this.currentItemType = 'background';
     this.currentItemName = 'grass';
-    
+    this.updateCurrentTool();
+
     this.latestButton = null;
     this.latestButtonPosition = null;
     
     this.latestWolf = null;
     this.latestWolfTrajectory = []; 
-
-    this.updateCurrentTool();
   }
 
   makeFieldCellsClickable() {
@@ -40,39 +40,41 @@ class Editor {
         this.level.field.cells[i][j].tableCell.onclick = () => this.addSelectedItem(Point(i, j));
   }
 
+  _pairTextObj(text, obj) {
+    return {'text': text, 'obj': obj};
+  }
+
   pushBackgrounds() {
     this.arrayBackgrounds = [];
-    this.arrayBackgrounds.push('grass');
-    this.arrayBackgrounds.push('ground');
-    this.arrayBackgrounds.push('wood');
+    for (let i = 0; i < BACKGROUNDS.length; ++i)
+      this.arrayBackgrounds.push(this._pairTextObj(BACKGROUNDS[i], null));
   }
 
   pushStaticItems() {
     this.arrayStaticItems = [];
-    this.arrayStaticItems.push('wall');
-    this.arrayStaticItems.push('food');
-    this.arrayStaticItems.push('door');
-    this.arrayStaticItems.push('button');
-    this.arrayStaticItems.push('snowflake');
-    this.arrayStaticItems.push('fire');
-    this.arrayStaticItems.push('blackButton');
-    this.arrayStaticItems.push('lamp');
-    this.arrayStaticItems.push('clear');
+    this.arrayStaticItems.push(this._pairTextObj('wall', new ItemWall()));
+    this.arrayStaticItems.push(this._pairTextObj('food', new ItemFood()));
+    this.arrayStaticItems.push(this._pairTextObj('door', new ItemDoor()));
+    this.arrayStaticItems.push(this._pairTextObj('button', new ItemButton()));
+    this.arrayStaticItems.push(this._pairTextObj('snowflake', new ItemSnowflake()));
+    this.arrayStaticItems.push(this._pairTextObj('fire', new ItemFire()));
+    this.arrayStaticItems.push(this._pairTextObj('blackButton', new ItemBlackButton()));
+    this.arrayStaticItems.push(this._pairTextObj('lamp', new ItemLamp()));
+    this.arrayStaticItems.push(this._pairTextObj('clear', {'image':'images/cross_delete.svg'}));
   }
   
-  pushPigs() {
-    this.arrayPigs = ['pig'];
-  }
-
-  pushWolves() {
-    this.arrayWolves = ['wolf', 'clear'];
+  pushUnits() {
+    this.arrayUnits = [];
+    this.arrayUnits.push(this._pairTextObj('pig', new Pig(Point(0,0))));
+    this.arrayUnits.push(this._pairTextObj('wolf', new Wolf(Point(0,0))));
+    this.arrayUnits.push(this._pairTextObj('clear', {'_currentImg':'images/cross_delete.svg'}));
   }
 
   updateCurrentTool() {
     $('currentTool').innerHTML = this.currentItemType + ' - ' + this.currentItemName;  
   }
 
-  createTableFromArray(arr, tableId, itemType) {
+  createTableFromArray(arr, tableId, itemType, textToImgFunc = null, imageProp = null) {
     let table = document.createElement('table');
     table.id = tableId;
     table.border = '1px';
@@ -80,17 +82,27 @@ class Editor {
     let curRow = document.createElement('tr');
     for (let i = 0; i < arr.length; ++i) {
       let curCol = document.createElement('td');
-      curCol.innerHTML = arr[i];
-      
+      curCol.title = arr[i].text;
+
+      let image;
+      // for background it's a function, for others it's image or image()
+      if (textToImgFunc !== null)
+        image = textToImgFunc(arr[i].text);
+      else
+        image = arr[i].obj[imageProp];
+
+      curCol.innerHTML = getHTMLImgByImage(image, '', 40);
+
       let self = this;
       curCol.onclick = function () {
         self.currentItemType = itemType;
-        self.currentItemName = arr[i];
+        self.currentItemName = arr[i].text;
         self.updateCurrentTool();
       };
       curRow.appendChild(curCol);  
     }
     table.appendChild(curRow);
+    table.float = 'left';
 
     $('tools-panel').appendChild(table);
   }
@@ -107,6 +119,14 @@ class Editor {
     let curName = this.currentItemName;
     
     if (curName == 'clear') {
+
+      // when we delete latest not-assigned button,
+      // we need to set null this.latestButton
+      if (equalPoints(point, this.latestButtonPosition)) {
+        this.latestButton = null;
+        this.latestButtonPosition = null;
+      }
+
       curCell.staticItems = [];
     }
     else {
@@ -118,9 +138,6 @@ class Editor {
         this.latestButtonPosition = point;
       }
 
-        // !!! may be errors, be careful
-        // when we delete this not-assigned button,
-        // we stil have it in this.latestButton
       if (curName == 'door' && this.latestButton !== null) {
         this.latestButton.doorPosition = point;
         
@@ -151,18 +168,19 @@ class Editor {
   }
 
   addSelectedItem(point) {
-    if (this.latestWolf !== null && this.currentItemType != 'wolf') {
-      this.latestWolf = null;
-      this.latestTrajectory = [];
-      this.level.wolves.pop();
-      this.completeFieldRedraw();
+    if (this.latestWolf !== null && this.currentItemName != 'wolf') {
+      this.finishWolf();
     }
 
     switch (this.currentItemType) {
       case 'background': this.applyBackground(point); break;
       case 'staticItem': this.applyStaticItem(point); break;
-      case 'pig': this.applyPig(point); break;
-      case 'wolf': this.applyWolf(point); break;
+      case 'unit':
+        if (this.currentItemName == 'pig')
+          this.applyPig(point);
+        else
+          this.applyWolf(point);
+        break;
     }
   }
 
@@ -231,6 +249,7 @@ class Editor {
       this.latestWolf.trajectory.addLayerToField(this.level.field, this.latestWolfTrajectory);
     }
     
-    initialDraw();
+    // pig won't turn lights off, if he stay on blackButton
+    initialDraw(false);
   }
 }

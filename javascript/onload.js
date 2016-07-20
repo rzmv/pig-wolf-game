@@ -8,12 +8,21 @@ var ResultScore = 0;
 
 function checkKey(e) {
   e = e || window.event;
+
+  // key 'r' is reload
+  if (e.keyCode == 82)
+    document.getElementById('level').onclick(); 
+
+  // key 'j' is for toogle button
+  if (e.keyCode == 74)
+    currentLevel.field.toogleDoorByButton(currentLevel.pig.position());
+
   let dir = keyToDirection(e.keyCode);
   if (dir.direction != '')
     currentLevel.pig.tryMove(dir);
 }
 
-window.onload = function(){
+window.onload = function() {
   for(let i = 0; i < LEVELS.length; i++){
      let curBtn = document.createElement('button');
      curBtn.onclick = () => level(i);
