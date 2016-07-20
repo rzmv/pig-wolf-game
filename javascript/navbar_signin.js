@@ -17,9 +17,9 @@ $(function(){
 
       db.getUsersScore(Uid, function(score) {
         TopUserScore = score;
-        $("#topScore").text(TopUserScore);
         if (TopUserScore === -1) {
           TopUserScore = 0;
+          $("#topScore").text(TopUserScore);
           db.setData(Username, TopUserScore, Uid);
         }
       });
