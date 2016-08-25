@@ -1,6 +1,7 @@
-<!doctype html5>
+<!DOCTYPE html>
 <html>
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="./levels/LEVELS.js"></script>
   <script src="./javascript/level.js"></script>
   <script src="./javascript/static_items.js"></script>
@@ -10,7 +11,8 @@
   <script src="./javascript/db.js"></script>
   <script src="./javascript/units.js"></script>
   <script src="./javascript/onload.js"></script>
-  <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+  <script src="./javascript/navbar_signin.js"></script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>  
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
@@ -68,20 +70,15 @@
       <div>
         <div>
           <p> Score:</p>
-          <p id="userScore"></p>
+          <p class="userScore"></p>
         </div>
         <div>
-          <p> User name:</p>
-          <input id="username" type="text"> 
-          <div>
-            <button id = "saveLoseRes" onclick = submitResult() class="btn waves-effect waves-light">
-              Submit
+          <div class="centerD">
+            <button id="level" class="btn waves-effect waves-light">
+              Reload
             </button>
             <button id= "returnToMenu" onclick = "loseToMenu()" class="btn waves-effect waves-light">
               Menu
-            </button>
-            <button id="level" class="btn waves-effect waves-light">
-              Reload
             </button>
           </div>
         </div>
@@ -93,12 +90,10 @@
       <div>
         <div>
           <p> Score:</p>
-          <p id="userScore"></p>
+          <p class="userScore"></p>
         </div>
         <div>
-          <p> User name:</p>
-          <input id="username" type="text">        
-          <div>
+          <div class="centerD">
             <button id = "nextlevel"  class="btn waves-effect waves-light">
               Next Level
             </button>
@@ -107,19 +102,50 @@
       </div>
     </div>
   </div>
+  
+  <nav>
+    <div class="nav-wrapper">
+      <a href="" class="brand-logo center">Pig and wolf</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down left-margin-btn">
+        <li>
+          <div class="github-button">
+            <a aria-label="Star 7cats/pig-wolf-game on GitHub" data-count-aria-label="# stargazers on GitHub" data-count-api="/repos/7cats/pig-wolf-game#stargazers_count" data-count-href="/7cats/pig-wolf-game/stargazers" data-style="mega" data-icon="octicon-star" href="https://github.com/7cats/pig-wolf-game" class="github-button github-star">Star</a>
+          </div>
+        </li>
+        <li><a onclick="toLevel()">Menu</a></li>
+        <li><a href=".\leaderboard.html">Leaderboard</a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a id="userSettings" class="signIn noShow"></a></li>
+        <li><a id="signIn" class="signIn"><big><big>Sign in</big></big></a></li>
+      </ul>
+    </div>
+  </nav>
 
-  <div>   
-    <nav>
-      <div class="nav-wrapper">
-        <a href="" class="brand-logo center">Pig and wolf</a>
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
-          <li><a onclick="toLevel()">Levels</a></li>
-          <li><a href=".\scoreboard.html">Scoreboard</a></li>
-        </ul>
-      </div>
-    </nav>
-  </div>    
+  <div id="userData" class="settingsTab noShow">
+    <a>Top score</a>
+    <a id="topScore"></a>
+    <a id="signOut" class="waves-effect waves-light btn" onclick="signOut()">Sign out</a>
+  </div>
+
+  <div id="signInSN" class="signInTab noShow">
+    <div class="signInIco">
+     <img id="gmail" class="signInIco" src=".\images\gmail.svg">
+    </div>
+    <div class="signInIco">
+     <img id="ghub" class="signInIco" src=".\images\github.svg">
+    </div>
+  </div>
     
+  <div id="signInSN" class="signInTab noShow">
+    <div class="signInIco">
+      <img id="gmail" class="signInIco" src=".\images\gmail.svg">
+    </div>
+    <div class="signInIco">
+      <img id="ghub" class="signInIco" src=".\images\github.svg">
+    </div>
+  </div>
+
   <div id="gameDiv">
     <div class = "Points">
       Carrots:<p1 id="points-output"> 0 </p1>

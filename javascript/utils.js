@@ -58,6 +58,15 @@ function scoreFormula() {
     9.354 * globalPoints + (currentLevel.field.width * currentLevel.field.height / globalSteps) * globalPoints);
 }
 
+function submitResult(score) {
+  if (score > TopUserScore) {
+    TopUserScore = score;
+    let db = new DB();
+    db.setData(Username, TopUserScore, Uid);
+    $("#topScore").text(TopUserScore);
+  }
+}
+
 function loseCheck() {
   for (let i = 0; i < currentLevel.wolves.length; ++i) {
     let prevPig = currentLevel.pig.prevPosition();
@@ -69,23 +78,23 @@ function loseCheck() {
     if (pointsDistance(curPig, curWolf) == 0 ||
       pointsDistance(prevPig, curWolf) == 0 && pointsDistance(curPig, prevWolf) == 0)
     {
-/*      document.getElementById("lose").style="display:block";
-      document.getElementById("background").style="display:block";*/
       $("#gameDiv").hide();
       $(".centerDiv").show();
+      $("#win").hide();
       $("#scoreDiv").show();
 
       globalPoints = parseInt(document.getElementById("points-output").innerText);
       globalSteps  = parseInt(document.getElementById("steps-output").innerText);
-      // alert(globalSteps);
-      //hyperbola
-      let score = scoreFormula();
-      score += ResultScore;
-      document.getElementById("userScore").innerText = score;
+
+      let score = scoreFormula() + ResultScore;
+      submitResult(score);
+      $(".userScore").text(score);
       if (Username !== "" && UserResultID !== "-1") {
         document.getElementById("Username").value = Username;
       }
       ResultScore = 0;
+      // user can't move further and earn points
+      document.onkeydown = {};
       return true;
     }
   }
@@ -97,6 +106,7 @@ function winCheck() {
   if (globalPoints === Carrots) {
     $("#gameDiv").hide();
     $(".centerDiv").show();
+    $("#scoreDiv").hide();
     $("#win").show();
 
     // cause it is lose-div
@@ -104,12 +114,12 @@ function winCheck() {
 
     globalPoints = parseInt(document.getElementById("points-output").innerText);
     globalSteps  = parseInt(document.getElementById("steps-output").innerText);
-    //hyperbola
-    ResultScore += scoreFormula();
 
-    document.getElementById("userScore").innerText = ResultScore;
-    
-    //$("userScore").innerText = ResultScore;
+    ResultScore += scoreFormula();
+    submitResult(ResultScore);
+    $(".userScore").text(ResultScore);
+    // user can't move further and earn points
+    document.onkeydown = {};
   }
 }
 

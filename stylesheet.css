@@ -301,7 +301,7 @@ h1 {
   top: 0px;
 }
 
-.b-popup-notification
+.b-popup-notification,
 .b-popup-content-notification {
   margin: 40px auto 0px auto;
   text-align: center;
@@ -326,10 +326,13 @@ h1 {
 }
 
 #welGameBtn {
+  width: 150px;
+  height: 50px;
 }
 
 .div-tableScore {
   top: 10%;
+  margin: 0 0 0 0;
   position: relative;
   height: 80%;
   width: 100%;
@@ -364,4 +367,58 @@ p1 {
   font-size: 150%;
   text-transform: uppercase;
   font-weight: 600;
+}
+
+.github-button {
+  height: 64px;
+  padding: 0 15px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.github-button iframe {
+  display: block;
+}
+
+.signIn {
+  margin-right: 20px;
+}
+
+.left-margin-btn {
+  margin-left: 20px;
+}
+
+.signInTab {
+  right: 0;
+  text-align: center;
+  height: 110px;
+  width: 265px;
+  border: 1px solid #ee6e73;
+  position:absolute;
+  overflow: hidden;
+}
+
+.signInIco {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  padding: 12px;
+}
+
+.noShow {
+  display: none;
+}
+
+.settingsTab {
+  right: 0;
+  text-align: center;
+  height: 20%;
+  width: 15%;
+  border: 1px solid #ee6e73;
+  position:absolute;
+  overflow: hidden;
+}
+
+.centerD {
+  text-align: center;
 }

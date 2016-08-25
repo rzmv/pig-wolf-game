@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script src="./javascript/gen_leaderboard.js"></script>
+    <script src="./javascript/db.js"></script>
+    <script src="./javascript/navbar_signin.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script>
+      var config = {
+        apiKey: "AIzaSyBAjZ13FHcaqIGVjrbTDTZb1JV5crYKtt4",
+        authDomain: "pigwolftable.firebaseapp.com",
+        databaseURL: "https://pigwolftable.firebaseio.com",
+        storageBucket: "pigwolftable.appspot.com",
+      };
+      firebase.initializeApp(config);
+    </script>
+    <link rel=stylesheet href="stylesheet.css">
+    <link rel=stylesheet href="scoreboard_stylesheet.css">
+    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+  </head>
+  <body>
+    <div class="b-popup-notification noShow" id="popupN">
+      <div class="b-popup-content-notification">
+        Error. Please, refresh the page
+      </div>
+    </div>
+
+    <nav>
+      <div class="nav-wrapper">
+        <a href=".\leaderboard.html" class="brand-logo center">Pig and wolf</a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down left-margin-btn">
+          <li>
+            <div class="github-button">
+              <a aria-label="Star 7cats/pig-wolf-game on GitHub" data-count-aria-label="# stargazers on GitHub" data-count-api="/repos/7cats/pig-wolf-game#stargazers_count" data-count-href="/7cats/pig-wolf-game/stargazers" data-style="mega" data-icon="octicon-star" href="https://github.com/7cats/pig-wolf-game" class="github-button github-star">Star</a>
+            </div>
+          </li>
+          <li><a href=".\index.html" onclick="toLevel()">Menu</a></li>
+          <li><a href=".\leaderboard.html">Leaderboard</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+          <li><a id="userSettings" class="signIn noShow"></a></li>
+          <li><a id="signIn" class="signIn">Sign in</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="userData" class="settingsTab noShow">
+      <a>Top score</a>
+      <a id="topScore"></a>
+      <a id="signOut" class="waves-effect waves-light btn">Sign out</a>
+    </div>
+
+    <div id="signInSN" class="signInTab noShow">
+      <div class="signInIco">
+       <img id="gmail" class="signInIco" src=".\images\gmail.svg">
+      </div>
+      <div class="signInIco">
+       <img id="ghub" class="signInIco" src=".\images\github.svg">
+      </div>
+    </div>
+
+    <p id="scoreText">Leaderboard:</p>
+    <div class="centerDivT">
+      <div id="table" class="mainDiv noShow">
+        <table id="mdl-data-table" class="mdl-shadow--2dp">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>usermame</th>
+              <th>score</th>
+            </tr>
+          </thead>
+          <tbody id="scoreboard">
+          </tbody>
+        </table>
+      </div>
+      <div id="loadC" class="preloader-wrapper active">
+        <div class="spinner-layer spinner-red-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

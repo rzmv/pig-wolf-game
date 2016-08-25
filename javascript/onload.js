@@ -25,7 +25,6 @@ function checkKey(e) {
 }
 
 window.onload = function() {
-
   for(let i = 0; i < LEVELS.length; i++){
      let curBtn = document.createElement('button');
      curBtn.onclick = () => level(i);
@@ -37,38 +36,35 @@ window.onload = function() {
 
 
 function level(index) {
-  document.getElementById('steps-output').innerHTML = 0;
-  document.getElementById('points-output').innerHTML = 0;
-  globalSteps = 0;
-  globalPoints = 0;
-  $("#levelDiv").hide();
-  $("#gameDiv").show();
-  $(".centerDiv").hide();
-  /*document.getElementById("levels").style="display:none";
-  document.getElementById("background").style="display:none";*/
-/*  document.getElementById("levels").style="display:none";
-  document.getElementById("background").style="display:none";
-  document.getElementById("win").style="display:none";*/
+  if (Uid !== '-1') {
+    document.getElementById('steps-output').innerHTML = 0;
+    document.getElementById('points-output').innerHTML = 0;
+    globalSteps = 0;
+    globalPoints = 0;
+    $("#levelDiv").hide();
+    $("#gameDiv").show();
+    $(".centerDiv").hide();
 
-  document.getElementById('level').onclick = () => level(index);
-  document.getElementById('nextlevel').onclick = () => level(index + 1);
+    document.getElementById('level').onclick = () => level(index);
+    document.getElementById('nextlevel').onclick = () => level(index + 1);
 
-  var table = document.getElementById('mainDiv');  
-  while (table.firstChild) {
-    table.removeChild(table.firstChild);
+    var table = document.getElementById('mainDiv');
+    while (table.firstChild) {
+      table.removeChild(table.firstChild);
+    }
+
+    currentLevel = new Level();
+    currentLevel.loadFromJSON(LEVELS[index]);
+
+    $("#mainDiv").css({"width" : 6 * currentLevel.field.width  + "vmin",
+                       "height": 6 * currentLevel.field.height + "vmin"}); //TODO: get width/height dynamically
+
+    document.getElementById('mainDiv').appendChild(currentLevel.field.table);
+
+    initialDraw();
+
+    document.onkeydown = checkKey;
   }
-
-  currentLevel = new Level();
-  currentLevel.loadFromJSON(LEVELS[index]);
-
-  $("#mainDiv").css({"width" : 6 * currentLevel.field.width  + "vmin",
-                     "height": 6 * currentLevel.field.height + "vmin"}); //TODO: get width/height dynamically
-
-  document.getElementById('mainDiv').appendChild(currentLevel.field.table);
-
-  initialDraw();
-
-  document.onkeydown = checkKey;
 }
 
 function goToLevels() {
@@ -77,31 +73,20 @@ function goToLevels() {
 }
 
 function winToMenu() {
- /* document.getElementById("win").style="display:none";
-  document.getElementById("menu").style="display:block";*/
   $("#win").hide();
   $("#levelDiv").show();   
 }
 
 function loseToMenu() {
-  /*document.getElementById("lose").style="display:none";
-  document.getElementById("menu").style="display:block";*/
   $("#scoreDiv").hide();
   $("#levelDiv").show();
-  // alert("ww");
 }
   
-
-function levelToMenu() {
-  document.getElementById("levels").style="display:none";
-  document.getElementById("menu").style="display:block";
-}
-
 function menuToScoreboard() {
   location.href="scoreboard.html";
 }
 
-function submitResult() {
+/*function submitResult() {
   let db = new DB();
   let inputUN = document.getElementById("username").value;
   let score   = document.getElementById("userScore").innerText;
@@ -117,7 +102,7 @@ function submitResult() {
     popUpShow();
   }
 
-}
+}*/
 
 function welToLevels() {
   $("#welcomeDiv").hide();
@@ -131,4 +116,8 @@ function toLevel() {
   $("#win").hide();
   $(".centerDiv").show();
   $("#levelDiv").show();
+}
+
+function signOut() {
+  toLevel();
 }
