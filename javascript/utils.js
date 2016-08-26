@@ -93,6 +93,8 @@ function loseCheck() {
         document.getElementById("Username").value = Username;
       }
       ResultScore = 0;
+      // user can't move further and earn points
+      document.onkeydown = {};
       return true;
     }
   }
@@ -116,6 +118,8 @@ function winCheck() {
     ResultScore += scoreFormula();
     submitResult(ResultScore);
     $(".userScore").text(ResultScore);
+    // user can't move further and earn points
+    document.onkeydown = {};
   }
 }
 
