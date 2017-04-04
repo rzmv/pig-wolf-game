@@ -1,3 +1,13 @@
+To deploy Pig wolf game you need:
+
+1) install node.js, npm and git on your platform
+2) clone this repo: 
+  $ git clone https://github.com/7cats/pig-wolf-game.git
+3) in project folder install gulp and gulp-webserver:
+  $ npm install gulp gulp-webserver
+4) delpoy game:
+  $ gulp server
+
 HOTKEYS
 
 Game:
